@@ -63,6 +63,19 @@
   .logo .txt span { display: block; font-size: 30px; letter-spacing: .14em; }
   .top nav a { text-decoration: none; margin-left: 22px; }
   .top nav a:hover { color: var(--yellow); }
+  .top nav a.navcta { background: var(--yellow); color: var(--bg); padding: 4px 10px; }
+  .top nav a.navcta:hover { background: var(--text); }
+
+  /* campagna nazionale */
+  .national { border-top: 3px solid var(--text); }
+  .national .cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: start; }
+  .national .slogan { font-family: var(--display); text-transform: uppercase; font-size: clamp(48px, 7vw, 96px); line-height: .9; margin: 0; }
+  .national .slogan span { color: var(--red); display: block; }
+  .national p { color: var(--text-muted); margin: 0 0 16px; }
+  .national .fig { font-family: var(--display); font-size: clamp(56px, 7vw, 84px); line-height: 1; color: var(--yellow); }
+  .national .fig small { display: block; font-family: var(--body); font-weight: 900; font-size: 14px; text-transform: uppercase; color: var(--text); letter-spacing: .03em; }
+  .national a.more { display: inline-block; margin-top: 10px; font-weight: 900; text-transform: uppercase; font-size: 14px; color: var(--yellow); }
+  @media (max-width: 760px) { .national .cols { grid-template-columns: minmax(0, 1fr); gap: 22px; } }
 
   /* hero */
   .hero { padding-block: 48px 30px; position: relative; }
@@ -264,7 +277,6 @@
   .cta:active { transform: translate(8px, 8px); box-shadow: 0 0 0 var(--red); }
   .cta.alt { background: transparent; color: var(--text); border-color: var(--text); box-shadow: 8px 8px 0 #444; }
   .cta.alt:hover { background: var(--text); color: var(--bg); }
-  .cta[aria-disabled=true] { opacity: .45; pointer-events: none; }
   .handle { font-weight: 900; text-transform: uppercase; }
 
   footer {
@@ -284,7 +296,7 @@
 
   @media (max-width: 760px) {
     body { font-size: 16px; }
-    .top nav { display: none; }
+    .top nav a:not(.navcta) { display: none; }
     .hero .sub, .bonus, .why .cols, .calc .grid { grid-template-columns: minmax(0, 1fr); gap: 18px; }
     .hero .claim s { white-space: normal; }
     .problems li { grid-template-columns: minmax(0, 1fr); gap: 8px; }
@@ -317,7 +329,8 @@
       <a href="#bonus">Il bonus</a>
       <a href="#conti">Fai i conti</a>
       <a href="#vogliamo">Cosa vogliamo</a>
-      <a href="#unisciti">Unisciti</a>
+      <a href="https://cambiare-rotta.org/" target="_blank" rel="noopener">Chi siamo</a>
+      <a class="navcta" href="tesseramento.html">Tesserati</a>
     </nav>
   </header>
 
@@ -419,6 +432,21 @@
   </div>
 </section>
 
+<section class="national" id="campagna">
+  <div class="wrap cols">
+    <div class="rv">
+      <p class="label">La campagna nazionale</p>
+      <p class="slogan">La guerra<span>non la paghiamo!</span></p>
+    </div>
+    <div class="rv">
+      <p>MUVT AGGRATIS è la parte barese di <strong>La guerra non la paghiamo!</strong>, la campagna nazionale di Cambiare Rotta contro carovita e carostudi.</p>
+      <p>Tasse, affitti, mense e trasporti salgono, le borse di studio restano poche. Intanto la spesa militare cresce ogni anno ed entra nelle università con accordi con la filiera bellica.</p>
+      <div class="fig">34 miliardi<small>di spesa militare nell'ultima legge di bilancio</small></div>
+      <a class="more" href="https://cambiare-rotta.org/2026/09/10/la-guerra-non-la-paghiamo-contro-carovita-e-carostudi-riprendiamoci-il-diritto-allo-studio-e-il-futuro/" target="_blank" rel="noopener">Leggi l'appello nazionale →</a>
+    </div>
+  </div>
+</section>
+
 <section class="demands" id="vogliamo">
   <div class="wrap">
     <p class="label">Le nostre rivendicazioni</p>
@@ -449,7 +477,8 @@
 <section class="acro">
   <div class="wrap">
     <p class="label">Il nostro slogan</p>
-    <div class="line"><span>Mu</span>ovimento</div>
+    <div class="line"><span>M</span>ovimento</div>
+    <div class="line"><span>U</span>niversitario</div>
     <div class="line"><span>V</span>erso</div>
     <div class="line"><span>T</span>rasporti</div>
     <div class="line"><span>Aggratis</span></div>
@@ -467,9 +496,8 @@
       <div class="cell rv"><h3>Mobilitati</h3><p>Scendi in piazza con noi alle prossime iniziative.</p></div>
     </div>
     <div class="forms">
-      <!-- i link ai form esterni si impostano in FORMS, nello script in fondo -->
-      <a class="cta" data-form="adesione" href="#" target="_blank" rel="noopener">Aderisci alla campagna</a>
-      <a class="cta alt" data-form="segnalazione" href="#" target="_blank" rel="noopener">Racconta il tuo viaggio</a>
+      <a class="cta" href="tesseramento.html">Tesserati a Cambiare Rotta</a>
+      <a class="cta alt" href="https://cambiare-rotta.org/" target="_blank" rel="noopener">Chi siamo</a>
       <a class="handle" href="https://www.instagram.com/cambiarerotta_bari/" target="_blank" rel="noopener">@cambiarerotta_bari</a>
     </div>
   </div>
@@ -485,19 +513,7 @@
 <div class="toast" id="toast" role="status"></div>
 
 <script>
-  // link ai form esterni della campagna: incollare qui gli indirizzi
-  const FORMS = {
-    adesione: "",
-    segnalazione: ""
-  };
-
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  document.querySelectorAll("[data-form]").forEach(a => {
-    const url = FORMS[a.dataset.form];
-    if (url) a.href = url;
-    else { a.setAttribute("aria-disabled", "true"); a.title = "Link in arrivo"; }
-  });
 
   // titolo: lettere che salgono una alla volta
   if (!reduce) {

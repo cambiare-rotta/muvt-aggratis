@@ -8,4 +8,5 @@ Pubblicato con GitHub Pages: https://lordmarte-a669.github.io/muvt/
 - `docs/stile.md`: palette, font, linguaggio visivo
 - `docs/campagna.md`: contenuti della campagna
 - `docs/pubblicazione.md`: come funziona Pages
-- `docs/stato.md`: cosa è fatto, parti interattive, cosa manca (logo, link ai form)
+- `docs/stato.md`: cosa è fatto, parti interattive, collegamenti
+- `docs/da-fare-a-mano.md`: cosa non si è potuto fare da qui e come farlo

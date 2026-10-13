@@ -4,7 +4,10 @@ Fonte: il documento Google "MUVT AGGRATIS" del collettivo
 (https://docs.google.com/document/d/1ri9f6b_OgjjPShTNOfbmq33YfWclCybzmylzcM01QDs/edit). I testi del sito sono una versione accorciata di quel documento: se cambia il documento, vanno aggiornati.
 
 **Chi:** Cambiare Rotta Bari, organizzazione giovanile comunista. Attiva in Uniba e Poliba.
-**Slogan:** MUVT AGGRATIS = Movimento Universitario Verso Trasporti Gratuiti. Sui social è usato insieme a "La guerra non la paghiamo!".
+**Slogan:** MUVT AGGRATIS = Movimento Universitario Verso Trasporti (Aggratis, cioè gratuiti).
+**Campagna madre:** MUVT AGGRATIS è la campagna specifica di Bari dentro "La guerra non la paghiamo!", la campagna nazionale di Cambiare Rotta contro carovita e carostudi (https://cambiare-rotta.org/2026/09/10/la-guerra-non-la-paghiamo-contro-carovita-e-carostudi-riprendiamoci-il-diritto-allo-studio-e-il-futuro/). Le rivendicazioni nazionali: accesso libero ai corsi, meno tasse, più borse di studio, alloggi pubblici, **trasporti gratuiti**, mense calmierate, edilizia universitaria. Dietro c'è un argomento politico: la spesa militare (34 miliardi) cresce mentre si taglia il diritto allo studio.
+**Sito nazionale (Chi siamo):** https://cambiare-rotta.org/
+**Tesseramento:** https://docs.google.com/forms/d/e/1FAIpQLSebOGkB5fVfU6QFmdLfYamqmrxH1_RYLZsaytOL-kOuoAMx6w/viewform
 
 ## Il contesto
 

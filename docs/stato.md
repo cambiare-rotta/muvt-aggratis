@@ -19,13 +19,16 @@
 - Striscione che scorre, si ferma passandoci sopra.
 - Con "riduci movimento" attivo nel sistema le animazioni sono spente.
 
+## Collegamenti
+
+- **Campagna nazionale:** MUVT AGGRATIS è la campagna barese dentro "La guerra non la paghiamo!" di Cambiare Rotta (appello del 10 settembre 2026: https://cambiare-rotta.org/2026/09/10/la-guerra-non-la-paghiamo-contro-carovita-e-carostudi-riprendiamoci-il-diritto-allo-studio-e-il-futuro/). Nel sito c'è una sezione dedicata, con il dato dei 34 miliardi di spesa militare nell'ultima legge di bilancio preso dall'appello.
+- **Chi siamo:** porta a https://cambiare-rotta.org/ (menu e pulsante in fondo).
+- **Tesseramento:** pagina `public/tesseramento.html` che incornicia il modulo Google https://docs.google.com/forms/d/e/1FAIpQLSebOGkB5fVfU6QFmdLfYamqmrxH1_RYLZsaytOL-kOuoAMx6w/viewform (con `?embedded=true`), più un link di riserva per aprirlo direttamente. Su mobile il pulsante "Tesserati" resta visibile nel menu.
+- **Acronimo:** MUVT = **M**ovimento **U**niversitario **V**erso **T**rasporti (Aggratis).
+
 ## Da fare
 
-- **Logo:** il codice cerca `public/assets/logo.png`; se manca mostra la scritta "Cambiare Rotta". I loghi veri sono nel design Canva https://www.canva.com/design/DAHVt9sz8f4/ (post "MUVT… AGGRATIS!", 13 pagine). Il connettore Canva non ha accesso al design e i link firmati delle immagini non si possono scaricare dal browser, quindi vanno **esportati a mano da Canva**: PNG con sfondo trasparente, versione bianca, salvato come `public/assets/logo.png`.
-- **Link ai form esterni:** nel design Canva non ci sono link. Vanno incollati nell'oggetto `FORMS` in fondo a `public/index.html` (`adesione`, `segnalazione`). Finché sono vuoti, i pulsanti sono disattivati con la scritta "Link in arrivo".
-- **Foto:** nel Canva ci sono foto (l'autobus "FUORI SERVIZIO", ecc.) che potrebbero entrare nel sito una volta esportate.
-- **Mobile:** layout responsive, non ancora controllato su un telefono vero.
-- **GitHub Pages:** attivare la sorgente "GitHub Actions" nelle impostazioni del repo (vedi [pubblicazione.md](pubblicazione.md)).
+Tutto quello che non si è potuto fare da qui è in [da-fare-a-mano.md](da-fare-a-mano.md).
 
 ## Anteprima in locale
 

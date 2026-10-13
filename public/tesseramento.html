@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tesseramento — Cambiare Rotta Bari</title>
+<meta name="description" content="Tesserati a Cambiare Rotta e partecipa alla campagna MUVT AGGRATIS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@500;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0E0E0E; --text: #F4F4F4; --text-muted: #C9C9C9;
+    --yellow: #F5D24E; --red: #A8182A;
+    --display: "Anton", "Impact", "Arial Narrow", sans-serif;
+    --body: "Poppins", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 500 17px/1.6 var(--body); }
+  a { color: inherit; }
+  .wrap { max-width: 900px; margin: 0 auto; padding-inline: 20px; }
+  .top {
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    padding-block: 14px; border-bottom: 3px solid var(--text);
+    font-weight: 900; text-transform: uppercase; font-size: 14px;
+  }
+  .top a { text-decoration: none; }
+  .top a:hover { color: var(--yellow); }
+  .logo img { height: 46px; width: auto; display: block; }
+  .logo .txt { font-family: var(--display); font-size: 22px; letter-spacing: .06em; line-height: .9; }
+  .logo .txt span { display: block; font-size: 30px; letter-spacing: .14em; }
+  h1 {
+    font-family: var(--display); font-weight: 400; text-transform: uppercase;
+    font-size: clamp(56px, 11vw, 120px); line-height: .9; margin: 40px 0 16px;
+  }
+  h1 span { color: var(--yellow); display: block; }
+  .intro { color: var(--text-muted); max-width: 56ch; margin: 0 0 30px; }
+  /* il modulo Google, incorniciato nello stile del sito */
+  .frame {
+    background: #fff; border: 3px solid var(--yellow); box-shadow: 10px 10px 0 var(--red);
+    margin-bottom: 30px;
+  }
+  .frame iframe { display: block; width: 100%; height: 1600px; border: 0; }
+  .fallback { font-weight: 900; text-transform: uppercase; font-size: 14px; margin: 0 0 50px; }
+  .fallback a { color: var(--yellow); }
+  footer { border-top: 3px solid var(--text); padding-block: 22px 40px; font-weight: 900; text-transform: uppercase; font-size: 14px; color: var(--text-muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="./" aria-label="Torna a MUVT AGGRATIS">
+      <img src="assets/logo.png" alt="Cambiare Rotta" onerror="this.replaceWith(this.nextElementSibling.content.cloneNode(true))">
+      <template><span class="txt">Cambiare<span>Rotta</span></span></template>
+    </a>
+    <a href="./">← Torna alla campagna</a>
+  </header>
+
+  <h1>Organizzati,<span>tesserati.</span></h1>
+  <p class="intro">Per vincere servono più persone, non più sconti. Tesserati a Cambiare Rotta e costruisci con noi la campagna MUVT AGGRATIS nelle università di Bari.</p>
+
+  <div class="frame">
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSebOGkB5fVfU6QFmdLfYamqmrxH1_RYLZsaytOL-kOuoAMx6w/viewform?embedded=true" title="Modulo di tesseramento a Cambiare Rotta" loading="lazy">Caricamento…</iframe>
+  </div>
+  <p class="fallback">Il modulo non si vede? <a href="https://docs.google.com/forms/d/e/1FAIpQLSebOGkB5fVfU6QFmdLfYamqmrxH1_RYLZsaytOL-kOuoAMx6w/viewform" target="_blank" rel="noopener">Aprilo su Google Moduli →</a></p>
+
+  <footer>Cambiare Rotta · Organizzazione giovanile comunista · Bari</footer>
+</div>
+</body>
+</html>
