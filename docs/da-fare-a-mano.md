@@ -2,13 +2,11 @@
 
 Elenco aggiornato man mano: ogni voce dice perché non si è potuta fare e come farla a mano.
 
-## 1. Primo push su GitHub
-- **Perché:** il push chiede il login a GitHub e dalla sessione di Claude non si può aprire la finestra di accesso.
-- **Come:** dalla cartella del progetto lanciare `& "C:\Program Files\Git\cmd\git.exe" push -u origin main` e fare il login nel browser che si apre. Dopo il primo login i push successivi funzionano da soli.
+## 1. ~~Primo push su GitHub~~ (fatto il 13 ottobre 2026)
+Repo `cambiare-rotta/muvt-aggratis` (pubblico), autori dei commit con l'indirizzo noreply di GitHub. Il remote usa `https://cambiare-rotta@github.com/…` perché git su questo PC è collegato anche a un altro account.
 
-## 2. Attivare GitHub Pages
-- **Perché:** è un'impostazione del repo su github.com.
-- **Come:** repo `cambiare-rotta/muvt-aggratis` (da creare o trasferire dal repo personale `LordMarte-A669/muvt`, poi `git remote set-url origin …`) → Settings → Pages → Build and deployment → Source: **GitHub Actions**. Sul piano gratuito il repo deve essere pubblico.
+## 2. ~~Attivare GitHub Pages~~ (fatto il 13 ottobre 2026)
+Sorgente "GitHub Actions". Sito online su https://cambiare-rotta.github.io/muvt-aggratis/. Se un deploy fallisce con "Get Pages site failed", Pages non è attivo: Settings → Pages → Source → GitHub Actions, poi "Re-run jobs".
 
 ## 3. ~~Loghi~~ (risolto)
 Fatto con i file forniti dal committente; vedi [stato.md](stato.md#loghi). Resta un consiglio: se esiste il logo MUVT in alta risoluzione, o meglio in SVG, conviene usare quello. Il file attuale è largo solo 489 px e su schermi grandi o retina si vede un po' morbido.
@@ -27,9 +25,9 @@ Il modulo non è più un iframe di Google: è un modulo nostro in `public/tesser
 - **Cosa:** nell'account Canva c'è la copia di lavoro "Copia di Copia di U", con 3 pagine in più (2–4) usate per separare i livelli del logo. In Download ci sono `muvt-cunei-canva.png` e `muvt-scritta-canva.png`.
 - **Come:** vanno tenuti finché il logo va bene; poi la copia Canva si può eliminare. Il design originale "Copia di U" non è stato toccato.
 
-## 8. Dopo la pubblicazione
-- **Attivare il modulo:** mandare un messaggio di prova dal sito pubblicato e cliccare il link di FormSubmit nella casella `cambiarerotta.bari@gmail.com`. Finché non si fa, i messaggi non arrivano.
-- **Filtro Gmail:** oggetto `[MUVT]` → etichetta `MUVT` (con il colore che si sceglie).
-- **Statistiche:** GoatCounter, https://tesla-analysis.goatcounter.com/. Da localhost non conta; si controlla solo dal sito pubblicato. Link con `?ref=volantino`, `?ref=instagram` ecc. per sapere da dove arrivano. Eventi: clic-tesserati, clic-instagram, clic-cambiare-rotta-org, hashtag-copiato, calcolatore-usato, galleria-vista, galleria-sfogliata, fondo-pagina, messaggio-inviato.
-- **Anteprima social:** `og:image` in `public/index.html` punta a `https://cambiare-rotta.github.io/muvt-aggratis/assets/og.jpg`. Se l'indirizzo del sito cambia va aggiornato. Per ripulire la cache dell'anteprima: Sharing Debugger di Facebook.
-- **Informativa privacy:** da scrivere insieme a chi risponde dei dati per Cambiare Rotta.
+## 8. Dopo la pubblicazione (13 ottobre 2026)
+- **Fatti e verificati da Mario:** modulo "Scrivici" attivato e provato, invio di prova del tesseramento, filtro Gmail con l'etichetta `MUVT`, informativa privacy riletta.
+- **Da fare:** controllo su un telefono vero (iPhone e Android), vedi punto 6.
+- **Statistiche:** GoatCounter, https://tesla-analysis.goatcounter.com/. Da localhost non conta. Lo script è bloccato da alcune estensioni anti-tracciamento (nel Chrome usato per i test risultava bloccato), quindi chi le usa non viene contato: è un limite normale di ogni strumento di statistiche. Link con `?ref=volantino`, `?ref=instagram` ecc. per sapere da dove arrivano. Eventi: clic-tesserati, clic-instagram, clic-cambiare-rotta-org, hashtag-copiato, calcolatore-usato, galleria-vista, galleria-sfogliata, fondo-pagina, messaggio-inviato, tesseramento-inviato.
+- **Anteprima social:** `og:image` punta a `https://cambiare-rotta.github.io/muvt-aggratis/assets/og.jpg`. Per ripulire la cache dell'anteprima: Sharing Debugger di Facebook.
+- **Privacy:** durata di conservazione del tesseramento ("finché resti iscritta o iscritto") è un'ipotesi, da confermare.

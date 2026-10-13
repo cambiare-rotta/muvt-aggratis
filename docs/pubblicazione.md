@@ -1,5 +1,7 @@
 # Pubblicazione: GitHub Pages
 
+**Online dal 13 ottobre 2026:** https://cambiare-rotta.github.io/muvt-aggratis/ (repo `cambiare-rotta/muvt-aggratis`, pubblico).
+
 **Decisione (13 ottobre 2026):** il sito va su GitHub Pages, non su Cloudflare Workers. La configurazione Wrangler è stata tolta.
 
 ## Come funziona
