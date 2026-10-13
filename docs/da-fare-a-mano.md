@@ -21,6 +21,10 @@ Fatto con i file forniti dal committente; vedi [stato.md](stato.md#loghi). Resta
 - **Perché:** Google Moduli dentro un iframe non comunica la propria altezza alla pagina. Ho messo 1600px; se il modulo è più lungo scorre dentro la cornice.
 - **Come:** se dà fastidio, aprire il modulo, misurarne la lunghezza e cambiare `height` in `.frame iframe` dentro `public/tesseramento.html`.
 
-## 6. Controllo su telefono
-- **Perché:** la finestra di Chrome controllata da Claude non si è ridimensionata a larghezza mobile.
-- **Come:** aprire il sito pubblicato su un telefono, oppure in Chrome premere F12 → icona telefono, e controllare hero, calcolatore e menu.
+## 6. Controllo su un telefono vero
+- **Perché:** il sito è stato provato in riquadri larghi come telefoni e tablet (vedi [stato.md](stato.md#mobile-first-13-ottobre-2026)), ma non su un dispositivo reale. Restano da vedere Safari su iPhone, la tastiera, lo scorrimento vero e la velocità.
+- **Come:** aprire il sito pubblicato su un iPhone e su un Android e provare l'animazione del logo, i cursori del calcolatore, le rivendicazioni a fisarmonica e il modulo di tesseramento.
+
+## 7. Pulizia in Canva e in Download
+- **Cosa:** nell'account Canva c'è la copia di lavoro "Copia di Copia di U", con 3 pagine in più (2–4) usate per separare i livelli del logo. In Download ci sono `muvt-cunei-canva.png` e `muvt-scritta-canva.png`.
+- **Come:** vanno tenuti finché il logo va bene; poi la copia Canva si può eliminare. Il design originale "Copia di U" non è stato toccato.

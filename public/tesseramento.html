@@ -15,35 +15,51 @@
     --display: "Anton", "Impact", "Arial Narrow", sans-serif;
     --body: "Poppins", "Helvetica Neue", Arial, sans-serif;
   }
+  /* mobile first: base per il telefono, poi ≥600px */
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--text); font: 500 17px/1.6 var(--body); }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; overflow-x: hidden; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 500 16px/1.6 var(--body); overflow-x: hidden; }
   a { color: inherit; }
-  .wrap { max-width: 900px; margin: 0 auto; padding-inline: 20px; }
+  :focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+  .wrap { max-width: 900px; margin: 0 auto; padding-inline: 18px; }
   .top {
-    display: flex; justify-content: space-between; align-items: center; gap: 16px;
-    padding-block: 14px; border-bottom: 3px solid var(--text);
-    font-weight: 900; text-transform: uppercase; font-size: 14px;
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    padding-block: 12px; border-bottom: 3px solid var(--text);
+    font-weight: 900; text-transform: uppercase; font-size: 13px;
   }
-  .top a { text-decoration: none; }
+  .top a { text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
   .top a:hover { color: var(--yellow); }
-  .logo img { height: 46px; width: auto; display: block; }
-  .logo .txt { font-family: var(--display); font-size: 22px; letter-spacing: .06em; line-height: .9; }
-  .logo .txt span { display: block; font-size: 30px; letter-spacing: .14em; }
+  .top .long { display: none; }
+  @media (min-width: 420px) { .top .long { display: inline; } }
+  .logo img { height: 40px; width: auto; display: block; }
+  .logo .txt { font-family: var(--display); font-size: 20px; letter-spacing: .06em; line-height: .9; }
+  .logo .txt span { display: block; font-size: 26px; letter-spacing: .14em; }
   h1 {
     font-family: var(--display); font-weight: 400; text-transform: uppercase;
-    font-size: clamp(56px, 11vw, 120px); line-height: .9; margin: 40px 0 16px;
+    font-size: clamp(52px, 16vw, 72px); line-height: .9; margin: 30px 0 14px;
   }
   h1 span { color: var(--yellow); display: block; }
-  .intro { color: var(--text-muted); max-width: 56ch; margin: 0 0 30px; }
-  /* il modulo Google, incorniciato nello stile del sito */
+  .intro { color: var(--text-muted); max-width: 56ch; margin: 0 0 24px; }
+  /* il modulo Google, incorniciato nello stile del sito; su telefono è più stretto e quindi più lungo */
   .frame {
-    background: #fff; border: 3px solid var(--yellow); box-shadow: 10px 10px 0 var(--red);
-    margin-bottom: 30px;
+    background: #fff; border: 3px solid var(--yellow); box-shadow: 6px 6px 0 var(--red);
+    margin: 0 6px 26px 0;
   }
-  .frame iframe { display: block; width: 100%; height: 1600px; border: 0; }
-  .fallback { font-weight: 900; text-transform: uppercase; font-size: 14px; margin: 0 0 50px; }
-  .fallback a { color: var(--yellow); }
-  footer { border-top: 3px solid var(--text); padding-block: 22px 40px; font-weight: 900; text-transform: uppercase; font-size: 14px; color: var(--text-muted); }
+  .frame iframe { display: block; width: 100%; height: 2000px; border: 0; }
+  .fallback { font-weight: 900; text-transform: uppercase; font-size: 13px; margin: 0 0 40px; }
+  .fallback a { color: var(--yellow); display: inline-block; padding-block: 10px; }
+  footer { border-top: 3px solid var(--text); padding-block: 22px calc(32px + env(safe-area-inset-bottom, 0px)); font-weight: 900; text-transform: uppercase; font-size: 13px; color: var(--text-muted); }
+  @media (min-width: 600px) {
+    body { font-size: 17px; }
+    .wrap { padding-inline: 24px; }
+    .top { padding-block: 14px; font-size: 14px; }
+    .logo img { height: 46px; }
+    h1 { font-size: clamp(72px, 11vw, 120px); margin-top: 40px; }
+    .intro { margin-bottom: 30px; }
+    .frame { box-shadow: 10px 10px 0 var(--red); margin: 0 10px 30px 0; }
+    .frame iframe { height: 1600px; }
+    .fallback, footer { font-size: 14px; }
+  }
 </style>
 </head>
 <body>
@@ -53,7 +69,7 @@
       <img src="assets/logo.png" alt="Cambiare Rotta" onerror="this.replaceWith(this.nextElementSibling.content.cloneNode(true))">
       <template><span class="txt">Cambiare<span>Rotta</span></span></template>
     </a>
-    <a href="./">← Torna alla campagna</a>
+    <a href="./" aria-label="Torna alla campagna">← <span class="long">Torna alla&nbsp;</span>campagna</a>
   </header>
 
   <h1>Organizzati,<span>tesserati.</span></h1>

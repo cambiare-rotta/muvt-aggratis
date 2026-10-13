@@ -5,7 +5,7 @@ Pubblicato con GitHub Pages: https://lordmarte-a669.github.io/muvt/
 
 - `public/`: il sito (HTML/CSS/JS statico, nessuna build)
 - `public/assets/`: loghi ottimizzati per il web
-- `tools/`: script PowerShell usati per preparare i loghi
+- `tools/`: script PowerShell usati per preparare i loghi (`livelli-logo.ps1` per i livelli del logo MUVT esportati da Canva)
 - `.github/workflows/pages.yml`: pubblicazione automatica a ogni push su `main`
 - `docs/stile.md`: palette, font, linguaggio visivo
 - `docs/campagna.md`: contenuti della campagna
