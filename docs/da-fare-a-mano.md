@@ -12,7 +12,7 @@ Sorgente "GitHub Actions". Sito online su https://cambiare-rotta.github.io/muvt-
 Fatto con i file forniti dal committente; vedi [stato.md](stato.md#loghi). Resta un consiglio: se esiste il logo MUVT in alta risoluzione, o meglio in SVG, conviene usare quello. Il file attuale è largo solo 489 px e su schermi grandi o retina si vede un po' morbido.
 
 ## 4. ~~Foto~~ (risolto)
-Le 21 foto delle mobilitazioni (zip di WhatsApp) sono nella galleria "Le nostre mobilitazioni"; gli originali stanno in `foto_originali/`. Il consenso di chi è ritratto c'è (le foto le hanno scattate loro stessi). La foto dell'autobus "FUORI SERVIZIO" del Canva non c'è ancora.
+Le 19 foto delle mobilitazioni (21 dagli zip, tolte le n. 10 e 20 del carosello) (zip di WhatsApp) sono nella galleria "Le nostre mobilitazioni"; gli originali stanno in `foto_originali/`. Il consenso di chi è ritratto c'è (le foto le hanno scattate loro stessi). La foto dell'autobus "FUORI SERVIZIO" del Canva non c'è ancora.
 
 ## 5. ~~Altezza del modulo di tesseramento~~ (non serve più)
 Il modulo non è più un iframe di Google: è un modulo nostro in `public/tesseramento.html` che invia le risposte al Google Moduli di Cambiare Rotta. **Da fare:** un invio di prova dal sito pubblicato (nome "TEST") per controllare che la riga arrivi nel foglio, poi cancellare la riga.
