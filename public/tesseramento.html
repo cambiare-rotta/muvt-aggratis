@@ -118,8 +118,9 @@
     if (troppi) return err(troppi);
 
     const body = new URLSearchParams();
-    for (const [k, campo] of Object.entries(CAMPI)) body.set(campo, k === "istituto" ? (serve ? v("istituto") : "Non applicabile") : v(k));
-    body.set("entry.839453997_sentinel", ""); body.set("fvv", "1"); body.set("pageHistory", "0,1");
+    // come nel modulo Google: chi è studente passa alla seconda pagina (istituto), chi lavora o è disoccupato invia dalla prima
+    for (const [k, campo] of Object.entries(CAMPI)) { if (k === "istituto" && !serve) continue; body.set(campo, v(k)); }
+    body.set("entry.839453997_sentinel", ""); body.set("fvv", "1"); body.set("pageHistory", serve ? "0,1" : "0");
     m.occupato(true);
     try {
       await fetch(GOOGLE, { method: "POST", mode: "no-cors", body });
