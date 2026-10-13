@@ -26,8 +26,11 @@ Il modulo non è più un iframe di Google: è un modulo nostro in `public/tesser
 - **Come:** vanno tenuti finché il logo va bene; poi la copia Canva si può eliminare. Il design originale "Copia di U" non è stato toccato.
 
 ## 8. Dopo la pubblicazione (13 ottobre 2026)
-- **Fatti e verificati da Mario:** modulo "Scrivici" attivato e provato, invio di prova del tesseramento, filtro Gmail con l'etichetta `MUVT`, informativa privacy riletta.
-- **Da fare:** controllo su un telefono vero (iPhone e Android), vedi punto 6.
+- **Fatti:** filtro Gmail con l'etichetta `MUVT`, informativa privacy riletta.
+- **Da fare, in quest'ordine:**
+  1. **Modulo "Scrivici":** mandare un messaggio di prova dal sito pubblicato e cliccare il link di FormSubmit nella casella `cambiarerotta.bari@gmail.com`. Finché non si fa, i messaggi non arrivano.
+  2. **Tesseramento:** un invio di prova (nome "TEST") dal sito pubblicato; controllare che la riga arrivi nel foglio Google e cancellarla.
+  3. **Telefono vero** (iPhone e Android): solo dopo che i due punti sopra sono passati, vedi punto 6.
 - **Statistiche:** GoatCounter, https://tesla-analysis.goatcounter.com/. Da localhost non conta. Lo script è bloccato da alcune estensioni anti-tracciamento (nel Chrome usato per i test risultava bloccato), quindi chi le usa non viene contato: è un limite normale di ogni strumento di statistiche. Link con `?ref=volantino`, `?ref=instagram` ecc. per sapere da dove arrivano. Eventi: clic-tesserati, clic-instagram, clic-cambiare-rotta-org, hashtag-copiato, calcolatore-usato, galleria-vista, galleria-sfogliata, fondo-pagina, messaggio-inviato, tesseramento-inviato.
 - **Anteprima social:** `og:image` punta a `https://cambiare-rotta.github.io/muvt-aggratis/assets/og.jpg`. Per ripulire la cache dell'anteprima: Sharing Debugger di Facebook.
 - **Privacy:** durata di conservazione del tesseramento ("finché resti iscritta o iscritto") è un'ipotesi, da confermare.
