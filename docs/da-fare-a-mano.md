@@ -10,9 +10,8 @@ Elenco aggiornato man mano: ogni voce dice perché non si è potuta fare e come 
 - **Perché:** è un'impostazione del repo su github.com.
 - **Come:** repo `LordMarte-A669/muvt` → Settings → Pages → Build and deployment → Source: **GitHub Actions**. Sul piano gratuito il repo deve essere pubblico.
 
-## 3. Logo vero di Cambiare Rotta
-- **Perché:** il connettore Canva risponde "Not allowed to access design" sul design `DAHVt9sz8f4`. Nel browser le immagini hanno link firmati che non si possono scaricare.
-- **Come:** aprire https://www.canva.com/design/DAHVt9sz8f4/ → selezionare il logo → Condividi → Scarica → PNG con **sfondo trasparente**, versione bianca. Salvarlo come `public/assets/logo.png`. Il sito lo usa da solo, sia in `index.html` sia in `tesseramento.html`; finché manca resta la scritta "Cambiare Rotta".
+## 3. ~~Loghi~~ (risolto)
+Fatto con i file forniti dal committente; vedi [stato.md](stato.md#loghi). Resta un consiglio: se esiste il logo MUVT in alta risoluzione, o meglio in SVG, conviene usare quello. Il file attuale è largo solo 489 px e su schermi grandi o retina si vede un po' morbido.
 
 ## 4. Foto dal Canva
 - **Perché:** stesso motivo del logo.

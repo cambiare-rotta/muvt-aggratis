@@ -19,9 +19,26 @@
 - Striscione che scorre, si ferma passandoci sopra.
 - Con "riduci movimento" attivo nel sistema le animazioni sono spente.
 
+## Loghi
+
+I loghi veri hanno sostituito le scritte fatte a mano.
+
+- **`public/assets/logo.png`** (Cambiare Rotta, 404×112, 11,6 KB): bianco con stella rossa su sfondo trasparente. Ricavato dal logo ufficiale https://cambiare-rotta.org/wp-content/uploads/2021/09/cropped-CAMBIARE_ROTTA_final_logosito-1.png (2964×822, 36 KB), ridimensionato al doppio dell'altezza a cui viene mostrato (56 px) per gli schermi retina. Script: `tools/ridimensiona.ps1`.
+  - La prima copia ricevuta era un JPG con il logo bianco su sfondo bianco: le lettere erano perse, inutilizzabile. **Il logo bianco va sempre esportato in PNG trasparente, mai in JPG.**
+- **`public/assets/muvt-aggratis.png`** (logo della campagna, 489×190, 21 KB): ricavato da un JPG 720×558 su fondo bianco. Ritagliato, bianco trasformato in trasparenza mantenendo i bordi morbidi, rumore del JPEG tolto, colori semplificati (da 97 KB a 21 KB). Script: `tools/togli-bianco.ps1`.
+  - Nell'hero ha un contorno bianco sottile e un'ombra, tipo adesivo: il rosso scuro di "MUVT" su fondo nero altrimenti quasi sparisce. Entra con un'animazione "a timbro".
+
+Gli script usano .NET da Windows PowerShell, perché su questo PC non ci sono Python né Node.
+
+## Gerarchia delle campagne
+
+La campagna nazionale **"La guerra non la paghiamo!" ha la priorità** su quella territoriale, ma **MUVT AGGRATIS resta la protagonista del sito**. Quindi:
+- in apertura il logo MUVT è l'elemento principale; l'etichetta rossa sopra dice "La guerra non la paghiamo! · Bari 2026/27" e porta alla sezione nazionale;
+- la sezione nazionale ("Dentro la campagna nazionale") è la **prima dopo l'apertura**, prima del bonus e del calcolatore.
+
 ## Collegamenti
 
-- **Campagna nazionale:** MUVT AGGRATIS è la campagna barese dentro "La guerra non la paghiamo!" di Cambiare Rotta (appello del 10 settembre 2026: https://cambiare-rotta.org/2026/09/10/la-guerra-non-la-paghiamo-contro-carovita-e-carostudi-riprendiamoci-il-diritto-allo-studio-e-il-futuro/). Nel sito c'è una sezione dedicata, con il dato dei 34 miliardi di spesa militare nell'ultima legge di bilancio preso dall'appello.
+- **Campagna nazionale:** appello del 10 settembre 2026 https://cambiare-rotta.org/2026/09/10/la-guerra-non-la-paghiamo-contro-carovita-e-carostudi-riprendiamoci-il-diritto-allo-studio-e-il-futuro/. Il dato dei 34 miliardi di spesa militare viene da lì.
 - **Chi siamo:** porta a https://cambiare-rotta.org/ (menu e pulsante in fondo).
 - **Tesseramento:** pagina `public/tesseramento.html` che incornicia il modulo Google https://docs.google.com/forms/d/e/1FAIpQLSebOGkB5fVfU6QFmdLfYamqmrxH1_RYLZsaytOL-kOuoAMx6w/viewform (con `?embedded=true`), più un link di riserva per aprirlo direttamente. Su mobile il pulsante "Tesserati" resta visibile nel menu.
 - **Acronimo:** MUVT = **M**ovimento **U**niversitario **V**erso **T**rasporti (Aggratis).

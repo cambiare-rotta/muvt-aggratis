@@ -85,7 +85,9 @@
     font-weight: 900; text-transform: uppercase;
     padding: 4px 10px; font-size: 14px; letter-spacing: .04em;
     transform: rotate(-1.5deg);
+    text-decoration: none;
   }
+  a.kicker:hover { background: var(--yellow); color: var(--bg); }
   .hero h1 {
     font-family: var(--display); font-weight: 400;
     text-transform: uppercase;
@@ -96,6 +98,15 @@
   .hero h1 .ag { color: var(--yellow); margin-left: clamp(0px, 7vw, 110px); }
   .hero h1 .ch { display: inline-block; transform: translateY(.6em); opacity: 0; animation: up .7s cubic-bezier(.2,.9,.25,1.2) forwards; }
   @keyframes up { to { transform: none; opacity: 1; } }
+  /* logo della campagna: rosso scuro su nero, quindi contorno bianco tipo adesivo */
+  .hero h1.mark { margin: 26px 0 0; line-height: 0; }
+  .hero h1.mark img {
+    width: min(640px, 100%); height: auto;
+    filter: drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff) drop-shadow(8px 8px 0 rgba(0,0,0,.6));
+    transform-origin: 20% 60%;
+    animation: stamp .55s cubic-bezier(.2,.9,.25,1.3) both;
+  }
+  @keyframes stamp { from { transform: scale(1.35) rotate(-4deg); opacity: 0; } to { transform: rotate(-2deg); opacity: 1; } }
   .hero .sub {
     display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
     gap: 32px; margin-top: 34px; align-items: end;
@@ -321,7 +332,7 @@
 <div class="wrap">
   <header class="top">
     <a class="logo" href="#" aria-label="Cambiare Rotta">
-      <!-- logo esportato da Canva; se manca resta la scritta -->
+      <!-- logo ufficiale; se non si carica resta la scritta -->
       <img src="assets/logo.png" alt="Cambiare Rotta" onerror="this.replaceWith(this.nextElementSibling.content.cloneNode(true))">
       <template><span class="txt">Cambiare<span>Rotta</span></span></template>
     </a>
@@ -335,8 +346,8 @@
   </header>
 
   <div class="hero">
-    <span class="kicker">Campagna 2026/27 · Bari</span>
-    <h1 aria-label="Muvt Aggratis!"><span class="w" data-split>Muvt</span><span class="w ag" data-split>Aggratis!</span></h1>
+    <a class="kicker" href="#campagna">La guerra non la paghiamo! · Bari 2026/27</a>
+    <h1 class="mark"><img src="assets/muvt-aggratis.png" width="489" height="190" alt="MUVT… AGGRATIS!"></h1>
     <div class="sub">
       <p class="claim">Non vogliamo <s>metà dello sconto</s>.<br>Vogliamo trasporti gratuiti.</p>
       <div>
@@ -353,6 +364,22 @@
   Trasporti gratuiti <b>/</b> Studentati pubblici <b>/</b> Affitti sostenibili <b>/</b> La guerra non la paghiamo <b>/</b> Diritti, non elemosine <b>/</b>
   Trasporti gratuiti <b>/</b> Studentati pubblici <b>/</b> Affitti sostenibili <b>/</b> La guerra non la paghiamo <b>/</b> Diritti, non elemosine <b>/</b>
 </div></div>
+
+<!-- la campagna nazionale viene subito dopo l'apertura: MUVT ne è la declinazione barese -->
+<section class="national" id="campagna">
+  <div class="wrap cols">
+    <div class="rv">
+      <p class="label">Dentro la campagna nazionale</p>
+      <p class="slogan">La guerra<span>non la paghiamo!</span></p>
+    </div>
+    <div class="rv">
+      <p>MUVT AGGRATIS è la lotta sui trasporti che a Bari porta avanti <strong>La guerra non la paghiamo!</strong>, la campagna nazionale di Cambiare Rotta contro carovita e carostudi in tutte le università del paese.</p>
+      <p>Tasse, affitti, mense e trasporti salgono, le borse di studio restano poche. Intanto la spesa militare cresce ogni anno ed entra negli atenei con accordi con la filiera bellica.</p>
+      <div class="fig">34 miliardi<small>di spesa militare nell'ultima legge di bilancio</small></div>
+      <a class="more" href="https://cambiare-rotta.org/2026/09/10/la-guerra-non-la-paghiamo-contro-carovita-e-carostudi-riprendiamoci-il-diritto-allo-studio-e-il-futuro/" target="_blank" rel="noopener">Leggi l'appello nazionale →</a>
+    </div>
+  </div>
+</section>
 
 <section id="bonus">
   <div class="wrap bonus">
@@ -428,21 +455,6 @@
     <div class="rv">
       <p>Negli ultimi decenni i prezzi sono saliti mentre il servizio è diventato meno capillare e più scadente. Non è un caso: il trasporto è stato appaltato e piegato alle logiche della privatizzazione.</p>
       <p>Al sud la situazione è disastrosa, e dentro la stessa città le periferie stanno peggio del centro. Lo Stato investe nei servizi solo quando rendono profitto a qualcuno: fondi speculativi o piccoli prenditori.</p>
-    </div>
-  </div>
-</section>
-
-<section class="national" id="campagna">
-  <div class="wrap cols">
-    <div class="rv">
-      <p class="label">La campagna nazionale</p>
-      <p class="slogan">La guerra<span>non la paghiamo!</span></p>
-    </div>
-    <div class="rv">
-      <p>MUVT AGGRATIS è la parte barese di <strong>La guerra non la paghiamo!</strong>, la campagna nazionale di Cambiare Rotta contro carovita e carostudi.</p>
-      <p>Tasse, affitti, mense e trasporti salgono, le borse di studio restano poche. Intanto la spesa militare cresce ogni anno ed entra nelle università con accordi con la filiera bellica.</p>
-      <div class="fig">34 miliardi<small>di spesa militare nell'ultima legge di bilancio</small></div>
-      <a class="more" href="https://cambiare-rotta.org/2026/09/10/la-guerra-non-la-paghiamo-contro-carovita-e-carostudi-riprendiamoci-il-diritto-allo-studio-e-il-futuro/" target="_blank" rel="noopener">Leggi l'appello nazionale →</a>
     </div>
   </div>
 </section>
