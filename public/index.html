@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MUVT AGGRATIS — Cambiare Rotta Bari</title>
+<meta name="description" content="Non vogliamo metà dello sconto. Trasporti gratuiti, studentati pubblici, affitti sostenibili.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0E0E0E;
+    --surface: #2A2A2A;
+    --line: #3a3a3a;
+    --text: #F4F4F4;
+    --text-muted: #C9C9C9;
+    --yellow: #F5D24E;
+    --red: #A8182A;
+    --red-dark: #8A0C14;
+    --display: "Anton", "Impact", "Arial Narrow", sans-serif;
+    --body: "Poppins", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 1.6;
+    overflow-x: clip;
+  }
+  /* grana da fotocopia, come sui manifesti */
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    opacity: .14;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding-inline: 20px; }
+
+  /* barra di avanzamento lettura */
+  .progress { position: fixed; top: 0; left: 0; height: 4px; width: 100%; background: var(--yellow); transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+
+  /* barra in alto */
+  .top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-block: 14px;
+    border-bottom: 3px solid var(--text);
+    font-weight: 900; text-transform: uppercase; letter-spacing: .03em; font-size: 14px;
+  }
+  .logo { display: inline-flex; align-items: center; text-decoration: none; }
+  .logo img { height: 46px; width: auto; display: block; }
+  .logo .txt { font-family: var(--display); font-size: 22px; letter-spacing: .06em; line-height: .9; }
+  .logo .txt span { display: block; font-size: 30px; letter-spacing: .14em; }
+  .top nav a { text-decoration: none; margin-left: 22px; }
+  .top nav a:hover { color: var(--yellow); }
+
+  /* hero */
+  .hero { padding-block: 48px 30px; position: relative; }
+  .kicker {
+    display: inline-block;
+    background: var(--red); color: var(--text);
+    font-weight: 900; text-transform: uppercase;
+    padding: 4px 10px; font-size: 14px; letter-spacing: .04em;
+    transform: rotate(-1.5deg);
+  }
+  .hero h1 {
+    font-family: var(--display); font-weight: 400;
+    text-transform: uppercase;
+    font-size: clamp(84px, 20vw, 270px);
+    line-height: .86; margin: 18px 0 0; letter-spacing: -.01em;
+  }
+  .hero h1 .w { display: block; }
+  .hero h1 .ag { color: var(--yellow); margin-left: clamp(0px, 7vw, 110px); }
+  .hero h1 .ch { display: inline-block; transform: translateY(.6em); opacity: 0; animation: up .7s cubic-bezier(.2,.9,.25,1.2) forwards; }
+  @keyframes up { to { transform: none; opacity: 1; } }
+  .hero .sub {
+    display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 32px; margin-top: 34px; align-items: end;
+  }
+  .hero .claim {
+    font-weight: 900; text-transform: uppercase;
+    font-size: clamp(26px, 3.6vw, 44px); line-height: 1.05;
+    margin: 0;
+  }
+  .hero .claim s { text-decoration: none; position: relative; white-space: nowrap; }
+  .hero .claim s::after {
+    content: ""; position: absolute; left: -2%; right: -2%; top: 52%; height: .13em;
+    background: var(--red); transform: scaleX(0); transform-origin: 0 50%;
+    animation: strike .6s .9s ease-out forwards;
+  }
+  @keyframes strike { to { transform: scaleX(1); } }
+  .hero p.lead { color: var(--text-muted); margin: 0; max-width: 46ch; }
+  .hero p.lead strong { color: var(--text); }
+  .scrolldown { display: inline-block; margin-top: 28px; font-weight: 900; text-transform: uppercase; font-size: 14px; text-decoration: none; color: var(--yellow); }
+  .scrolldown i { display: inline-block; font-style: normal; animation: bob 1.4s ease-in-out infinite; }
+  @keyframes bob { 50% { transform: translateY(5px); } }
+
+  /* striscione */
+  .tape {
+    background: var(--yellow); color: var(--bg);
+    font-family: var(--display); text-transform: uppercase;
+    font-size: clamp(22px, 3vw, 34px);
+    white-space: nowrap; overflow: hidden;
+    padding-block: 8px;
+    transform: rotate(-1.2deg);
+    margin: 30px -20px 10px;
+    border-block: 3px solid var(--bg);
+  }
+  .tape div { display: inline-block; animation: run 38s linear infinite; }
+  .tape:hover div { animation-play-state: paused; }
+  .tape b { color: var(--red); font-weight: 400; margin: 0 .5em; }
+  @keyframes run { to { transform: translateX(-50%); } }
+
+  section { padding-block: 80px; }
+  .label {
+    font-weight: 900; text-transform: uppercase;
+    letter-spacing: .06em; font-size: 14px; color: var(--yellow);
+    margin: 0 0 10px;
+  }
+  h2 {
+    font-family: var(--display); font-weight: 400; text-transform: uppercase;
+    font-size: clamp(44px, 7vw, 92px); line-height: .92; margin: 0 0 36px;
+  }
+
+  /* comparsa allo scroll */
+  .rv { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
+  .rv.in { opacity: 1; transform: none; }
+
+  /* il bonus */
+  .bonus { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+  .bonus .big {
+    font-family: var(--display); font-size: clamp(130px, 20vw, 240px);
+    line-height: .8; position: relative; display: inline-block;
+  }
+  .bonus .big::after {
+    content: ""; position: absolute; left: -4%; right: -4%; top: 46%;
+    height: 14px; background: var(--red); transform: rotate(-8deg) scaleX(0); transform-origin: 0 50%;
+    transition: transform .5s .2s ease-out;
+  }
+  .bonus .big.done::after { transform: rotate(-8deg) scaleX(1); }
+  .bonus .note { font-weight: 900; text-transform: uppercase; color: var(--text-muted); margin-top: 14px; }
+  .bonus p { margin: 0 0 16px; }
+
+  /* calcolatore */
+  .calc { background: var(--surface); }
+  .calc .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 48px; align-items: start; }
+  .field { margin-bottom: 26px; }
+  .field label { display: flex; justify-content: space-between; gap: 12px; font-weight: 900; text-transform: uppercase; font-size: 14px; letter-spacing: .04em; margin-bottom: 8px; }
+  .field label output { color: var(--yellow); }
+  .field small { display: block; color: var(--text-muted); font-size: 13px; margin-top: 6px; }
+  input[type=range] { width: 100%; accent-color: var(--yellow); height: 28px; }
+  .check { display: flex; gap: 10px; align-items: center; font-weight: 700; cursor: pointer; }
+  .check input { width: 20px; height: 20px; accent-color: var(--yellow); }
+  .results { border-top: 3px solid var(--text); }
+  .res { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: baseline; padding-block: 18px; border-bottom: 1px solid var(--line); }
+  .res .k { font-weight: 900; text-transform: uppercase; font-size: 15px; }
+  .res .k small { display: block; font-weight: 500; text-transform: none; color: var(--text-muted); font-size: 13px; }
+  .res .v { font-family: var(--display); font-size: clamp(40px, 6vw, 70px); line-height: 1; }
+  .res.free .v { color: var(--yellow); }
+  .res.free .k { color: var(--yellow); }
+  .verdict { margin-top: 20px; font-weight: 900; text-transform: uppercase; font-size: 18px; line-height: 1.3; }
+  .verdict span { background: var(--red); padding: 0 .25em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+
+  /* le discrepanze */
+  .problems { list-style: none; margin: 0; padding: 0; counter-reset: p; border-top: 3px solid var(--text); }
+  .problems li {
+    counter-increment: p;
+    display: grid; grid-template-columns: 110px minmax(0, 1fr) minmax(0, 1.4fr);
+    gap: 24px; padding-block: 26px; border-bottom: 1px solid var(--line); align-items: baseline;
+    transition: background .25s, padding .25s;
+  }
+  .problems li:hover { background: #161616; }
+  .problems li::before {
+    content: "0" counter(p);
+    font-family: var(--display); font-size: 56px; line-height: 1; color: var(--yellow);
+  }
+  .problems h3 {
+    font-family: var(--display); font-weight: 400; text-transform: uppercase;
+    font-size: 30px; line-height: 1; margin: 0;
+  }
+  .problems p { margin: 0; color: var(--text-muted); }
+  .problems p mark { background: var(--yellow); color: var(--bg); padding: 0 4px; font-weight: 900; }
+
+  /* perché */
+  .why .cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; }
+  .why blockquote {
+    margin: 0; font-family: var(--display); text-transform: uppercase;
+    font-size: clamp(30px, 4vw, 48px); line-height: 1.02;
+  }
+  .why blockquote em { font-style: normal; color: var(--yellow); }
+  .why p { margin: 0 0 18px; color: var(--text-muted); }
+
+  /* rivendicazioni: apri e chiudi */
+  .demands { background: var(--red); }
+  .demands .label { color: var(--text); opacity: .85; }
+  .demands details { border-top: 2px solid rgba(244,244,244,.35); }
+  .demands details:last-child { border-bottom: 2px solid rgba(244,244,244,.35); }
+  .demands summary {
+    list-style: none; cursor: pointer;
+    display: grid; grid-template-columns: 60px minmax(0, 1fr) 40px; gap: 16px; align-items: center;
+    padding-block: 22px;
+  }
+  .demands summary::-webkit-details-marker { display: none; }
+  .demands summary .n { font-family: var(--display); font-size: 40px; line-height: 1; opacity: .6; }
+  .demands summary h3 {
+    font-family: var(--display); font-weight: 400; text-transform: uppercase;
+    font-size: clamp(28px, 3.6vw, 46px); line-height: .95; margin: 0;
+    transition: transform .25s;
+  }
+  .demands summary:hover h3 { transform: translateX(6px); }
+  .demands summary .pm { font-family: var(--display); font-size: 40px; line-height: 1; text-align: right; transition: transform .3s; }
+  .demands details[open] summary .pm { transform: rotate(45deg); color: var(--yellow); }
+  .demands details[open] summary .n { opacity: 1; color: var(--yellow); }
+  .demands .body { padding: 0 56px 26px 76px; max-width: 760px; }
+  .demands .body p { margin: 0; }
+  .demands small { display: block; margin-top: 8px; font-weight: 900; text-transform: uppercase; font-size: 13px; opacity: .85; }
+
+  /* acronimo: le lettere si accendono scorrendo */
+  .acro .line {
+    font-family: var(--display); text-transform: uppercase;
+    font-size: clamp(48px, 9vw, 120px); line-height: .92; color: #3d3d3d;
+    transition: color .5s;
+  }
+  .acro .line span { transition: color .5s; }
+  .acro .line.lit { color: var(--text); }
+  .acro .line.lit span { color: var(--yellow); }
+  .acro .closing {
+    margin-top: 36px; font-weight: 900; text-transform: uppercase;
+    font-size: clamp(24px, 3vw, 36px); line-height: 1.1; max-width: 24ch;
+  }
+
+  /* unisciti */
+  .join { border-top: 3px solid var(--text); }
+  .join .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-left: 1px solid var(--line); }
+  .join .cell { border-right: 1px solid var(--line); padding: 6px 22px 10px; }
+  .join .cell h3 { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: 32px; margin: 0 0 10px; }
+  .join .cell p { color: var(--text-muted); margin: 0 0 14px; }
+  .copy {
+    background: none; border: 2px solid var(--yellow); color: var(--yellow); cursor: pointer;
+    font: 900 14px var(--body); text-transform: uppercase; padding: 6px 12px;
+  }
+  .copy:hover { background: var(--yellow); color: var(--bg); }
+  .forms { display: flex; flex-wrap: wrap; gap: 18px 22px; align-items: center; margin-top: 44px; }
+  .cta {
+    display: inline-block;
+    background: var(--yellow); color: var(--bg);
+    font-family: var(--display); text-transform: uppercase; text-decoration: none;
+    font-size: clamp(24px, 3vw, 34px); padding: 10px 26px 8px;
+    border: 3px solid var(--yellow);
+    box-shadow: 8px 8px 0 var(--red);
+    transition: transform .15s, box-shadow .15s, background .15s, color .15s;
+  }
+  .cta:hover { background: var(--bg); color: var(--yellow); }
+  .cta:active { transform: translate(8px, 8px); box-shadow: 0 0 0 var(--red); }
+  .cta.alt { background: transparent; color: var(--text); border-color: var(--text); box-shadow: 8px 8px 0 #444; }
+  .cta.alt:hover { background: var(--text); color: var(--bg); }
+  .cta[aria-disabled=true] { opacity: .45; pointer-events: none; }
+  .handle { font-weight: 900; text-transform: uppercase; }
+
+  footer {
+    border-top: 3px solid var(--text);
+    padding-block: 26px 40px;
+    display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;
+    font-weight: 900; text-transform: uppercase; font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  .toast {
+    position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px);
+    background: var(--yellow); color: var(--bg); font-weight: 900; text-transform: uppercase; font-size: 14px;
+    padding: 10px 16px; opacity: 0; transition: .25s; z-index: 70; pointer-events: none;
+  }
+  .toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 760px) {
+    body { font-size: 16px; }
+    .top nav { display: none; }
+    .hero .sub, .bonus, .why .cols, .calc .grid { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+    .hero .claim s { white-space: normal; }
+    .problems li { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+    .demands summary { grid-template-columns: 40px minmax(0, 1fr) 30px; }
+    .demands .body { padding: 0 0 22px 56px; }
+    .join .grid { grid-template-columns: minmax(0, 1fr); border-left: 0; }
+    .join .cell { border-right: 0; border-bottom: 1px solid var(--line); padding: 18px 0; }
+    section { padding-block: 56px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .rv, .hero h1 .ch { opacity: 1; transform: none; }
+    .hero .claim s::after, .bonus .big::after { transform: scaleX(1); }
+    .bonus .big::after { transform: rotate(-8deg); }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="#" aria-label="Cambiare Rotta">
+      <!-- logo esportato da Canva; se manca resta la scritta -->
+      <img src="assets/logo.png" alt="Cambiare Rotta" onerror="this.replaceWith(this.nextElementSibling.content.cloneNode(true))">
+      <template><span class="txt">Cambiare<span>Rotta</span></span></template>
+    </a>
+    <nav>
+      <a href="#bonus">Il bonus</a>
+      <a href="#conti">Fai i conti</a>
+      <a href="#vogliamo">Cosa vogliamo</a>
+      <a href="#unisciti">Unisciti</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <span class="kicker">Campagna 2026/27 · Bari</span>
+    <h1 aria-label="Muvt Aggratis!"><span class="w" data-split>Muvt</span><span class="w ag" data-split>Aggratis!</span></h1>
+    <div class="sub">
+      <p class="claim">Non vogliamo <s>metà dello sconto</s>.<br>Vogliamo trasporti gratuiti.</p>
+      <div>
+        <p class="lead">Il nuovo bonus per studenti pendolari taglia del 50% l'abbonamento mensile, da ottobre 2026 a maggio 2027. <strong>Ma solo se hai un ISEE sotto i 13.000 €.</strong> Per tutti gli altri non cambia niente.</p>
+        <a class="scrolldown" href="#conti">Fai i conti <i>↓</i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tape" aria-hidden="true"><div>
+  Trasporti gratuiti <b>/</b> Studentati pubblici <b>/</b> Affitti sostenibili <b>/</b> La guerra non la paghiamo <b>/</b> Diritti, non elemosine <b>/</b>
+  Trasporti gratuiti <b>/</b> Studentati pubblici <b>/</b> Affitti sostenibili <b>/</b> La guerra non la paghiamo <b>/</b> Diritti, non elemosine <b>/</b>
+  Trasporti gratuiti <b>/</b> Studentati pubblici <b>/</b> Affitti sostenibili <b>/</b> La guerra non la paghiamo <b>/</b> Diritti, non elemosine <b>/</b>
+  Trasporti gratuiti <b>/</b> Studentati pubblici <b>/</b> Affitti sostenibili <b>/</b> La guerra non la paghiamo <b>/</b> Diritti, non elemosine <b>/</b>
+</div></div>
+
+<section id="bonus">
+  <div class="wrap bonus">
+    <div class="rv">
+      <p class="label">Il bonus trasporti 2026/27</p>
+      <div class="big" id="pct" data-to="50">50%</div>
+      <div class="note">Non ci basta.</div>
+    </div>
+    <div class="rv">
+      <h2>Perché lo sconto non basta</h2>
+      <p>A prima vista sembra un aiuto. In realtà è una misura insufficiente e selettiva, che non tocca i veri problemi di chi studia fuori sede o fa il pendolare ogni giorno.</p>
+    </div>
+  </div>
+</section>
+
+<section class="calc" id="conti">
+  <div class="wrap grid">
+    <div class="rv">
+      <p class="label">Fai i conti</p>
+      <h2>Quanto ti costa davvero?</h2>
+      <div class="field">
+        <label for="abb">Abbonamento mensile <output id="abbOut">35 €</output></label>
+        <input type="range" id="abb" min="10" max="120" step="1" value="35">
+        <small>Metti il prezzo del tuo abbonamento.</small>
+      </div>
+      <div class="field">
+        <label for="isee">Il tuo ISEE / ISEEU <output id="iseeOut">18.000 €</output></label>
+        <input type="range" id="isee" min="0" max="40000" step="250" value="18000">
+      </div>
+      <div class="field">
+        <label class="check"><input type="checkbox" id="figli"> In famiglia siamo 3 o più figli</label>
+        <small>La soglia sale a 15.748,78 €.</small>
+      </div>
+    </div>
+    <div class="rv">
+      <div class="results" aria-live="polite">
+        <div class="res"><div class="k">Senza bonus<small>8 mesi, da ottobre a maggio</small></div><div class="v" id="rFull">280 €</div></div>
+        <div class="res"><div class="k">Con il bonus 50%<small id="rBonusNote">sei fuori soglia</small></div><div class="v" id="rBonus">280 €</div></div>
+        <div class="res free"><div class="k">Con MUVT AGGRATIS<small>trasporto pubblico gratuito</small></div><div class="v">0 €</div></div>
+      </div>
+      <p class="verdict" id="verdict"><span>Il bonus non ti tocca: paghi tutto.</span></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="label">Le discrepanze</p>
+    <ol class="problems">
+      <li class="rv">
+        <h3>Biglietti sempre più cari</h3>
+        <p>Negli ultimi anni le tariffe sono aumentate di continuo, senza nessun intervento strutturale.</p>
+      </li>
+      <li class="rv">
+        <h3>Carovita e affitti alle stelle</h3>
+        <p>A Bari gli affitti sono cresciuti in modo esponenziale. Per tanti trasferirsi in città è semplicemente impossibile.</p>
+      </li>
+      <li class="rv">
+        <h3>L'ISEE come filtro</h3>
+        <p>Il bonus vale solo con ISEE/ISEEU fino a <mark>13.000 €</mark> (<mark>15.748,78 €</mark> con 3 o più figli). Resta fuori chi supera la soglia di poco ed è comunque schiacciato da trasporti e affitto.</p>
+      </li>
+      <li class="rv">
+        <h3>Un risparmio illusorio</h3>
+        <p>Anche dimezzato, il costo annuale per arrivare all'università dai paesi vicini resta troppo alto. Uno sconto parziale non compensa anni di rincari.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="why" style="background:var(--surface)">
+  <div class="wrap cols">
+    <blockquote class="rv">Il trasporto pubblico, per essere davvero pubblico, <em>deve essere gratuito.</em></blockquote>
+    <div class="rv">
+      <p>Negli ultimi decenni i prezzi sono saliti mentre il servizio è diventato meno capillare e più scadente. Non è un caso: il trasporto è stato appaltato e piegato alle logiche della privatizzazione.</p>
+      <p>Al sud la situazione è disastrosa, e dentro la stessa città le periferie stanno peggio del centro. Lo Stato investe nei servizi solo quando rendono profitto a qualcuno: fondi speculativi o piccoli prenditori.</p>
+    </div>
+  </div>
+</section>
+
+<section class="demands" id="vogliamo">
+  <div class="wrap">
+    <p class="label">Le nostre rivendicazioni</p>
+    <h2>Quello che vogliamo</h2>
+    <details open>
+      <summary><span class="n">1</span><h3>Posti negli studentati pubblici</h3><span class="pm">+</span></summary>
+      <div class="body"><p>Basta con la carenza cronica di alloggi. Servono nuovi studentati pubblici e la riconversione di quelli privati.</p></div>
+    </details>
+    <details>
+      <summary><span class="n">2</span><h3>Abrogare la legge 431/1998</h3><span class="pm">+</span></summary>
+      <div class="body"><p>Ha liberalizzato gli affitti, aprendo la strada a speculazione e rincari. Va abolita per tornare a tutelare il diritto alla casa.</p></div>
+    </details>
+    <details>
+      <summary><span class="n">3</span><h3>Legge sul canone sostenibile</h3><span class="pm">+</span></summary>
+      <div class="body"><p>Canoni calmierati e trasparenti per studenti e lavoratori.<small>Proposta dal sindacato AS.I.A USB</small></p></div>
+    </details>
+    <details>
+      <summary><span class="n">4</span><h3>Trasporti e navette gratuiti, a tutte le ore</h3><span class="pm">+</span></summary>
+      <div class="body"><p>Mobilità reale significa servizi frequenti, capillari e gratuiti. Non sconti parziali su abbonamenti già costosi.</p></div>
+    </details>
+    <details>
+      <summary><span class="n">5</span><h3>Un tavolo permanente sulla casa</h3><span class="pm">+</span></summary>
+      <div class="body"><p>Per monitorare di continuo studentati, affitti e le esigenze di chi fa il pendolare.</p></div>
+    </details>
+  </div>
+</section>
+
+<section class="acro">
+  <div class="wrap">
+    <p class="label">Il nostro slogan</p>
+    <div class="line"><span>Mu</span>ovimento</div>
+    <div class="line"><span>V</span>erso</div>
+    <div class="line"><span>T</span>rasporti</div>
+    <div class="line"><span>Aggratis</span></div>
+    <p class="closing rv">Perché studiare non deve essere un lusso.</p>
+  </div>
+</section>
+
+<section class="join" id="unisciti">
+  <div class="wrap">
+    <p class="label">Unisciti alla campagna</p>
+    <h2 class="rv">Pretendi diritti,<br>non elemosine.</h2>
+    <div class="grid">
+      <div class="cell rv"><h3>Diffondi</h3><p>Porta #MUVTAGGRATIS sui social e nei gruppi studenteschi.</p><button class="copy" type="button" data-copy="#MUVTAGGRATIS">Copia l'hashtag</button></div>
+      <div class="cell rv"><h3>Partecipa</h3><p>Vieni alle assemblee di dipartimento in Uniba e Poliba.</p></div>
+      <div class="cell rv"><h3>Mobilitati</h3><p>Scendi in piazza con noi alle prossime iniziative.</p></div>
+    </div>
+    <div class="forms">
+      <!-- i link ai form esterni si impostano in FORMS, nello script in fondo -->
+      <a class="cta" data-form="adesione" href="#" target="_blank" rel="noopener">Aderisci alla campagna</a>
+      <a class="cta alt" data-form="segnalazione" href="#" target="_blank" rel="noopener">Racconta il tuo viaggio</a>
+      <a class="handle" href="https://www.instagram.com/cambiarerotta_bari/" target="_blank" rel="noopener">@cambiarerotta_bari</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>Cambiare Rotta · Organizzazione giovanile comunista · Bari</span>
+    <span>#MUVTAGGRATIS</span>
+  </footer>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+  // link ai form esterni della campagna: incollare qui gli indirizzi
+  const FORMS = {
+    adesione: "",
+    segnalazione: ""
+  };
+
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  document.querySelectorAll("[data-form]").forEach(a => {
+    const url = FORMS[a.dataset.form];
+    if (url) a.href = url;
+    else { a.setAttribute("aria-disabled", "true"); a.title = "Link in arrivo"; }
+  });
+
+  // titolo: lettere che salgono una alla volta
+  if (!reduce) {
+    let i = 0;
+    document.querySelectorAll("[data-split]").forEach(el => {
+      el.innerHTML = [...el.textContent].map(c => `<span class="ch" style="animation-delay:${(i++) * 45}ms">${c}</span>`).join("");
+    });
+  }
+
+  // barra di lettura
+  const bar = document.getElementById("progress");
+  const onScroll = () => {
+    const h = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = `scaleX(${h > 0 ? scrollY / h : 0})`;
+  };
+  addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  // comparsa allo scroll
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: .15 });
+  document.querySelectorAll(".rv").forEach((el, i) => {
+    el.style.transitionDelay = `${(i % 3) * 90}ms`;
+    io.observe(el);
+  });
+
+  // 50%: conta da 0 e poi viene barrato
+  const pct = document.getElementById("pct");
+  new IntersectionObserver(([e], obs) => {
+    if (!e.isIntersecting) return;
+    obs.disconnect();
+    if (reduce) { pct.classList.add("done"); return; }
+    const t0 = performance.now();
+    const step = t => {
+      const p = Math.min(1, (t - t0) / 900);
+      pct.textContent = Math.round(50 * (1 - Math.pow(1 - p, 3))) + "%";
+      if (p < 1) requestAnimationFrame(step); else pct.classList.add("done");
+    };
+    requestAnimationFrame(step);
+  }, { threshold: .6 }).observe(pct);
+
+  // acronimo: le righe si accendono passando a metà schermo
+  const lit = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("lit"); lit.unobserve(e.target); } });
+  }, { rootMargin: "0px 0px -40% 0px" });
+  document.querySelectorAll(".acro .line").forEach(l => lit.observe(l));
+
+  // calcolatore
+  const eur = n => n.toLocaleString("it-IT", { maximumFractionDigits: 0 }) + " €";
+  const $ = id => document.getElementById(id);
+  const MONTHS = 8; // ottobre 2026 – maggio 2027
+  function calc() {
+    const abb = +$("abb").value, isee = +$("isee").value, figli = $("figli").checked;
+    const soglia = figli ? 15748.78 : 13000;
+    const dentro = isee <= soglia;
+    const full = abb * MONTHS, bonus = dentro ? full / 2 : full;
+    $("abbOut").textContent = eur(abb);
+    $("iseeOut").textContent = eur(isee);
+    $("rFull").textContent = eur(full);
+    $("rBonus").textContent = eur(bonus);
+    $("rBonusNote").textContent = dentro ? "rientri nella soglia" : "sei fuori soglia di " + eur(isee - soglia);
+    $("verdict").innerHTML = dentro
+      ? `<span>Anche col bonus paghi ${eur(bonus)}. Con MUVT AGGRATIS, zero.</span>`
+      : `<span>Il bonus non ti tocca: paghi tutto, ${eur(full)}.</span>`;
+  }
+  ["abb", "isee", "figli"].forEach(id => $(id).addEventListener("input", calc));
+  calc();
+
+  // copia hashtag
+  const toast = $("toast");
+  const say = msg => { toast.textContent = msg; toast.classList.add("on"); clearTimeout(say.t); say.t = setTimeout(() => toast.classList.remove("on"), 1800); };
+  document.querySelectorAll("[data-copy]").forEach(b => b.addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(b.dataset.copy); say("Copiato: " + b.dataset.copy); }
+    catch { say(b.dataset.copy); }
+  }));
+</script>
+</body>
+</html>
