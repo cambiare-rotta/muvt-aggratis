@@ -23,11 +23,11 @@
 
 I loghi veri hanno sostituito le scritte fatte a mano.
 
-- **`public/assets/logo.png`** (Cambiare Rotta, 404×112, 11,6 KB): bianco con stella rossa su sfondo trasparente. Ricavato dal logo ufficiale https://cambiare-rotta.org/wp-content/uploads/2021/09/cropped-CAMBIARE_ROTTA_final_logosito-1.png (2964×822, 36 KB), ridimensionato al doppio dell'altezza a cui viene mostrato (56 px) per gli schermi retina. Script: `tools/ridimensiona.ps1`.
+- **`public/assets/logo.webp`** (Cambiare Rotta, 404×112, 11,6 KB): bianco con stella rossa su sfondo trasparente. Ricavato dal logo ufficiale https://cambiare-rotta.org/wp-content/uploads/2021/09/cropped-CAMBIARE_ROTTA_final_logosito-1.png (2964×822, 36 KB), ridimensionato al doppio dell'altezza a cui viene mostrato (56 px) per gli schermi retina. Script: `tools/ridimensiona.ps1`.
   - La prima copia ricevuta era un JPG con il logo bianco su sfondo bianco: le lettere erano perse, inutilizzabile. **Il logo bianco va sempre esportato in PNG trasparente, mai in JPG.**
 - **Logo della campagna in due livelli** (951×369, stesso riquadro, quindi sovrapposti combaciano al pixel):
-  - `public/assets/muvt-scritta.png` (97 KB): "MUVT", "…", "AGGRATIS!" e la barretta scura accanto alla M;
-  - `public/assets/muvt-cunei.png` (5,6 KB): i tre triangoli.
+  - `public/assets/muvt-scritta.webp` (97 KB): "MUVT", "…", "AGGRATIS!" e la barretta scura accanto alla M;
+  - `public/assets/muvt-cunei.webp` (5,6 KB): i tre triangoli.
   - **Provenienza:** elementi originali del design Canva (pagina 1, gruppo di 7 elementi), non ridisegnati. Sono stati copiati in una copia del design ("Copia di Copia di U", nell'account Canva del committente), separati su due pagine ed esportati in PNG 1080×1350 su fondo bianco: la trasparenza in Canva è a pagamento. Poi il bianco è stato tolto in modo esatto, senza cambiare i colori, con `tools/livelli-logo.ps1`, che ritaglia tutti i livelli con lo stesso riquadro. Rispetto al primo JPG (489 px) la risoluzione è quasi doppia.
   - **Animazione nell'hero:** la scritta entra "a timbro". Poi i tre cunei arrivano uno alla volta da sinistra, accelerando, si piantano nella scritta e vibrano; la scritta sussulta a ogni colpo. I cunei sono la stessa immagine usata tre volte, ciascuna ritagliata (`clip-path`) su un triangolo, con ritagli contigui e senza sovrapposizioni. A fine animazione il logo è identico all'originale.
   - L'unica aggiunta è il contorno bianco sottile con ombra, tipo adesivo, sul contenitore: il rosso scuro di "MUVT" su fondo nero altrimenti quasi sparisce.
@@ -75,3 +75,8 @@ Tutto quello che non si è potuto fare da qui è in [da-fare-a-mano.md](da-fare-
 ## Anteprima in locale
 
 Su questo PC non ci sono Node né Python. Basta aprire `public/index.html` nel browser, oppure usare un qualsiasi server statico sulla cartella `public/`.
+
+## Foglio di stile comune (13 ottobre 2026)
+- `public/assets/site.css` raccoglie ciò che è uguale in tutte le pagine: variabili, intestazione (logo, voci, "Tesserati"; nelle pagine interne c'è anche "← Campagna" su telefono), piè di pagina, bottoni (`.cta`, `.copy`), componenti dei moduli (`.box`, `.box.hot`, `.modulo`, `.scelta`, `.assenso`, `.esito`, `.conferma`) e struttura delle pagine interne (`.page`, `.prose`).
+- Dentro `index.html` resta solo il CSS della home (hero, striscione, calcolatore, rivendicazioni, galleria). `tesseramento.html` e `privacy.html` non hanno CSS proprio.
+- Per cambiare un colore, un bottone o un campo si modifica `site.css` in un posto solo.

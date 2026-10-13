@@ -1,7 +1,7 @@
 # MUVT AGGRATIS
 
 Sito della campagna di Cambiare Rotta Bari per trasporti gratuiti, studentati pubblici e affitti sostenibili.
-Pubblicato con GitHub Pages: https://lordmarte-a669.github.io/muvt/
+Pubblicato con GitHub Pages: https://cambiare-rotta.github.io/muvt-aggratis/ (repo `cambiare-rotta/muvt-aggratis`)
 
 - `public/`: il sito (HTML/CSS/JS statico, nessuna build)
 - `public/assets/`: loghi ottimizzati per il web

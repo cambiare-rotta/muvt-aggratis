@@ -3,84 +3,131 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script data-goatcounter="https://tesla-analysis.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="alternate icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#0E0E0E">
 <title>Tesseramento — Cambiare Rotta Bari</title>
 <meta name="description" content="Tesserati a Cambiare Rotta e partecipa alla campagna MUVT AGGRATIS.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@500;900&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #0E0E0E; --text: #F4F4F4; --text-muted: #C9C9C9;
-    --yellow: #F5D24E; --red: #A8182A;
-    --display: "Anton", "Impact", "Arial Narrow", sans-serif;
-    --body: "Poppins", "Helvetica Neue", Arial, sans-serif;
-  }
-  /* mobile first: base per il telefono, poi ≥600px */
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; overflow-x: hidden; }
-  body { margin: 0; background: var(--bg); color: var(--text); font: 500 16px/1.6 var(--body); overflow-x: hidden; }
-  a { color: inherit; }
-  :focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
-  .wrap { max-width: 900px; margin: 0 auto; padding-inline: 18px; }
-  .top {
-    display: flex; justify-content: space-between; align-items: center; gap: 12px;
-    padding-block: 12px; border-bottom: 3px solid var(--text);
-    font-weight: 900; text-transform: uppercase; font-size: 13px;
-  }
-  .top a { text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
-  .top a:hover { color: var(--yellow); }
-  .top .long { display: none; }
-  @media (min-width: 420px) { .top .long { display: inline; } }
-  .logo img { height: 40px; width: auto; display: block; }
-  .logo .txt { font-family: var(--display); font-size: 20px; letter-spacing: .06em; line-height: .9; }
-  .logo .txt span { display: block; font-size: 26px; letter-spacing: .14em; }
-  h1 {
-    font-family: var(--display); font-weight: 400; text-transform: uppercase;
-    font-size: clamp(52px, 16vw, 72px); line-height: .9; margin: 30px 0 14px;
-  }
-  h1 span { color: var(--yellow); display: block; }
-  .intro { color: var(--text-muted); max-width: 56ch; margin: 0 0 24px; }
-  /* il modulo Google, incorniciato nello stile del sito; su telefono è più stretto e quindi più lungo */
-  .frame {
-    background: #fff; border: 3px solid var(--yellow); box-shadow: 6px 6px 0 var(--red);
-    margin: 0 6px 26px 0;
-  }
-  .frame iframe { display: block; width: 100%; height: 2000px; border: 0; }
-  .fallback { font-weight: 900; text-transform: uppercase; font-size: 13px; margin: 0 0 40px; }
-  .fallback a { color: var(--yellow); display: inline-block; padding-block: 10px; }
-  footer { border-top: 3px solid var(--text); padding-block: 22px calc(32px + env(safe-area-inset-bottom, 0px)); font-weight: 900; text-transform: uppercase; font-size: 13px; color: var(--text-muted); }
-  @media (min-width: 600px) {
-    body { font-size: 17px; }
-    .wrap { padding-inline: 24px; }
-    .top { padding-block: 14px; font-size: 14px; }
-    .logo img { height: 46px; }
-    h1 { font-size: clamp(72px, 11vw, 120px); margin-top: 40px; }
-    .intro { margin-bottom: 30px; }
-    .frame { box-shadow: 10px 10px 0 var(--red); margin: 0 10px 30px 0; }
-    .frame iframe { height: 1600px; }
-    .fallback, footer { font-size: 14px; }
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
 </head>
-<body>
+<body class="page">
 <div class="wrap">
   <header class="top">
     <a class="logo" href="./" aria-label="Torna a MUVT AGGRATIS">
-      <img src="assets/logo.png" alt="Cambiare Rotta" onerror="this.replaceWith(this.nextElementSibling.content.cloneNode(true))">
+      <img src="assets/logo.webp" alt="Cambiare Rotta" onerror="this.replaceWith(this.nextElementSibling.content.cloneNode(true))">
       <template><span class="txt">Cambiare<span>Rotta</span></span></template>
     </a>
-    <a href="./" aria-label="Torna alla campagna">← <span class="long">Torna alla&nbsp;</span>campagna</a>
+    <nav>
+      <a class="back" href="./" aria-label="Torna alla campagna">←<span> Campagna</span></a>
+      <a href="./#bonus">Il bonus</a>
+      <a href="./#conti">Fai i conti</a>
+      <a href="./#vogliamo">Cosa vogliamo</a>
+      <a href="https://cambiare-rotta.org/" target="_blank" rel="noopener">Chi siamo</a>
+      <a class="navcta" href="tesseramento.html" aria-current="page">Tesserati</a>
+    </nav>
   </header>
 
-  <h1>Organizzati,<span>tesserati.</span></h1>
-  <p class="intro">Per vincere servono più persone, non più sconti. Tesserati a Cambiare Rotta e costruisci con noi la campagna MUVT AGGRATIS nelle università di Bari.</p>
+  <main>
+    <h1>Organizzati,<span>tesserati.</span></h1>
+    <p class="intro">Per vincere servono più persone, non più sconti. Tesserati a Cambiare Rotta e costruisci con noi la campagna MUVT AGGRATIS nelle università di Bari.</p>
 
-  <div class="frame">
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSebOGkB5fVfU6QFmdLfYamqmrxH1_RYLZsaytOL-kOuoAMx6w/viewform?embedded=true" title="Modulo di tesseramento a Cambiare Rotta" loading="lazy">Caricamento…</iframe>
-  </div>
-  <p class="fallback">Il modulo non si vede? <a href="https://docs.google.com/forms/d/e/1FAIpQLSebOGkB5fVfU6QFmdLfYamqmrxH1_RYLZsaytOL-kOuoAMx6w/viewform" target="_blank" rel="noopener">Aprilo su Google Moduli →</a></p>
+    <div class="box hot">
+      <form class="modulo" id="tform" novalidate>
+        <input class="hp" type="text" name="_miele" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label><span>Nome e cognome <span class="req" aria-hidden="true">★</span></span>
+          <input type="text" name="nome" autocomplete="name" maxlength="100" required>
+        </label>
+        <label><span>Città <span class="req" aria-hidden="true">★</span></span>
+          <input type="text" name="citta" autocomplete="address-level2" maxlength="80" required>
+        </label>
+        <label><span>Numero di telefono <span class="req" aria-hidden="true">★</span></span>
+          <input type="tel" name="telefono" autocomplete="tel" inputmode="tel" maxlength="30" required>
+        </label>
+        <label><span>Indirizzo mail <span class="req" aria-hidden="true">★</span></span>
+          <input type="email" name="mail" autocomplete="email" inputmode="email" maxlength="120" required>
+        </label>
+        <fieldset>
+          <legend><span>Indica la tua professione <span class="req" aria-hidden="true">★</span></span></legend>
+          <label class="scelta"><input type="radio" name="professione" value="Studente - scuola superiore" required> Studente · scuola superiore</label>
+          <label class="scelta"><input type="radio" name="professione" value="Studente - università/AFAM/altri istituti"> Studente · università, AFAM o altri istituti</label>
+          <label class="scelta"><input type="radio" name="professione" value="Studente lavoratore"> Studente lavoratore</label>
+          <label class="scelta"><input type="radio" name="professione" value="Lavoratore"> Lavoratore</label>
+          <label class="scelta"><input type="radio" name="professione" value="Disoccupato"> Disoccupato</label>
+        </fieldset>
+        <label id="istituto-box" hidden><span>Che istituto frequenti? <span class="req" aria-hidden="true">★</span></span>
+          <input type="text" name="istituto" autocomplete="off" maxlength="120">
+        </label>
+        <label class="assenso"><input type="checkbox" name="privacy" required> <span>Ho letto l'<a href="privacy.html" target="_blank" rel="noopener">informativa sulla privacy</a>.&nbsp;<span class="req" aria-hidden="true">★</span></span></label>
+        <p class="nota"><span class="req" aria-hidden="true">★</span> campo obbligatorio</p>
+        <button class="cta send" type="submit">Tesserati</button>
+        <p class="esito" id="esito" role="alert"></p>
+      </form>
+      <div class="conferma" id="conferma" role="status" tabindex="-1" hidden>
+        <div class="spunta" aria-hidden="true">✓</div>
+        <h3>Sei dei nostri</h3>
+        <p>Abbiamo ricevuto la tua adesione. Ti contatteremo a breve.</p>
+        <a href="./">← Torna alla campagna</a>
+      </div>
+    </div>
+  </main>
 
-  <footer>Cambiare Rotta · Organizzazione giovanile comunista · Bari</footer>
+  <footer>
+    <span>Cambiare Rotta · Organizzazione giovanile comunista · Bari</span>
+    <span><a href="privacy.html">Privacy</a> · #MUVTAGGRATIS</span>
+  </footer>
 </div>
+
+<script src="assets/site.js"></script>
+<script>
+  // Le risposte vanno direttamente al Google Moduli di Cambiare Rotta (stesso foglio di prima).
+  // Il browser non può leggere la risposta di Google: "inviato" vuol dire "spedito senza errori di rete".
+  const GOOGLE = "https://docs.google.com/forms/d/e/1FAIpQLSebOGkB5fVfU6QFmdLfYamqmrxH1_RYLZsaytOL-kOuoAMx6w/formResponse";
+  const CAMPI = { nome: "entry.1672273361", citta: "entry.283544223", telefono: "entry.1483438228", mail: "entry.158369131", professione: "entry.839453997", istituto: "entry.644560619" };
+  const SERVE_ISTITUTO = ["Studente - scuola superiore", "Studente - università/AFAM/altri istituti", "Studente lavoratore"];
+  const form = document.getElementById("tform"), esito = document.getElementById("esito"), conferma = document.getElementById("conferma");
+  const box = document.getElementById("istituto-box");
+  // protezioni, stato del bottone e conferma sono comuni ai moduli (assets/site.js)
+  const m = Muvt.modulo(form, { esca: "_miele", chiave: "muvt-tessere", conferma });
+  const err = (txt, campo) => { esito.textContent = txt; if (campo) campo.focus(); };
+
+  form.addEventListener("change", () => {
+    const serve = SERVE_ISTITUTO.includes(form.professione.value);
+    box.hidden = !serve; form.istituto.required = serve;
+  });
+
+  form.addEventListener("submit", async e => {
+    e.preventDefault(); esito.textContent = "";
+    const d = new FormData(form);
+    if (m.bot()) return;
+    const v = k => String(d.get(k) || "").trim();
+    if (!v("nome")) return err("Scrivi nome e cognome.", form.nome);
+    if (!v("citta")) return err("Scrivi la tua città.", form.citta);
+    if (!/^[+\d][\d\s().-]{5,}$/.test(v("telefono"))) return err("Il numero di telefono non sembra giusto.", form.telefono);
+    if (!/^\S+@\S+\.\S+$/.test(v("mail"))) return err("L'indirizzo mail non sembra giusto.", form.mail);
+    if (!d.get("professione")) return err("Indica la tua professione.", form.querySelector("[name=professione]"));
+    const serve = SERVE_ISTITUTO.includes(d.get("professione"));
+    if (serve && !v("istituto")) return err("Indica l'istituto che frequenti.", form.istituto);
+    if (!form.privacy.checked) return err("Per tesserarti devi aver letto l'informativa sulla privacy.", form.privacy);
+    const troppi = m.limite();
+    if (troppi) return err(troppi);
+
+    const body = new URLSearchParams();
+    for (const [k, campo] of Object.entries(CAMPI)) body.set(campo, k === "istituto" ? (serve ? v("istituto") : "Non applicabile") : v(k));
+    body.set("entry.839453997_sentinel", ""); body.set("fvv", "1"); body.set("pageHistory", "0,1");
+    m.occupato(true);
+    try {
+      await fetch(GOOGLE, { method: "POST", mode: "no-cors", body });
+      m.fatto("tesseramento-inviato", "Tesseramento inviato");
+    } catch {
+      esito.innerHTML = 'Invio non riuscito. Controlla la connessione e riprova, oppure <a href="https://docs.google.com/forms/d/e/1FAIpQLSebOGkB5fVfU6QFmdLfYamqmrxH1_RYLZsaytOL-kOuoAMx6w/viewform" target="_blank" rel="noopener">compila il modulo su Google</a>.';
+    } finally { m.occupato(false); }
+  });
+</script>
 </body>
 </html>

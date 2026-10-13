@@ -1,0 +1,191 @@
+/* Foglio comune a tutte le pagine (home, tesseramento, privacy).
+   Qui stanno le variabili, l'intestazione, il piè di pagina, i bottoni, i componenti dei moduli
+   e la struttura delle pagine interne. Le regole che servono a una pagina sola restano nella pagina.
+   Mobile first: la base è per il telefono (da 360px); poi 600px, 900px, 1400px. */
+
+:root {
+  --bg: #0E0E0E;
+  --surface: #2A2A2A;
+  --line: #3a3a3a;
+  --text: #F4F4F4;
+  --text-muted: #C9C9C9;
+  --yellow: #F5D24E;
+  --red: #A8182A;
+  --red-dark: #8A0C14;
+  --red-text: #ff4d5e;   /* il rosso di marca sul nero si legge male: questo è per il testo piccolo */
+  --display: "Anton", "Impact", "Arial Narrow", sans-serif;
+  --body: "Poppins", "Helvetica Neue", Arial, sans-serif;
+  --gutter: 18px;
+  --section: 56px;
+}
+@media (min-width: 600px) { :root { --gutter: 28px; --section: 72px; } }
+@media (min-width: 900px) { :root { --gutter: 20px; --section: 80px; } body { font-size: 17px; } }
+
+* { box-sizing: border-box; }
+html {
+  background: var(--bg); scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%; text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+/* niente scorrimento laterale su telefono (lo striscione inclinato sborda di qualche pixel) */
+html, body { overflow-x: hidden; }
+@supports (overflow: clip) { html, body { overflow-x: clip; } }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: var(--body); font-weight: 500; font-size: 16px; line-height: 1.6;
+}
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+[hidden] { display: none !important; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: var(--gutter); }
+@media (min-width: 1400px) { .wrap { max-width: 1280px; } }
+
+/* ---------- intestazione: la stessa su tutte le pagine ---------- */
+.top {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  padding-block: 12px;
+  border-bottom: 3px solid var(--text);
+  font-weight: 900; text-transform: uppercase; letter-spacing: .03em; font-size: 14px;
+}
+.logo { display: inline-flex; align-items: center; text-decoration: none; min-height: 44px; }
+.logo img { height: 40px; width: auto; display: block; }
+.logo .txt { font-family: var(--display); font-size: 20px; letter-spacing: .06em; line-height: .9; }
+.logo .txt span { display: block; font-size: 26px; letter-spacing: .14em; }
+.top nav { display: flex; align-items: center; gap: 12px; }
+.top nav a { text-decoration: none; display: none; padding: 10px 0; white-space: nowrap; }
+.top nav a:hover { color: var(--yellow); }
+/* su telefono restano solo il ritorno alla campagna (nelle pagine interne) e "Tesserati" */
+.top nav a.back { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; padding: 0; }
+.top nav a.back span { display: none; }
+@media (min-width: 420px) { .top nav a.back span { display: inline; } }
+.top nav a.navcta { display: inline-flex; align-items: center; min-height: 44px; background: var(--yellow); color: var(--bg); padding: 0 14px; line-height: 1; }
+.top nav a.navcta:hover { background: var(--text); color: var(--bg); }
+.top nav a.navcta[aria-current] { display: none; }
+@media (min-width: 900px) {
+  .top { padding-block: 14px; }
+  .logo img { height: 46px; }
+  .top nav { gap: 22px; }
+  .top nav a { display: inline-block; }
+  .top nav a.back { display: none; }
+  .top nav a.navcta { min-height: 0; padding: 6px 12px; display: inline-block; }
+  .top nav a.navcta[aria-current] { display: inline-block; background: var(--text); }
+}
+
+/* ---------- piè di pagina ---------- */
+footer {
+  border-top: 3px solid var(--text);
+  padding-block: 22px calc(32px + env(safe-area-inset-bottom, 0px));
+  display: flex; flex-direction: column; gap: 8px;
+  font-weight: 900; text-transform: uppercase; font-size: 13px;
+  color: var(--text-muted);
+}
+footer a { text-decoration: none; display: inline-block; padding-block: 8px; }
+footer a:hover { color: var(--yellow); }
+@media (min-width: 600px) { footer { flex-direction: row; justify-content: space-between; flex-wrap: wrap; gap: 20px; font-size: 14px; } }
+
+/* ---------- testi di servizio ---------- */
+.label {
+  font-weight: 900; text-transform: uppercase;
+  letter-spacing: .06em; font-size: 13px; color: var(--yellow);
+  margin: 0 0 10px;
+}
+@media (min-width: 900px) { .label { font-size: 14px; } }
+.req { color: var(--red-text); font-size: .9em; }
+.nota { margin: 0; font-size: 14px; color: var(--text-muted); }
+.nota a { color: var(--yellow); }
+
+/* ---------- bottoni ---------- */
+.cta {
+  display: block; text-align: center;
+  background: var(--yellow); color: var(--bg);
+  font-family: var(--display); font-weight: 400; text-transform: uppercase; text-decoration: none;
+  font-size: 24px; line-height: 1.15; padding: 12px 18px 10px;
+  border: 3px solid var(--yellow);
+  box-shadow: 6px 6px 0 var(--red);
+  margin-right: 6px;
+  cursor: pointer;
+  transition: transform .15s, box-shadow .15s, background .15s, color .15s;
+}
+.cta:hover { background: var(--bg); color: var(--yellow); }
+.cta:active { transform: translate(6px, 6px); box-shadow: 0 0 0 var(--red); }
+.cta[disabled] { opacity: .6; cursor: progress; }
+.cta.alt { background: transparent; color: var(--text); border-color: var(--text); box-shadow: 6px 6px 0 #444; }
+.cta.alt:hover { background: var(--text); color: var(--bg); }
+.copy {
+  background: none; border: 2px solid var(--yellow); color: var(--yellow); cursor: pointer;
+  font: 900 14px var(--body); text-transform: uppercase; padding: 10px 14px; min-height: 44px;
+}
+.copy:hover { background: var(--yellow); color: var(--bg); }
+@media (min-width: 600px) { .cta { display: inline-block; font-size: 28px; padding: 10px 26px 8px; } }
+@media (min-width: 900px) {
+  .cta { font-size: clamp(28px, 3vw, 34px); box-shadow: 8px 8px 0 var(--red); margin-right: 8px; }
+  .cta:active { transform: translate(8px, 8px); }
+  .cta.alt { box-shadow: 8px 8px 0 #444; }
+}
+
+/* ---------- moduli: riquadro, campi, scelte, conferma ---------- */
+.box { border: 3px solid var(--text); padding: 18px; }
+.box.hot { border-color: var(--yellow); background: #151515; box-shadow: 6px 6px 0 var(--red); margin-right: 6px; }
+.box h3 { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: 30px; line-height: 1; margin: 0 0 6px; }
+.box > p { margin: 0 0 16px; color: var(--text-muted); }
+@media (min-width: 900px) {
+  .box { padding: 28px; }
+  .box.hot { padding: 32px; box-shadow: 10px 10px 0 var(--red); margin-right: 10px; }
+}
+.modulo { display: grid; gap: 16px; }
+@media (min-width: 900px) { .modulo { max-width: 640px; } }
+.modulo label, .modulo legend { display: grid; gap: 6px; font-weight: 900; font-size: 14px; padding: 0; }
+.modulo fieldset { border: 0; margin: 0; padding: 0; min-width: 0; display: grid; gap: 8px; }
+.modulo input[type=text], .modulo input[type=tel], .modulo input[type=email], .modulo textarea {
+  font: inherit; font-weight: 500; font-size: 16px; color: var(--text);
+  background: #000; border: 2px solid var(--text); border-radius: 0;
+  padding: 12px; width: 100%; min-height: 48px;
+}
+.modulo textarea { min-height: 140px; resize: vertical; }
+@media (min-width: 600px) { .modulo .cta { justify-self: start; } }
+.modulo input:focus-visible, .modulo textarea:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; border-color: var(--yellow); }
+.scelta { display: flex !important; align-items: center; gap: 12px; font-weight: 500 !important; font-size: 16px !important; border: 2px solid var(--text); padding: 12px; min-height: 52px; cursor: pointer; background: #000; }
+.scelta:hover { border-color: var(--yellow); }
+.scelta input { width: 22px; height: 22px; accent-color: var(--yellow); flex: none; margin: 0; }
+.scelta:has(input:checked) { border-color: var(--yellow); background: #2a2410; }
+.scelta:has(input:focus-visible) { outline: 3px solid var(--yellow); outline-offset: 2px; }
+.assenso { display: flex !important; gap: 12px; align-items: flex-start; font-weight: 500 !important; font-size: 15px !important; }
+.assenso input { width: 22px; height: 22px; accent-color: var(--yellow); flex: none; margin: 1px 0 0; }
+.assenso a { color: var(--yellow); }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.esito { margin: 0; font-weight: 900; min-height: 1.6em; color: #ff8a8a; }
+.esito.ok { color: var(--yellow); }
+.esito a { color: inherit; }
+.conferma { display: grid; gap: 10px; justify-items: start; background: var(--yellow); color: var(--bg); padding: 22px; box-shadow: 6px 6px 0 var(--red); outline: none; }
+.conferma .spunta { font-family: var(--display); font-size: 40px; line-height: 1; }
+.conferma h3 { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: 34px; line-height: 1; margin: 0; }
+.conferma p { margin: 0; font-weight: 600; color: var(--bg); }
+.conferma a { color: var(--bg); font-weight: 900; }
+.conferma .copy { color: var(--bg); border-color: var(--bg); }
+.conferma .copy:hover { background: var(--bg); color: var(--yellow); }
+
+/* ---------- pagine interne (tesseramento, privacy) ---------- */
+.page h1 {
+  font-family: var(--display); font-weight: 400; text-transform: uppercase;
+  font-size: clamp(52px, 16vw, 72px); line-height: .9; margin: 30px 0 14px;
+}
+.page h1 span { color: var(--yellow); display: block; }
+.page .intro { color: var(--text-muted); max-width: 56ch; margin: 0 0 24px; }
+.page .narrow { max-width: 760px; }
+.page main > .box { max-width: 760px; }
+.page main { padding-bottom: 40px; }
+.prose h2 { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: 30px; line-height: 1; margin: 38px 0 10px; }
+.prose p, .prose li { max-width: 62ch; }
+.prose ul { padding-left: 1.2em; }
+.prose li { margin-bottom: 6px; }
+.prose a { color: var(--yellow); }
+.prose .data { color: var(--text-muted); font-size: 14px; }
+@media (min-width: 600px) {
+  .page h1 { font-size: clamp(72px, 11vw, 120px); margin-top: 40px; }
+  .page .intro { margin-bottom: 30px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

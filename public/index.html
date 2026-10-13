@@ -3,49 +3,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="alternate icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#0E0E0E">
 <title>MUVT AGGRATIS — Cambiare Rotta Bari</title>
 <meta name="description" content="Non vogliamo metà dello sconto. Trasporti gratuiti, studentati pubblici, affitti sostenibili.">
+<!-- anteprima quando il link viene condiviso (WhatsApp, Instagram, Telegram): l'indirizzo dell'immagine deve essere assoluto, se cambia l'indirizzo del sito va aggiornato qui -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Cambiare Rotta Bari">
+<meta property="og:title" content="MUVT AGGRATIS — Cambiare Rotta Bari">
+<meta property="og:description" content="Non vogliamo metà dello sconto. Trasporti gratuiti, studentati pubblici, affitti sostenibili.">
+<meta property="og:image" content="https://cambiare-rotta.github.io/muvt-aggratis/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="MUVT… AGGRATIS!">
+<meta name="twitter:card" content="summary_large_image">
+<!-- statistiche senza cookie e senza dati personali (GoatCounter); da localhost non conta -->
+<script data-goatcounter="https://tesla-analysis.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
 <style>
-  /* Mobile first: le regole di base sono per il telefono (da 360px);
-     poi si aggiunge a 600px (telefoni grandi, tablet verticale), 900px (desktop), 1400px (schermi grandi). */
-  :root {
-    --bg: #0E0E0E;
-    --surface: #2A2A2A;
-    --line: #3a3a3a;
-    --text: #F4F4F4;
-    --text-muted: #C9C9C9;
-    --yellow: #F5D24E;
-    --red: #A8182A;
-    --red-dark: #8A0C14;
-    --display: "Anton", "Impact", "Arial Narrow", sans-serif;
-    --body: "Poppins", "Helvetica Neue", Arial, sans-serif;
-    --gutter: 18px;
-    --section: 56px;
-  }
-  * { box-sizing: border-box; }
-  html {
-    background: var(--bg); scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%; text-size-adjust: 100%;
-    -webkit-tap-highlight-color: transparent;
-  }
-  /* niente scorrimento laterale su telefono (lo striscione inclinato sborda di qualche pixel) */
-  html, body { overflow-x: hidden; }
-  @supports (overflow: clip) { html, body { overflow-x: clip; } }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--body);
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 1.6;
-  }
-  a { color: inherit; }
-  :focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
-  .wrap { max-width: 1180px; margin: 0 auto; padding-inline: var(--gutter); }
 
   /* grana da fotocopia, come sui manifesti: solo su desktop, su telefono pesa troppo nello scorrimento */
   body::before { content: none; }
@@ -53,22 +35,6 @@
   /* barra di avanzamento lettura */
   .progress { position: fixed; top: 0; left: 0; height: 4px; width: 100%; background: var(--yellow); transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
 
-  /* barra in alto: su telefono solo logo e "Tesserati" */
-  .top {
-    display: flex; justify-content: space-between; align-items: center; gap: 12px;
-    padding-block: 12px;
-    border-bottom: 3px solid var(--text);
-    font-weight: 900; text-transform: uppercase; letter-spacing: .03em; font-size: 14px;
-  }
-  .logo { display: inline-flex; align-items: center; text-decoration: none; min-height: 44px; }
-  .logo img { height: 40px; width: auto; display: block; }
-  .logo .txt { font-family: var(--display); font-size: 20px; letter-spacing: .06em; line-height: .9; }
-  .logo .txt span { display: block; font-size: 26px; letter-spacing: .14em; }
-  .top nav { display: flex; align-items: center; }
-  .top nav a { text-decoration: none; display: none; padding: 10px 0; }
-  .top nav a:hover { color: var(--yellow); }
-  .top nav a.navcta { display: inline-block; background: var(--yellow); color: var(--bg); padding: 10px 14px; line-height: 1; }
-  .top nav a.navcta:hover { background: var(--text); }
 
   /* hero */
   .hero { padding-block: 28px 20px; position: relative; }
@@ -143,11 +109,6 @@
   @keyframes run { to { transform: translateX(-50%); } }
 
   section { padding-block: var(--section); }
-  .label {
-    font-weight: 900; text-transform: uppercase;
-    letter-spacing: .06em; font-size: 13px; color: var(--yellow);
-    margin: 0 0 10px;
-  }
   h2 {
     font-family: var(--display); font-weight: 400; text-transform: uppercase;
     font-size: clamp(40px, 12vw, 56px); line-height: .92; margin: 0 0 26px;
@@ -289,35 +250,11 @@
   .join .cell { border-bottom: 1px solid var(--line); padding: 18px 0; }
   .join .cell h3 { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: 30px; margin: 0 0 8px; }
   .join .cell p { color: var(--text-muted); margin: 0 0 14px; }
-  .copy {
-    background: none; border: 2px solid var(--yellow); color: var(--yellow); cursor: pointer;
-    font: 900 14px var(--body); text-transform: uppercase; padding: 10px 14px; min-height: 44px;
-  }
-  .copy:hover { background: var(--yellow); color: var(--bg); }
   .forms { display: flex; flex-direction: column; gap: 18px; align-items: stretch; margin-top: 36px; }
-  .cta {
-    display: block; text-align: center;
-    background: var(--yellow); color: var(--bg);
-    font-family: var(--display); text-transform: uppercase; text-decoration: none;
-    font-size: 24px; line-height: 1.15; padding: 12px 18px 10px;
-    border: 3px solid var(--yellow);
-    box-shadow: 6px 6px 0 var(--red);
-    margin-right: 6px;
-    transition: transform .15s, box-shadow .15s, background .15s, color .15s;
-  }
-  .cta:hover { background: var(--bg); color: var(--yellow); }
-  .cta:active { transform: translate(6px, 6px); box-shadow: 0 0 0 var(--red); }
-  .cta.alt { background: transparent; color: var(--text); border-color: var(--text); box-shadow: 6px 6px 0 #444; }
-  .cta.alt:hover { background: var(--text); color: var(--bg); }
   .handle { font-weight: 900; text-transform: uppercase; text-align: center; padding-block: 10px; }
 
-  footer {
-    border-top: 3px solid var(--text);
-    padding-block: 22px calc(32px + env(safe-area-inset-bottom, 0px));
-    display: flex; flex-direction: column; gap: 8px;
-    font-weight: 900; text-transform: uppercase; font-size: 13px;
-    color: var(--text-muted);
-  }
+
+  #contatti { margin-top: 36px; max-width: 760px; }
 
   .toast {
     position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px);
@@ -328,7 +265,6 @@
 
   /* ≥600px: telefoni grandi in orizzontale, tablet in verticale */
   @media (min-width: 600px) {
-    :root { --gutter: 28px; --section: 72px; }
     .kicker { font-size: 13px; }
     .hero .stage { width: min(620px, 100%); }
     .hero .claim { font-size: clamp(28px, 4.6vw, 36px); }
@@ -346,15 +282,11 @@
     .join .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); border-left: 1px solid var(--line); }
     .join .cell { border-bottom: 0; border-right: 1px solid var(--line); padding: 6px 18px 10px; }
     .forms { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 18px 24px; }
-    .cta { display: inline-block; font-size: 28px; padding: 10px 26px 8px; }
     .handle { text-align: left; }
-    footer { flex-direction: row; justify-content: space-between; flex-wrap: wrap; gap: 20px; font-size: 14px; }
   }
 
   /* ≥900px: desktop */
   @media (min-width: 900px) {
-    :root { --gutter: 20px; --section: 80px; }
-    body { font-size: 17px; }
     /* la grana torna solo dove regge (schermi grandi con mouse) */
     body::before {
       content: "";
@@ -365,11 +297,6 @@
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
       mix-blend-mode: overlay;
     }
-    .top { padding-block: 14px; }
-    .logo img { height: 46px; }
-    .top nav { gap: 22px; }
-    .top nav a { display: inline-block; }
-    .top nav a.navcta { padding: 6px 12px; }
     .hero { padding-block: 48px 30px; }
     .kicker { font-size: 14px; }
     .hero h1.mark { margin-top: 26px; }
@@ -381,7 +308,6 @@
     .hero .claim { font-size: clamp(30px, 3.6vw, 44px); line-height: 1.05; }
     .scrolldown { margin-top: 20px; }
     .tape { font-size: clamp(26px, 3vw, 34px); margin: 30px -20px 10px; }
-    .label { font-size: 14px; }
     h2 { font-size: clamp(56px, 7vw, 92px); margin-bottom: 36px; }
     .national .cols, .why .cols { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; }
     .national .slogan { font-size: clamp(64px, 7vw, 96px); }
@@ -407,20 +333,42 @@
     .join .cell { padding: 6px 22px 10px; }
     .join .cell h3 { font-size: 32px; }
     .forms { margin-top: 44px; }
-    .cta { font-size: clamp(28px, 3vw, 34px); box-shadow: 8px 8px 0 var(--red); margin-right: 8px; }
-    .cta:active { transform: translate(8px, 8px); }
-    .cta.alt { box-shadow: 8px 8px 0 #444; }
   }
 
   /* ≥1400px: schermi grandi, un po' più di respiro */
   @media (min-width: 1400px) {
-    .wrap { max-width: 1280px; }
     .hero .stage { width: min(800px, 100%); }
   }
 
+  /* galleria: scena con sfondo sfocato, barra comandi con contatore, striscia di miniature */
+  .gallery { border-top: 3px solid var(--text); padding-block: var(--section); }
+  .gallery h2 { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: clamp(34px, 8vw, 64px); line-height: 1; margin: 10px 0 24px; }
+  .slider { position: relative; outline-offset: 6px; }
+  .slider { width: 100%; margin-inline: auto; }
+  /* altezza esplicita (4:5, ma mai oltre il 78% dello schermo): aspect-ratio + max-height fa restringere la larghezza su certi browser mobile */
+  .slider .stage { position: relative; width: 100%; height: min(calc((100vw - 2 * var(--gutter)) * 1.25), 78vh); height: min(calc((100vw - 2 * var(--gutter)) * 1.25), 78svh); overflow: hidden; background: #000; touch-action: pan-y; cursor: grab; }
+  .slider .stage::before { content: ""; position: absolute; inset: -30px; background: var(--bg) center / cover; filter: blur(26px) brightness(.5) saturate(1.2); }
+  .slider .stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transition: opacity .35s; -webkit-user-drag: none; }
+  .slider .stage img.on { opacity: 1; }
+  .slider .bar { display: flex; align-items: stretch; background: var(--yellow); color: var(--bg); }
+  .slider .count { flex: 1; display: flex; align-items: baseline; gap: 6px; padding: 8px 14px; font-family: var(--display); font-size: 30px; line-height: 1; letter-spacing: .02em; }
+  .slider .count small { font: 700 14px/1 var(--body); opacity: .65; }
+  .slider .nav { width: 56px; min-height: 56px; display: grid; place-items: center; background: transparent; color: var(--bg); border: 0; border-left: 3px solid var(--bg); font-size: 30px; line-height: 1; cursor: pointer; }
+  .slider .nav:hover, .slider .nav:active { background: var(--bg); color: var(--yellow); }
+  .slider .nav:focus-visible { outline-offset: -6px; outline-color: var(--bg); }
+  .slider .thumbs { display: flex; gap: 3px; overflow-x: auto; padding: 3px 0 2px; scroll-snap-type: x proximity; scrollbar-width: none; background: var(--bg); }
+  .slider .thumbs::-webkit-scrollbar { display: none; }
+  .slider .thumbs button { flex: 0 0 auto; width: 64px; height: 64px; padding: 0; border: 0; background: none; cursor: pointer; opacity: .5; scroll-snap-align: center; position: relative; }
+  .slider .thumbs button[aria-current="true"] { opacity: 1; outline: 3px solid var(--yellow); outline-offset: -3px; }
+  .slider .thumbs img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .slider.solo .bar .nav, .slider.solo .thumbs { display: none; }
+  @media (min-width: 900px) {
+    .slider .stage { height: auto; aspect-ratio: 16 / 9; }
+    .slider .count { font-size: 38px; padding: 10px 20px; }
+    .slider .thumbs button { width: 92px; height: 62px; }
+  }
   @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .slider .stage img { transition: none; }
     .rv, .hero .stage img { opacity: 1; transform: none; }
     .hero .claim s::after { transform: scaleX(1); }
     .bonus .big::after { transform: rotate(-8deg) scaleX(1); }
@@ -435,7 +383,7 @@
   <header class="top">
     <a class="logo" href="#" aria-label="Cambiare Rotta">
       <!-- logo ufficiale; se non si carica resta la scritta -->
-      <img src="assets/logo.png" alt="Cambiare Rotta" onerror="this.replaceWith(this.nextElementSibling.content.cloneNode(true))">
+      <img src="assets/logo.webp" alt="Cambiare Rotta" onerror="this.replaceWith(this.nextElementSibling.content.cloneNode(true))">
       <template><span class="txt">Cambiare<span>Rotta</span></span></template>
     </a>
     <nav>
@@ -452,10 +400,10 @@
     <!-- logo in due livelli esportati da Canva: la scritta e i cunei, che arrivano e si piantano -->
     <h1 class="mark">
       <span class="stage">
-        <img class="scritta" src="assets/muvt-scritta.png" width="951" height="369" alt="MUVT… AGGRATIS!">
-        <img class="cuneo c1" src="assets/muvt-cunei.png" width="951" height="369" alt="">
-        <img class="cuneo c2" src="assets/muvt-cunei.png" width="951" height="369" alt="">
-        <img class="cuneo c3" src="assets/muvt-cunei.png" width="951" height="369" alt="">
+        <img class="scritta" src="assets/muvt-scritta.webp" width="951" height="369" alt="MUVT… AGGRATIS!">
+        <img class="cuneo c1" src="assets/muvt-cunei.webp" width="951" height="369" alt="">
+        <img class="cuneo c2" src="assets/muvt-cunei.webp" width="951" height="369" alt="">
+        <img class="cuneo c3" src="assets/muvt-cunei.webp" width="951" height="369" alt="">
       </span>
     </h1>
     <div class="sub">
@@ -569,6 +517,44 @@
   </div>
 </section>
 
+<section class="gallery" id="foto">
+  <div class="wrap">
+    <p class="label">Dalle piazze</p>
+    <h2>Le nostre mobilitazioni</h2>
+    <div class="slider" id="slider" role="region" aria-roledescription="carosello" aria-label="Foto delle iniziative">
+      <div class="stage">
+        <img src="assets/foto/mini/foto02.webp" data-full="assets/foto/foto02.webp" alt="Il gruppo davanti a UniBa con lo striscione sulle borse di studio" width="1600" height="1200">
+        <img src="assets/foto/mini/foto01.webp" data-full="assets/foto/foto01.webp" alt="Il banchetto «Costo della guerra per uno studente UniBa»" width="1600" height="1200">
+        <img src="assets/foto/mini/foto03.webp" data-full="assets/foto/foto03.webp" alt="Cartello «Borse di studio in ritardo, mo avasta!»" width="1600" height="1200">
+        <img src="assets/foto/mini/foto04.webp" data-full="assets/foto/foto04.webp" alt="Cartello «Idonei sì, beneficiari quando?»" width="1600" height="1200">
+        <img src="assets/foto/mini/foto05.webp" data-full="assets/foto/foto05.webp" alt="Studenti con i cartelli sulle borse di studio" width="1600" height="1200">
+        <img src="assets/foto/mini/foto06.webp" data-full="assets/foto/foto06.webp" alt="Studenti con i cartelli sotto una pensilina" width="1600" height="1200">
+        <img src="assets/foto/mini/foto07.webp" data-full="assets/foto/foto07.webp" alt="Studenti con cartelli e striscione davanti a UniBa" width="1600" height="1200">
+        <img src="assets/foto/mini/foto08.webp" data-full="assets/foto/foto08.webp" alt="Volantinaggio alla stazione di Bari" width="1600" height="1200">
+        <img src="assets/foto/mini/foto09.webp" data-full="assets/foto/foto09.webp" alt="Cartello «Agenzia per il Diritto allo Studio Universalmente Negato»" width="1600" height="1200">
+        <img src="assets/foto/mini/foto14.webp" data-full="assets/foto/foto14.webp" alt="Una studentessa con il cartello sul diritto allo studio" width="1600" height="1200">
+        <img src="assets/foto/mini/foto10.webp" data-full="assets/foto/foto10.webp" alt="Cartello «Vogliamo le borse di studio subito!»" width="1600" height="1200">
+        <img src="assets/foto/mini/foto11.webp" data-full="assets/foto/foto11.webp" alt="Corteo con lo striscione «Democrazia? È morta!»" width="1600" height="1200">
+        <img src="assets/foto/mini/foto12.webp" data-full="assets/foto/foto12.webp" alt="Corteo per le strade di Bari" width="1600" height="1200">
+        <img src="assets/foto/mini/foto13.webp" data-full="assets/foto/foto13.webp" alt="Corteo al tramonto con le bandiere di Cambiare Rotta" width="1600" height="1200">
+        <img src="assets/foto/mini/foto17.webp" data-full="assets/foto/foto17.webp" alt="Striscione in strada davanti a un palazzo storico" width="1600" height="1200">
+        <img src="assets/foto/mini/foto15.webp" data-full="assets/foto/foto15.webp" alt="Studenti seduti nell'atrio di un palazzo universitario" width="1600" height="1200">
+        <img src="assets/foto/mini/foto16.webp" data-full="assets/foto/foto16.webp" alt="Un ragazzo davanti al cancello con i manifesti" width="1600" height="1200">
+        <img src="assets/foto/mini/foto18.webp" data-full="assets/foto/foto18.webp" alt="La scritta «Cambiare l'università, conquistare un futuro!» su un muro" width="1600" height="1200">
+        <img src="assets/foto/mini/foto19.webp" data-full="assets/foto/foto19.webp" alt="Manifesti «La guerra non la paghiamo» affissi" width="1600" height="1200">
+        <img src="assets/foto/mini/foto20.webp" data-full="assets/foto/foto20.webp" alt="Assemblea affollata in un corridoio" width="1600" height="1200">
+        <img src="assets/foto/mini/foto21.webp" data-full="assets/foto/foto21.webp" alt="Studenti in cerchio nel cortile di un palazzo storico" width="1600" height="1200">
+      </div>
+      <div class="bar">
+        <div class="count" aria-live="polite"><span id="cur">1</span><small>/ <span id="tot">1</span></small></div>
+        <button class="nav prev" type="button" aria-label="Foto precedente">‹</button>
+        <button class="nav next" type="button" aria-label="Foto successiva">›</button>
+      </div>
+      <div class="thumbs"></div>
+    </div>
+  </div>
+</section>
+
 <section class="demands" id="vogliamo">
   <div class="wrap">
     <p class="label">Le nostre rivendicazioni</p>
@@ -622,18 +608,44 @@
       <a class="cta alt" href="https://cambiare-rotta.org/" target="_blank" rel="noopener">Chi siamo</a>
       <a class="handle" href="https://www.instagram.com/cambiarerotta_bari/" target="_blank" rel="noopener">@cambiarerotta_bari</a>
     </div>
+    <div class="box" id="contatti">
+      <h3>Scrivici</h3>
+      <p>Domande, proposte, una segnalazione sui trasporti: il messaggio arriva a Cambiare Rotta Bari.</p>
+      <form class="modulo" id="mailform" novalidate>
+        <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label>Nome
+          <input type="text" name="nome" autocomplete="name" maxlength="80">
+        </label>
+        <label>Un tuo contatto
+          <input type="text" name="contatto" autocomplete="off" maxlength="120">
+        </label>
+        <label><span>Messaggio <span class="req" aria-hidden="true">★</span></span>
+          <textarea name="messaggio" required maxlength="3000"></textarea>
+        </label>
+        <p class="nota"><span class="req" aria-hidden="true">★</span> campo obbligatorio. Come trattiamo i dati: <a href="privacy.html">informativa privacy</a>.</p>
+        <button class="cta send" type="submit">Invia</button>
+        <p class="esito" id="esito" role="status" aria-live="polite"></p>
+      </form>
+      <div class="conferma" id="conferma" role="status" tabindex="-1" hidden>
+        <div class="spunta" aria-hidden="true">✓</div>
+        <h3>Messaggio inviato</h3>
+        <p>Grazie per averci scritto.</p>
+        <button class="copy" type="button" data-altro>Scrivi un altro messaggio</button>
+      </div>
+    </div>
   </div>
 </section>
 
 <div class="wrap">
   <footer>
     <span>Cambiare Rotta · Organizzazione giovanile comunista · Bari</span>
-    <span>#MUVTAGGRATIS</span>
+    <span><a href="privacy.html">Privacy</a> · #MUVTAGGRATIS</span>
   </footer>
 </div>
 
 <div class="toast" id="toast" role="status"></div>
 
+<script src="assets/site.js"></script>
 <script>
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -652,6 +664,109 @@
   addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
+  // statistiche: eventi anonimi (solo "è successo X"), nessun valore inserito dalle persone
+  const { conta } = Muvt;
+  document.querySelectorAll('a[href="tesseramento.html"]').forEach(a => a.addEventListener("click", () => conta("clic-tesserati", "Clic su Tesserati")));
+  document.querySelectorAll('a[href*="instagram.com"]').forEach(a => a.addEventListener("click", () => conta("clic-instagram", "Clic su Instagram")));
+  document.querySelectorAll('a[href*="cambiare-rotta.org"]').forEach(a => a.addEventListener("click", () => conta("clic-cambiare-rotta-org", "Clic su cambiare-rotta.org")));
+  document.querySelectorAll("[data-copy]").forEach(b => b.addEventListener("click", () => conta("hashtag-copiato", "Hashtag copiato")));
+  let calcContato = false;
+  document.querySelectorAll("#abb, #isee, #figli").forEach(el => el.addEventListener("input", () => { if (!calcContato) { calcContato = true; conta("calcolatore-usato", "Calcolatore usato"); } }));
+  const visto = (sel, path, title) => { const el = document.querySelector(sel); if (!el || !("IntersectionObserver" in window)) return;
+    const o = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { conta(path, title); o.disconnect(); } }, { threshold: .4 }); o.observe(el); };
+  visto("#foto .slider", "galleria-vista", "Galleria vista");
+  visto("#unisciti", "fondo-pagina", "Arrivato a Unisciti alla campagna");
+  document.getElementById("slider")?.addEventListener("click", e => { if (e.target.closest("button")) conta("galleria-sfogliata", "Galleria sfogliata"); }, { once: true });
+
+  // galleria: si costruisce dalle <img> dentro .stage; per aggiungere foto basta aggiungere <img>
+  (() => {
+    const root = document.getElementById("slider");
+    const stage = root.querySelector(".stage");
+    const imgs = [...stage.querySelectorAll("img")];
+    const thumbs = root.querySelector(".thumbs");
+    const curEl = document.getElementById("cur");
+    document.getElementById("tot").textContent = imgs.length;
+    if (imgs.length < 2) root.classList.add("solo");
+    let cur = 0;
+    const t = imgs.map((im, i) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-label", "Vai alla foto " + (i + 1));
+      const mini = new Image(); mini.src = im.getAttribute("src"); mini.alt = ""; mini.loading = "lazy";
+      b.append(mini);
+      b.onclick = () => show(i);
+      thumbs.append(b);
+      return b;
+    });
+    const load = k => { const im = imgs[(k + imgs.length) % imgs.length]; if (im.dataset.full) { im.src = im.dataset.full; delete im.dataset.full; } };
+    function show(i) {
+      cur = (i + imgs.length) % imgs.length;
+      load(cur - 1); load(cur); load(cur + 1);
+      imgs.forEach((im, k) => im.classList.toggle("on", k === cur));
+      t.forEach((b, k) => k === cur ? b.setAttribute("aria-current", "true") : b.removeAttribute("aria-current"));
+      stage.style.setProperty("--bg", `url("${imgs[cur].getAttribute("src")}")`);
+      curEl.textContent = cur + 1;
+      // scorre solo la striscia, non la pagina
+      thumbs.scrollTo({ left: t[cur].offsetLeft - (thumbs.clientWidth - t[cur].offsetWidth) / 2, behavior: reduce ? "auto" : "smooth" });
+    }
+    root.querySelector(".prev").onclick = () => show(cur - 1);
+    root.querySelector(".next").onclick = () => show(cur + 1);
+    root.tabIndex = 0;
+    root.addEventListener("keydown", e => { if (e.key === "ArrowLeft") show(cur - 1); if (e.key === "ArrowRight") show(cur + 1); });
+    // swipe: soglia sulla distanza, ignora i gesti più verticali che orizzontali (lì scorre la pagina)
+    let x0 = null, y0 = 0;
+    stage.addEventListener("pointerdown", e => { x0 = e.clientX; y0 = e.clientY; });
+    stage.addEventListener("pointerup", e => {
+      if (x0 === null) return;
+      const dx = e.clientX - x0, dy = e.clientY - y0;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) show(cur + (dx < 0 ? 1 : -1));
+      x0 = null;
+    });
+    stage.addEventListener("pointercancel", () => { x0 = null; });
+    show(0);
+  })();
+  // box "Scrivici": il messaggio parte da FormSubmit verso la casella di Cambiare Rotta Bari
+  (() => {
+    const MAIL = "cambiarerotta.bari@gmail.com";
+    const form = document.getElementById("mailform"), esito = document.getElementById("esito");
+    // protezioni, stato del bottone e conferma sono comuni ai moduli (assets/site.js); il filtro vero contro lo spam è quello di FormSubmit
+    const m = Muvt.modulo(form, { esca: "_honey", chiave: "muvt-invii", conferma: document.getElementById("conferma") });
+    const say = (txt, ok) => { esito.className = "esito " + (ok ? "ok" : "ko"); esito.textContent = txt; };
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      const d = new FormData(form);
+      if (m.bot()) return;
+      const troppi = m.limite();
+      if (troppi) { say(troppi, false); return; }
+      const msg = String(d.get("messaggio") || "").trim();
+      if (!msg) { say("Scrivi un messaggio prima di inviare.", false); form.messaggio.focus(); return; }
+      const contatto = String(d.get("contatto") || "").trim();
+      m.occupato(true); say("", true);
+      try {
+        const r = await fetch("https://formsubmit.co/ajax/" + MAIL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({
+            _subject: "[MUVT] Messaggio dal sito",
+            _template: "table", _captcha: "false",
+            Nome: d.get("nome") || "(non indicato)",
+            Contatto: contatto || "(non indicato)",
+            Messaggio: msg
+          })
+        });
+        const j = await r.json().catch(() => ({}));
+        // conferma solo se il servizio dice esplicitamente di aver accettato il messaggio
+        if (!r.ok || !(j.success === true || j.success === "true")) throw new Error(j.message || r.status);
+        say("", true);
+        m.fatto("messaggio-inviato", "Messaggio inviato dal modulo"); // solo il conteggio, mai il contenuto
+      } catch {
+        esito.className = "esito ko";
+        esito.innerHTML = 'Invio non riuscito. Riprova tra poco o scrivi a <a href="mailto:' + MAIL + '">' + MAIL + "</a>.";
+      } finally {
+        m.occupato(false);
+      }
+    });
+  })();
   // comparsa allo scroll
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });

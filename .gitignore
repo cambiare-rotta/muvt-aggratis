@@ -3,3 +3,6 @@ node_modules/
 .dev.vars
 .DS_Store
 Thumbs.db
+
+# foto originali (pesanti, con volti): restano in locale, sul sito vanno le versioni ridotte
+foto_originali/
