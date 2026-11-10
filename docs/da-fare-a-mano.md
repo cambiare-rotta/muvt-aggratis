@@ -28,7 +28,7 @@ Il modulo non è più un iframe di Google: è un modulo nostro in `public/tesser
 ## 8. Dopo la pubblicazione (13 ottobre 2026)
 - **Fatti:** filtro Gmail con l'etichetta `MUVT`, informativa privacy riletta.
 - **Da fare, in quest'ordine:**
-  1. **Modulo "Scrivici":** mandare un messaggio di prova dal sito pubblicato e cliccare il link di FormSubmit nella casella `cambiarerotta.bari@gmail.com`. Finché non si fa, i messaggi non arrivano.
+  1. **Modulo "Scrivici":** mandare un messaggio di prova dal sito pubblicato e cliccare il link di FormSubmit nella casella `cambiarerotta.bari@gmail.com`. Finché non si fa, i messaggi non arrivano. **Prova del 10/11/2026 dal sito pubblicato:** FormSubmit risponde `{"success":"false","message":"This form needs Activation…"}` e il sito mostra "Invio non riuscito": il modulo non è mai stato attivato, quindi fino ad allora ogni messaggio va perso. La mail "Activate Form" è stata (ri)mandata a `cambiarerotta.bari@gmail.com`: va aperta da quella casella e cliccato il link, poi rifare una prova. **Cambio del 10/11/2026 (commit `924c416`):** la casella di Cambiare Rotta non è seguita, quindi ora il modulo manda a `webcambiarerotta@gmail.com` (casella gestita da Mario) con `cambiarerotta.bari@gmail.com` in copia (`_cc`); informativa aggiornata ("chi cura il sito"). Prova dal sito pubblicato: "This form needs Activation", la mail "Activate Form" è partita verso `webcambiarerotta@gmail.com`. **Da fare:** cliccare il link da quella casella, poi rifare la prova. La pagina di conferma di FormSubmit mostra un codice alias: conviene usarlo al posto dell'indirizzo nel codice.
   2. **Tesseramento:** un invio di prova (nome "TEST") dal sito pubblicato; controllare che la riga arrivi nel foglio Google e cancellarla.
   3. **Telefono vero** (iPhone e Android): solo dopo che i due punti sopra sono passati, vedi punto 6.
 - **Statistiche:** GoatCounter, https://tesla-analysis.goatcounter.com/. Da localhost non conta. Lo script è bloccato da alcune estensioni anti-tracciamento (nel Chrome usato per i test risultava bloccato), quindi chi le usa non viene contato: è un limite normale di ogni strumento di statistiche. Link con `?ref=volantino`, `?ref=instagram` ecc. per sapere da dove arrivano. Eventi: clic-tesserati, clic-instagram, clic-cambiare-rotta-org, hashtag-copiato, calcolatore-usato, galleria-vista, galleria-sfogliata, fondo-pagina, messaggio-inviato, tesseramento-inviato.
@@ -41,3 +41,12 @@ Il modulo non è più un iframe di Google: è un modulo nostro in `public/tesser
 - `sitemap.xml` inviata; indicizzazione della home richiesta da "Controllo URL" (al momento: "URL sconosciuto a Google", messo nella coda prioritaria).
 - **Tempi:** di solito da qualche giorno a un paio di settimane prima che "MUVT AGGRATIS" su Google mostri il sito. Per controllare: cercare `site:cambiare-rotta.github.io/muvt-aggratis`.
 - **Aiuta molto:** il link al sito nella bio di Instagram `@cambiarerotta_bari` e, se possibile, su cambiare-rotta.org: Google trova e pesa le pagine anche dai link che le puntano.
+
+## 10. Messaggi e app (aperto il 10 novembre 2026)
+1. ~~**Attivare FormSubmit**~~ fatto il 10/11/2026 (prova via alias: `success: true`).
+2. ~~**Alias al posto dell'indirizzo**~~ fatto: `DEST` in `public/index.html` è l'alias FormSubmit di `webcambiarerotta`, nel sorgente non compare nessun indirizzo.
+3. **App dei messaggi** (`apps-script/`, guida nel README): installata con clasp sull'account webcambiarerotta, `configura` eseguita (Foglio condiviso con l'account personale di Mario). Resta: primo accesso all'app dall'account di Mario con il consenso ai fogli; controllare che un messaggio di prova compaia nell'app. Le 3 righe di avvisi Google già nel Foglio vanno segnate "fatto" o cancellate.
+4. ~~**Versione alternativa**~~ portata in `public/` il 10/11/2026 (giudicata migliore da due giudici alla cieca, rifinita). `prova/` ora coincide con `public/`. Critica e revisione in `docs/critica-2026-11-10.md` e `docs/revisione-prova-2026-11-10.md`.
+5. **Tesseramento**: invio di prova (nome "TEST") e cancellazione della riga dal foglio di Cambiare Rotta, mai fatto.
+6. ~~**Commit in sospeso**~~ fatto il 10/11/2026.
+7. **Pulizia**: i messaggi "TEST" (anche quello della prova dell'alias) nella casella personale di Mario, in `webcambiarerotta` e in copia in `cambiarerotta.bari@gmail.com`.

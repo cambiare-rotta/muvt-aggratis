@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="it">
+<head>
+<base target="_top">
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  /* stessi colori del sito (docs/stile.md) */
+  :root {
+    --bg: #0E0E0E; --surface: #1a1a1a; --surface-2: #242424; --line: #333;
+    --text: #F4F4F4; --muted: #b5b5b5; --yellow: #F5D24E; --red: #A8182A; --red-text: #ff4d5e; --green: #6fd08c;
+    --display: "Anton", Impact, sans-serif; --body: "Poppins", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.5 var(--body); }
+  button, input, textarea { font: inherit; color: inherit; }
+  :focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+  a { color: var(--yellow); }
+
+  header { position: sticky; top: 0; z-index: 5; background: var(--bg); border-bottom: 3px solid var(--text); padding: 12px 16px; }
+  .riga { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  h1 { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: 30px; line-height: 1; margin: 0; flex: 1; }
+  h1 span { color: var(--yellow); }
+  .chi { color: var(--muted); font-size: 13px; }
+  @media (max-width: 599px) { .chi { display: none; } }
+  .filtri { margin-top: 10px; }
+  .filtro { background: none; border: 2px solid var(--line); padding: 6px 12px; min-height: 40px; cursor: pointer; font-weight: 700; font-size: 14px; }
+  .filtro[aria-pressed="true"] { border-color: var(--yellow); background: var(--yellow); color: var(--bg); }
+  .filtro b { font-weight: 900; }
+  #cerca { flex: 1 1 200px; min-height: 40px; padding: 6px 12px; background: var(--surface); border: 2px solid #777; }
+  .icona { background: none; border: 2px solid var(--line); min-width: 40px; min-height: 40px; cursor: pointer; font-size: 18px; }
+
+  main { display: grid; grid-template-columns: minmax(0, 1fr); }
+  #lista { list-style: none; margin: 0; padding: 0; }
+  .voce { display: block; width: 100%; text-align: left; background: none; border: 0; border-bottom: 1px solid var(--line); padding: 14px 16px; cursor: pointer; }
+  .voce:hover, .voce[aria-current="true"] { background: var(--surface); }
+  .voce .testa { display: flex; gap: 8px; align-items: baseline; }
+  .voce .nome { font-weight: 700; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .voce .quando { color: var(--muted); font-size: 13px; white-space: nowrap; }
+  .voce .anteprima { color: var(--muted); font-size: 14px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-top: 2px; }
+  .voce.nuovo .nome::before { content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--yellow); margin-right: 8px; vertical-align: 1px; }
+  .pill { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; padding: 1px 8px; border: 1px solid currentColor; white-space: nowrap; }
+  .pill.nuovo { color: var(--yellow); } .pill.da-rispondere { color: var(--red-text); } .pill.fatto { color: var(--green); }
+  .vuoto, .avviso { padding: 32px 16px; color: var(--muted); }
+  .avviso strong { color: var(--text); display: block; font-size: 18px; margin-bottom: 6px; }
+
+  #dettaglio { display: none; padding: 16px; background: var(--surface); }
+  #dettaglio.aperto { display: block; position: fixed; inset: 0; z-index: 10; overflow-y: auto; }
+  .chiudi { background: none; border: 2px solid var(--line); min-height: 40px; padding: 4px 12px; cursor: pointer; font-weight: 700; margin-bottom: 12px; }
+  #dettaglio h2 { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: 32px; line-height: 1.05; margin: 0 0 4px; overflow-wrap: anywhere; }
+  .meta { color: var(--muted); font-size: 14px; margin: 0 0 14px; }
+  .testo { white-space: pre-wrap; overflow-wrap: anywhere; background: var(--bg); border-left: 4px solid var(--yellow); padding: 14px; margin: 0 0 16px; }
+  .contatto { font-weight: 700; overflow-wrap: anywhere; }
+  .azioni { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0 18px; }
+  .azione { display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border: 2px solid var(--yellow); color: var(--yellow); text-decoration: none; font-weight: 700; background: none; cursor: pointer; }
+  .azione.piena { background: var(--yellow); color: var(--bg); box-shadow: 4px 4px 0 var(--red); }
+  .azione.tenue { border-color: var(--line); color: var(--muted); }
+  .etichetta { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--yellow); margin: 0 0 6px; }
+  .stati { display: flex; gap: 0; margin-bottom: 18px; }
+  .stato { flex: 1; min-height: 44px; background: none; border: 2px solid var(--line); cursor: pointer; font-weight: 700; }
+  .stato + .stato { border-left: 0; }
+  .stato[aria-pressed="true"] { background: var(--text); color: var(--bg); border-color: var(--text); }
+  textarea { width: 100%; min-height: 90px; background: var(--bg); border: 2px solid #777; padding: 10px; resize: vertical; }
+  .salvataggio { color: var(--muted); font-size: 13px; min-height: 20px; }
+  .preso { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 18px; color: var(--muted); }
+
+  @media (min-width: 900px) {
+    main { grid-template-columns: minmax(320px, 420px) minmax(0, 1fr); height: calc(100vh - 118px); }
+    #lista { overflow-y: auto; border-right: 3px solid var(--text); }
+    #dettaglio, #dettaglio.aperto { display: block; position: static; overflow-y: auto; padding: 24px 32px; }
+    .chiudi { display: none; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="riga">
+    <h1>Messaggi <span>MUVT</span></h1>
+    <span class="chi" id="chi"></span>
+    <button class="icona" id="aggiorna" type="button" aria-label="Aggiorna" title="Aggiorna">↻</button>
+  </div>
+  <div class="riga filtri" role="group" aria-label="Filtra per stato">
+    <button class="filtro" type="button" data-f="aperti" aria-pressed="true">Da fare <b id="n-aperti">0</b></button>
+    <button class="filtro" type="button" data-f="nuovo" aria-pressed="false">Nuovi <b id="n-nuovo">0</b></button>
+    <button class="filtro" type="button" data-f="da rispondere" aria-pressed="false">Da rispondere <b id="n-da rispondere">0</b></button>
+    <button class="filtro" type="button" data-f="fatto" aria-pressed="false">Fatti <b id="n-fatto">0</b></button>
+    <button class="filtro" type="button" data-f="tutti" aria-pressed="false">Tutti <b id="n-tutti">0</b></button>
+    <input id="cerca" type="search" placeholder="Cerca nome, contatto, testo…" aria-label="Cerca">
+  </div>
+</header>
+
+<main>
+  <ul id="lista" aria-label="Messaggi"><li class="vuoto">Carico i messaggi…</li></ul>
+  <section id="dettaglio" aria-live="polite"><p class="vuoto">Scegli un messaggio dall'elenco.</p></section>
+</main>
+
+<script>
+// <puro>
+// funzioni senza DOM, provate in apps-script/test
+var Puro = {
+  // che tipo di contatto ha lasciato chi scrive: decide quali pulsanti mostrare
+  tipoContatto: function (c) {
+    var s = String(c || '').trim();
+    if (!s) return 'nessuno';
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s)) return 'email';
+    var cifre = s.replace(/[\s./()-]/g, '');
+    if (/^\+?\d{8,15}$/.test(cifre)) return 'telefono';
+    if (/^@[\w.]{2,30}$/.test(s) || /instagram\.com\/[\w.]+/i.test(s)) return 'instagram';
+    return 'altro';
+  },
+  // numero per WhatsApp: solo cifre, prefisso italiano se manca
+  numeroWhatsApp: function (c) {
+    var s = String(c).replace(/[^\d+]/g, '');
+    if (s.indexOf('+') === 0) return s.slice(1);
+    if (s.indexOf('00') === 0) return s.slice(2);
+    if (/^3\d{8,9}$/.test(s)) return '39' + s;
+    return s;
+  },
+  utenteInstagram: function (c) {
+    var m = /instagram\.com\/([\w.]+)/i.exec(c);
+    return m ? m[1] : String(c).trim().replace(/^@/, '');
+  },
+  // "adesso", "12 min fa", "ieri 18:40", "3 nov 18:40"
+  quando: function (iso, adesso) {
+    var d = new Date(iso), n = adesso || new Date();
+    if (isNaN(d)) return '';
+    var min = Math.round((n - d) / 60000);
+    var ora = ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2);
+    if (min < 1) return 'adesso';
+    if (min < 60) return min + ' min fa';
+    var stessoGiorno = function (a, b) { return a.toDateString() === b.toDateString(); };
+    if (stessoGiorno(d, n)) return 'oggi ' + ora;
+    var ieri = new Date(n); ieri.setDate(n.getDate() - 1);
+    if (stessoGiorno(d, ieri)) return 'ieri ' + ora;
+    var mesi = ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic'];
+    return d.getDate() + ' ' + mesi[d.getMonth()] + (d.getFullYear() !== n.getFullYear() ? ' ' + d.getFullYear() : '') + ' ' + ora;
+  },
+  passaFiltro: function (m, filtro, cerca) {
+    var stato = m.stato || 'nuovo';
+    if (filtro === 'aperti' && stato === 'fatto') return false;
+    if (filtro !== 'aperti' && filtro !== 'tutti' && stato !== filtro) return false;
+    var q = String(cerca || '').trim().toLowerCase();
+    if (!q) return true;
+    return [m.nome, m.contatto, m.messaggio, m.oggetto, m.nota].join(' ').toLowerCase().indexOf(q) >= 0;
+  }
+};
+// </puro>
+
+var S = { messaggi: [], filtro: 'aperti', cerca: '', scelto: null, utente: '' };
+var $ = function (id) { return document.getElementById(id); };
+
+// costruisce elementi senza mai passare testo dall'innerHTML: i messaggi arrivano da sconosciuti
+function el(tag, attrs, figli) {
+  var e = document.createElement(tag);
+  Object.keys(attrs || {}).forEach(function (k) {
+    if (k === 'testo') e.textContent = attrs[k];
+    else if (k === 'classe') e.className = attrs[k];
+    else if (k.indexOf('on') === 0) e.addEventListener(k.slice(2), attrs[k]);
+    else e.setAttribute(k, attrs[k]);
+  });
+  (figli || []).forEach(function (f) { if (f) e.appendChild(typeof f === 'string' ? document.createTextNode(f) : f); });
+  return e;
+}
+
+function carica() {
+  $('aggiorna').disabled = true;
+  google.script.run
+    .withSuccessHandler(function (r) {
+      $('aggiorna').disabled = false;
+      if (r.errore) return avviso(r.errore);
+      S.messaggi = r.messaggi; S.utente = r.utente || '';
+      $('chi').textContent = S.utente;
+      disegna();
+    })
+    .withFailureHandler(function (e) { $('aggiorna').disabled = false; avviso('rete', e); })
+    .elenco();
+}
+
+function avviso(tipo, e) {
+  var testi = {
+    accesso: ['Non hai accesso ai messaggi', 'Chiedi a chi gestisce il sito di condividerti il foglio "MUVT – Messaggi" con permesso di modifica, poi ricarica.'],
+    configurazione: ['App non ancora configurata', 'Manca l\'ID del foglio: va eseguita impostaFoglio() dall\'editor dello script.'],
+    rete: ['Non riesco a caricare i messaggi', (e && e.message) || 'Riprova tra poco.']
+  };
+  var t = testi[tipo] || testi.rete;
+  var l = $('lista'); l.textContent = '';
+  l.appendChild(el('li', { classe: 'avviso' }, [el('strong', { testo: t[0] }), t[1]]));
+}
+
+function disegna() {
+  var conta = { aperti: 0, nuovo: 0, 'da rispondere': 0, fatto: 0, tutti: S.messaggi.length };
+  S.messaggi.forEach(function (m) { var s = m.stato || 'nuovo'; conta[s] = (conta[s] || 0) + 1; if (s !== 'fatto') conta.aperti++; });
+  Object.keys(conta).forEach(function (k) { var b = $('n-' + k); if (b) b.textContent = conta[k]; });
+
+  var lista = $('lista'); lista.textContent = '';
+  var visibili = S.messaggi.filter(function (m) { return Puro.passaFiltro(m, S.filtro, S.cerca); });
+  if (!visibili.length) lista.appendChild(el('li', { classe: 'vuoto', testo: S.messaggi.length ? 'Nessun messaggio con questo filtro.' : 'Ancora nessun messaggio.' }));
+  visibili.forEach(function (m) {
+    var stato = m.stato || 'nuovo';
+    var b = el('button', { type: 'button', classe: 'voce ' + stato.replace(' ', '-'), 'aria-current': String(S.scelto === m.id), onclick: function () { apri(m.id); } }, [
+      el('span', { classe: 'testa' }, [
+        el('span', { classe: 'nome', testo: m.nome || m.contatto || 'Senza nome' }),
+        el('span', { classe: 'pill ' + stato.replace(' ', '-'), testo: stato }),
+        el('span', { classe: 'quando', testo: Puro.quando(m.ricevuto) })
+      ]),
+      el('span', { classe: 'anteprima', testo: m.messaggio || m.oggetto || '' })
+    ]);
+    lista.appendChild(el('li', {}, [b]));
+  });
+  if (S.scelto) dettaglio(S.messaggi.filter(function (m) { return m.id === S.scelto; })[0]);
+}
+
+function apri(id) {
+  S.scelto = id;
+  var m = S.messaggi.filter(function (x) { return x.id === id; })[0];
+  // aprire un messaggio nuovo lo segna "da rispondere": è stato letto ma nessuno ha ancora risposto
+  if (m && (m.stato || 'nuovo') === 'nuovo') salva(m, { stato: 'da rispondere' });
+  disegna();
+  $('dettaglio').classList.add('aperto');
+  $('dettaglio').focus();
+}
+
+function chiudi() { S.scelto = null; $('dettaglio').classList.remove('aperto'); disegna(); }
+
+function azioniContatto(m) {
+  var c = String(m.contatto || '').trim(), tipo = Puro.tipoContatto(c), a = [];
+  if (tipo === 'email') a.push(el('a', { classe: 'azione piena', href: 'mailto:' + encodeURIComponent(c) + '?subject=' + encodeURIComponent('Re: il tuo messaggio a MUVT AGGRATIS') }, ['Rispondi per mail']));
+  if (tipo === 'telefono') {
+    a.push(el('a', { classe: 'azione piena', href: 'https://wa.me/' + Puro.numeroWhatsApp(c), target: '_blank', rel: 'noopener' }, ['WhatsApp']));
+    a.push(el('a', { classe: 'azione', href: 'tel:' + c.replace(/[^\d+]/g, '') }, ['Chiama']));
+  }
+  if (tipo === 'instagram') a.push(el('a', { classe: 'azione piena', href: 'https://www.instagram.com/' + encodeURIComponent(Puro.utenteInstagram(c)) + '/', target: '_blank', rel: 'noopener' }, ['Apri Instagram']));
+  if (tipo !== 'nessuno') a.push(el('button', { type: 'button', classe: 'azione', onclick: function () { copia(c); } }, ['Copia contatto']));
+  if (m.gmail) a.push(el('a', { classe: 'azione tenue', href: m.gmail, target: '_blank', rel: 'noopener', title: 'Funziona dalla casella che riceve i messaggi' }, ['Apri in Gmail']));
+  return a;
+}
+
+function copia(t) {
+  (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(
+    function () { $('salvato').textContent = 'Contatto copiato'; },
+    function () { $('salvato').textContent = t; });
+}
+
+function dettaglio(m) {
+  var d = $('dettaglio'); d.textContent = '';
+  if (!m) { d.appendChild(el('p', { classe: 'vuoto', testo: 'Scegli un messaggio dall\'elenco.' })); return; }
+  d.setAttribute('tabindex', '-1');
+  var stato = m.stato || 'nuovo';
+  var nota = el('textarea', { id: 'nota', 'aria-label': 'Nota per chi gestisce i messaggi', placeholder: 'Nota per gli altri: chi ha risposto, cosa resta da fare…' });
+  nota.value = m.nota || '';
+  var timer;
+  nota.addEventListener('input', function () { clearTimeout(timer); $('salvato').textContent = '…'; timer = setTimeout(function () { salva(m, { nota: nota.value }); }, 800); });
+
+  d.appendChild(el('button', { type: 'button', classe: 'chiudi', onclick: chiudi }, ['← Elenco']));
+  d.appendChild(el('h2', { testo: m.nome || 'Senza nome' }));
+  d.appendChild(el('p', { classe: 'meta', testo: (m.fonte === 'modulo' ? 'Dal modulo del sito' : 'Mail' + (m.oggetto ? ': ' + m.oggetto : '')) + ' · ' + Puro.quando(m.ricevuto) }));
+  d.appendChild(el('p', { classe: 'testo', testo: m.messaggio || '(messaggio vuoto)' }));
+  d.appendChild(el('p', { classe: 'etichetta', testo: 'Contatto' }));
+  d.appendChild(el('p', { classe: 'contatto', testo: m.contatto || 'Non ha lasciato un contatto.' }));
+  d.appendChild(el('div', { classe: 'azioni' }, azioniContatto(m)));
+
+  d.appendChild(el('p', { classe: 'etichetta', testo: 'Stato' }));
+  d.appendChild(el('div', { classe: 'stati', role: 'group', 'aria-label': 'Stato del messaggio' },
+    ['nuovo', 'da rispondere', 'fatto'].map(function (s) {
+      return el('button', { type: 'button', classe: 'stato', 'aria-pressed': String(stato === s), onclick: function () { salva(m, { stato: s }); } }, [s]);
+    })));
+
+  var mio = m.presoDa && S.utente && m.presoDa === S.utente;
+  d.appendChild(el('div', { classe: 'preso' }, [
+    el('span', { testo: m.presoDa ? 'Se ne occupa: ' + m.presoDa : 'Nessuno se ne sta occupando.' }),
+    el('button', { type: 'button', classe: 'azione', onclick: function () { salva(m, { presoDa: !mio }); } }, [mio ? 'Lascio' : 'Me ne occupo io'])
+  ]));
+
+  d.appendChild(el('p', { classe: 'etichetta', testo: 'Nota' }));
+  d.appendChild(nota);
+  d.appendChild(el('p', { classe: 'salvataggio', id: 'salvato', 'aria-live': 'polite', testo: m.aggiornato ? 'Ultima modifica: ' + m.aggiornato : '' }));
+}
+
+function salva(m, campi) {
+  Object.keys(campi).forEach(function (k) { if (k !== 'presoDa') m[k] = campi[k]; }); // subito a schermo, poi conferma dal foglio
+  google.script.run
+    .withSuccessHandler(function (nuovo) {
+      var i = S.messaggi.findIndex(function (x) { return x.id === nuovo.id; });
+      if (i >= 0) S.messaggi[i] = nuovo;
+      var focusNota = document.activeElement && document.activeElement.id === 'nota';
+      if (!focusNota) disegna(); else { $('salvato').textContent = 'Salvato · ' + nuovo.aggiornato; }
+    })
+    .withFailureHandler(function (e) { var s = $('salvato'); if (s) s.textContent = 'Non salvato: ' + e.message; carica(); })
+    .aggiorna(m.id, campi);
+  if (!('nota' in campi)) disegna();
+}
+
+document.querySelectorAll('.filtro').forEach(function (b) {
+  b.addEventListener('click', function () {
+    S.filtro = b.dataset.f;
+    document.querySelectorAll('.filtro').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+    disegna();
+  });
+});
+$('cerca').addEventListener('input', function (e) { S.cerca = e.target.value; disegna(); });
+$('aggiorna').addEventListener('click', carica);
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && $('dettaglio').classList.contains('aperto')) chiudi(); });
+// i messaggi nuovi li porta il raccoglitore ogni 5 minuti: qui si ricontrolla ogni minuto, solo a scheda visibile
+setInterval(function () { if (!document.hidden && !(document.activeElement && document.activeElement.id === 'nota')) carica(); }, 60000);
+carica();
+</script>
+</body>
+</html>

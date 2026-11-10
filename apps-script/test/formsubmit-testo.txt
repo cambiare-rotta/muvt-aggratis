@@ -1,0 +1,23 @@
+ Easy form endpoints for your HTML forms
+
+Someone just submitted your form on https://cambiare-rotta.github.io/.
+
+Here's what they had to say:
+
+| Name | Value |
+|---|---|
+
+| Nome | TEST |
+
+| Contatto | (non indicato) |
+
+| Messaggio | Prova di attivazione del modulo Scrivici. Si può cancellare. |
+
+Submitted at Tue, Nov 10, 2026 9:06 PM (UTC)
+
+[Sponsor](https://formsubmit.co/sponsor)
+
+*Get web development services from an industry expert, here →[](https://devrolabs.com/startups?ref=formsubmit-email) *
+
+Your friends from,
+[*FormSubmit Team*](https://formsubmit.co)

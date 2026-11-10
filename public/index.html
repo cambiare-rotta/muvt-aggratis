@@ -70,7 +70,7 @@
     display: inline-block;
     background: var(--red); color: var(--text);
     font-weight: 900; text-transform: uppercase;
-    padding: 4px 10px; font-size: 12px; letter-spacing: .04em; line-height: 1.4;
+    padding: 5px 10px; font-size: 14px; letter-spacing: .04em; line-height: 1.4;
     transform: rotate(-1.5deg);
     text-decoration: none;
   }
@@ -116,8 +116,22 @@
   @keyframes strike { to { transform: scaleX(1); } }
   .hero p.lead { color: var(--text-muted); margin: 0; max-width: 46ch; }
   .hero p.lead strong { color: var(--text); }
-  .scrolldown { display: inline-block; margin-top: 14px; padding-block: 10px; font-weight: 900; text-transform: uppercase; font-size: 14px; text-decoration: none; color: var(--yellow); }
-  .scrolldown i { display: inline-block; font-style: normal; animation: bob 1.4s ease-in-out infinite; }
+  /* su telefono l'etichetta resta su una riga: "Bari 2026/27" lo dice già la riga sotto il logo */
+  .kicker .dove { display: none; }
+  @media (min-width: 420px) { .kicker .dove { display: inline; } }
+  /* la riga sotto il logo è parte del titolo: dice cos'è a chi arriva e a Google (il logo da solo è un'immagine).
+     Più piccola del claim, così non gli fa concorrenza */
+  .hero h1.mark .riga {
+    display: block; margin-top: 16px;
+    font: 800 clamp(15px, 4.4vw, 22px)/1.15 var(--body); text-transform: uppercase; letter-spacing: .02em;
+    color: var(--yellow);
+  }
+  /* azioni dell'apertura: tesserarsi (principale) e fare i conti (secondaria).
+     Su telefono stanno subito sotto il claim, prima del paragrafo: così "Tesserati" entra nel primo schermo */
+  .hero .sub > div { display: flex; flex-direction: column; }
+  .hero-azioni { display: flex; flex-wrap: wrap; gap: 14px 12px; margin: 0 0 18px; order: -1; }
+  .hero-azioni .cta { margin-right: 6px; font-size: 21px; padding: 10px 14px 8px; }
+  .hero-azioni .cta i { display: inline-block; font-style: normal; animation: bob 1.4s ease-in-out infinite; }
   @keyframes bob { 50% { transform: translateY(5px); } }
 
   /* striscione */
@@ -143,14 +157,17 @@
   }
 
   /* comparsa allo scroll */
-  .rv { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
-  .rv.in { opacity: 1; transform: none; }
+  /* solo tre momenti (il 50%, il verdetto, la chiusura dell'acronimo). La classe rv-pronto la mette lo script
+     solo dopo aver acceso l'osservatore: se uno script si rompe o non si carica, tutto resta visibile */
+  html.rv-pronto .rv { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
+  html.rv-pronto .rv.in { opacity: 1; transform: none; }
 
   /* campagna nazionale */
   .national { border-top: 3px solid var(--text); }
   .national .cols { display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; align-items: start; }
   .national .slogan { font-family: var(--display); text-transform: uppercase; font-size: clamp(44px, 13vw, 64px); line-height: .9; margin: 0; }
-  .national .slogan span { color: var(--red); display: block; }
+  /* rosso un po' più acceso del rosso di marca: sul nero il #A8182A sta a 2,6:1, questo a 3,7:1 (minimo 3:1 per il testo grande) */
+  .national .slogan span { color: #D2203A; display: block; }
   .national p { color: var(--text-muted); margin: 0 0 16px; }
   .national .fig { font-family: var(--display); font-size: clamp(48px, 14vw, 64px); line-height: 1; color: var(--yellow); }
   .national .fig small { display: block; margin-top: 4px; font-family: var(--body); font-weight: 900; font-size: 13px; line-height: 1.3; text-transform: uppercase; color: var(--text); letter-spacing: .03em; }
@@ -170,6 +187,13 @@
   .bonus .big.done::after { transform: rotate(-8deg) scaleX(1); }
   .bonus .note { font-weight: 900; text-transform: uppercase; color: var(--text-muted); margin-top: 14px; }
   .bonus p { margin: 0 0 16px; }
+  .bonus .vai { font-weight: 900; text-transform: uppercase; font-size: 15px; color: var(--yellow); display: inline-block; padding-block: 8px; }
+
+  /* perché non basta: dopo il calcolatore, come spiegazione del conto */
+  .perche h2.label { font: 900 14px/1.3 var(--body); letter-spacing: .06em; margin: 0 0 14px; }
+  .perche .chiusa { margin: 34px 0 0; font-family: var(--display); text-transform: uppercase; font-size: clamp(30px, 9vw, 40px); line-height: 1.02; }
+  .perche .chiusa em { font-style: normal; color: var(--yellow); }
+  .perche .chiusa-blocco > div p { margin: 14px 0 0; color: var(--text-muted); max-width: 60ch; }
 
   /* calcolatore */
   .calc { background: var(--surface); }
@@ -202,6 +226,9 @@
   .res.free .k { color: var(--yellow); }
   .verdict { margin-top: 18px; font-weight: 900; text-transform: uppercase; font-size: 16px; line-height: 1.35; }
   .verdict span { background: var(--red); padding: 0 .25em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  .dopo-conto { margin-top: 22px; border-top: 3px solid var(--yellow); padding-top: 16px; display: grid; gap: 12px; justify-items: stretch; }
+  .dopo-conto p { margin: 0; font-weight: 900; text-transform: uppercase; font-size: 17px; line-height: 1.3; }
+  .dopo-conto .giro { font-weight: 900; text-transform: uppercase; font-size: 15px; color: var(--yellow); padding-block: 8px; justify-self: start; }
 
   /* le discrepanze: su telefono numero accanto al titolo */
   .problems { list-style: none; margin: 0; padding: 0; counter-reset: p; border-top: 3px solid var(--text); }
@@ -221,15 +248,6 @@
   }
   .problems p { margin: 0; color: var(--text-muted); }
   .problems p mark { background: var(--yellow); color: var(--bg); padding: 0 4px; font-weight: 900; }
-
-  /* perché */
-  .why .cols { display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; }
-  .why blockquote {
-    margin: 0; font-family: var(--display); text-transform: uppercase;
-    font-size: clamp(30px, 9vw, 40px); line-height: 1.02;
-  }
-  .why blockquote em { font-style: normal; color: var(--yellow); }
-  .why p { margin: 0 0 18px; color: var(--text-muted); }
 
   /* rivendicazioni: apri e chiudi */
   .demands { background: var(--red); }
@@ -261,7 +279,7 @@
   /* acronimo: le lettere si accendono scorrendo */
   .acro .line {
     font-family: var(--display); text-transform: uppercase;
-    font-size: clamp(44px, 14vw, 64px); line-height: .92; color: #3d3d3d;
+    font-size: clamp(44px, 14vw, 64px); line-height: .92; color: #6a6a6a;
     transition: color .5s;
   }
   .acro .line span { transition: color .5s; }
@@ -282,7 +300,13 @@
   .handle { font-weight: 900; text-transform: uppercase; text-align: center; padding-block: 10px; }
 
 
-  #contatti { margin-top: 36px; max-width: 760px; }
+  #contatti { margin-top: 36px; }
+  .contatti-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 26px; }
+  .altri-contatti { display: none; border-top: 1px solid var(--line); padding-top: 18px; gap: 14px; align-content: start; }
+  .altri-contatti p { margin: 0; color: var(--text-muted); }
+  .altri-contatti a { display: block; font-weight: 900; text-transform: uppercase; font-size: 16px; color: var(--yellow); text-decoration: none; overflow-wrap: anywhere; padding-block: 8px; }
+  .altri-contatti a.mail { text-transform: none; }
+  .altri-contatti a:hover { color: var(--text); }
 
   .toast {
     position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px);
@@ -306,7 +330,7 @@
     font-size: 17px; border-left: 4px solid var(--yellow); padding-left: 12px;
   }
   .share .azioni { display: flex; flex-direction: column; gap: 14px; align-items: stretch; margin: 22px 0 18px; }
-  .share .azioni .copy { width: 100%; }
+  .share .azioni .copy { width: 100%; font-size: 16px; border-width: 3px; padding: 12px 18px; min-height: 52px; }
   .qr-full {
     position: fixed; inset: 0; z-index: 80; background: #fff; color: var(--bg);
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
@@ -324,9 +348,36 @@
   .qr-full .chiudi:focus-visible { outline-color: var(--red); }
   body.qr-aperto { overflow: hidden; }
 
+  /* etichette sopra i titoli: almeno 14 px */
+  .label { font-size: 14px; }
+
+  /* scorciatoie alle sezioni, solo su telefono e tablet: restano in alto mentre si scorre */
+  .scorciatoie {
+    position: sticky; top: 0; z-index: 45; background: var(--bg);
+    border-block: 3px solid var(--text);
+    display: flex; overflow-x: auto; scrollbar-width: none;
+  }
+  .scorciatoie::-webkit-scrollbar { display: none; }
+  .scorciatoie a {
+    flex: 1 0 auto; display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 6px;
+    font-weight: 900; text-transform: uppercase; font-size: 14px; letter-spacing: 0; text-decoration: none; white-space: nowrap;
+    border-right: 1px solid var(--line);
+  }
+  /* l'ultima voce è Tesserati, evidenziata: il "Tesserati" della testata scorre via, questo resta */
+  .scorciatoie a:last-child { border-right: 0; background: var(--yellow); color: var(--bg); }
+  .scorciatoie a:active { background: var(--yellow); color: var(--bg); }
+  /* con la barra fissa in alto, le sezioni raggiunte dai link non finiscono sotto la barra */
+  section[id] { scroll-margin-top: 54px; }
+
+  /* quattro foto sempre visibili sopra il carosello (versioni da 800 px in foto/medie, diverse dalla prima del carosello):
+     un tocco apre quella foto nel carosello */
+  .foto-forti { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; margin-bottom: 18px; }
+  .foto-forti button { padding: 0; border: 0; background: #000; cursor: zoom-in; aspect-ratio: 4 / 3; overflow: hidden; display: block; }
+  .foto-forti img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s; }
+  .foto-forti button:hover img { transform: scale(1.04); }
+
   /* ≥600px: telefoni grandi in orizzontale, tablet in verticale */
   @media (min-width: 600px) {
-    .kicker { font-size: 13px; }
     .hero .stage { width: min(620px, 100%); }
     .hero .claim { font-size: clamp(28px, 4.6vw, 36px); }
     .tape { font-size: 26px; padding-block: 8px; margin-inline: -32px; }
@@ -347,6 +398,11 @@
     .share .grid { grid-template-columns: 300px minmax(0, 1fr); gap: 40px; }
     .share .azioni { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 18px 16px; }
     .share .azioni .copy { width: auto; }
+    .hero-azioni { align-items: center; gap: 18px 16px; order: 0; margin: 22px 0 0; }
+    .hero-azioni .cta { font-size: 26px; padding: 10px 24px 8px; }
+    .dopo-conto { justify-items: start; }
+    .foto-forti { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+    .altri-contatti { display: grid; }
     .share .url { font-size: 20px; }
   }
 
@@ -363,7 +419,7 @@
       mix-blend-mode: overlay;
     }
     .hero { padding-block: 48px 30px; }
-    .kicker { font-size: 14px; }
+    .kicker { font-size: 15px; }
     .hero h1.mark { margin-top: 26px; }
     .hero .stage {
       width: min(720px, 100%);
@@ -371,10 +427,17 @@
     }
     .hero .sub { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 32px; margin-top: 34px; }
     .hero .claim { font-size: clamp(30px, 3.6vw, 44px); line-height: 1.05; }
-    .scrolldown { margin-top: 20px; }
+    .hero-azioni { margin-top: 26px; }
+    .scorciatoie { display: none; }
+    section[id] { scroll-margin-top: 0; }
+    .contatti-grid { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 48px; }
+    .altri-contatti { border-top: 0; border-left: 1px solid var(--line); padding: 0 0 0 40px; }
+    .perche .chiusa-blocco { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 48px; align-items: end; margin-top: 40px; }
+    .perche .chiusa { margin: 0; font-size: clamp(36px, 4vw, 48px); }
+    .perche .chiusa-blocco > div p:first-child { margin-top: 0; }
     .tape { font-size: clamp(26px, 3vw, 34px); margin: 30px -20px 10px; }
     h2 { font-size: clamp(56px, 7vw, 92px); margin-bottom: 36px; }
-    .national .cols, .why .cols { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; }
+    .national .cols { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; }
     .national .slogan { font-size: clamp(64px, 7vw, 96px); }
     .national .fig { font-size: clamp(64px, 7vw, 84px); }
     .bonus { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; }
@@ -387,7 +450,6 @@
     .problems li { grid-template-columns: 110px minmax(0, 1fr) minmax(0, 1.4fr); column-gap: 24px; padding-block: 26px; }
     .problems li::before { grid-row: auto; font-size: 56px; }
     .problems li:hover { background: #161616; }
-    .why blockquote { font-size: clamp(36px, 4vw, 48px); }
     .demands summary { grid-template-columns: 60px minmax(0, 1fr) 40px; }
     .demands summary h3 { font-size: clamp(36px, 3.6vw, 46px); }
     .demands summary:hover h3 { transform: translateX(6px); }
@@ -410,7 +472,7 @@
   .gallery h2 { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: clamp(34px, 8vw, 64px); line-height: 1; margin: 10px 0 24px; }
   .slider { position: relative; outline-offset: 6px; }
   .slider { width: 100%; margin-inline: auto; }
-  /* altezza esplicita (4:5, ma mai oltre il 78% dello schermo): aspect-ratio + max-height fa restringere la larghezza su certi browser mobile */
+  /* altezza esplicita (4:5, perché 10 foto su 19 sono verticali; mai oltre il 78% dello schermo): aspect-ratio + max-height fa restringere la larghezza su certi browser mobile */
   .slider .stage { position: relative; width: 100%; height: min(calc((100vw - 2 * var(--gutter)) * 1.25), 78vh); height: min(calc((100vw - 2 * var(--gutter)) * 1.25), 78svh); overflow: hidden; background: #000; touch-action: pan-y; cursor: grab; }
   .slider .stage::before { content: ""; position: absolute; inset: -30px; background: var(--bg) center / cover; filter: blur(26px) brightness(.5) saturate(1.2); }
   .slider .stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transition: opacity .35s; -webkit-user-drag: none; }
@@ -434,7 +496,7 @@
   }
   @media (prefers-reduced-motion: reduce) {
     .slider .stage img { transition: none; }
-    .rv, .hero .stage img { opacity: 1; transform: none; }
+    html.rv-pronto .rv, .hero .stage img { opacity: 1; transform: none; }
     .hero .claim s::after { transform: scaleX(1); }
     .bonus .big::after { transform: rotate(-8deg) scaleX(1); }
   }
@@ -457,12 +519,12 @@
       <a href="#vogliamo">Cosa vogliamo</a>
       <a href="#condividi">Condividi</a>
       <a href="https://cambiare-rotta.org/" target="_blank" rel="noopener">Chi siamo</a>
-      <a class="navcta" href="tesseramento.html">Tesserati</a>
+      <a class="navcta" href="tesseramento.html" data-pos="menu">Tesserati</a>
     </nav>
   </header>
 
   <div class="hero">
-    <a class="kicker" href="#campagna">La guerra non la paghiamo! · Bari 2026/27</a>
+    <a class="kicker" href="#campagna">La guerra non la paghiamo!<span class="dove"> · Bari 2026/27</span></a>
     <!-- logo in due livelli esportati da Canva: la scritta e i cunei, che arrivano e si piantano -->
     <h1 class="mark">
       <span class="stage">
@@ -471,16 +533,27 @@
         <img class="cuneo c2" src="assets/muvt-cunei.webp" width="951" height="369" alt="">
         <img class="cuneo c3" src="assets/muvt-cunei.webp" width="951" height="369" alt="">
       </span>
+      <span class="riga">Trasporti gratuiti per chi studia a Bari</span>
     </h1>
     <div class="sub">
       <p class="claim">Non vogliamo <s>metà dello sconto</s>.<br>Vogliamo trasporti gratuiti.</p>
       <div>
         <p class="lead">Il nuovo bonus per studenti pendolari taglia del 50% l'abbonamento mensile, da ottobre 2026 a maggio 2027. <strong>Ma solo se hai un ISEE sotto i 13.000 €.</strong> Per tutti gli altri non cambia niente.</p>
-        <a class="scrolldown" href="#conti">Fai i conti <i>↓</i></a>
+        <div class="hero-azioni">
+          <a class="cta" href="tesseramento.html" data-pos="apertura">Tesserati</a>
+          <a class="cta alt" href="#conti">Fai i conti <i>↓</i></a>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<nav class="scorciatoie" aria-label="Vai alla sezione">
+  <a href="#conti">Conti</a>
+  <a href="#vogliamo">Richieste</a>
+  <a href="#condividi">Condividi</a>
+  <a href="tesseramento.html" data-pos="barra">Tesserati</a>
+</nav>
 
 <div class="tape" aria-hidden="true"><div>
   Trasporti gratuiti <b>/</b> Studentati pubblici <b>/</b> Affitti sostenibili <b>/</b> La guerra non la paghiamo <b>/</b> Diritti, non elemosine <b>/</b>
@@ -492,36 +565,41 @@
 <!-- la campagna nazionale viene subito dopo l'apertura: MUVT ne è la declinazione barese -->
 <section class="national" id="campagna">
   <div class="wrap cols">
-    <div class="rv">
+    <div>
       <p class="label">Dentro la campagna nazionale</p>
       <p class="slogan">La guerra<span>non la paghiamo!</span></p>
     </div>
-    <div class="rv">
-      <p>MUVT AGGRATIS è la lotta sui trasporti che a Bari porta avanti <strong>La guerra non la paghiamo!</strong>, la campagna nazionale di Cambiare Rotta contro carovita e carostudi in tutte le università del paese.</p>
-      <p>Tasse, affitti, mense e trasporti salgono, le borse di studio restano poche. Intanto la spesa militare cresce ogni anno ed entra negli atenei con accordi con la filiera bellica.</p>
+    <div>
+      <p>MUVT AGGRATIS è la lotta di Bari sui trasporti dentro <strong>La guerra non la paghiamo!</strong>, la campagna nazionale di Cambiare Rotta contro carovita e carostudi.</p>
+      <p>Tasse, affitti, mense e trasporti salgono, le borse di studio restano poche. Intanto la spesa militare cresce ogni anno, e la filiera bellica entra negli atenei con i suoi accordi.</p>
       <div class="fig">34 miliardi<small>di spesa militare nell'ultima legge di bilancio</small></div>
       <a class="more" href="https://cambiare-rotta.org/2026/09/10/la-guerra-non-la-paghiamo-contro-carovita-e-carostudi-riprendiamoci-il-diritto-allo-studio-e-il-futuro/" target="_blank" rel="noopener">Leggi l'appello nazionale →</a>
     </div>
   </div>
 </section>
 
+<!-- il 50% barrato e subito il conto: il calcolatore è la cosa più convincente, deve arrivare presto.
+     Le ragioni vengono dopo, come spiegazione del conto -->
 <section id="bonus">
-  <div class="wrap bonus">
-    <div class="rv">
-      <p class="label">Il bonus trasporti 2026/27</p>
-      <div class="big" id="pct" data-to="50">50%</div>
-      <div class="note">Non ci basta.</div>
-    </div>
-    <div class="rv">
-      <h2>Perché lo sconto non basta</h2>
-      <p>A prima vista sembra un aiuto. In realtà è una misura insufficiente e selettiva, che non tocca i veri problemi di chi studia fuori sede o fa il pendolare ogni giorno.</p>
+  <div class="wrap">
+    <div class="bonus">
+      <div class="rv">
+        <p class="label">Il bonus trasporti 2026/27</p>
+        <div class="big" id="pct" data-to="50">50%</div>
+        <div class="note">Non ci basta.</div>
+      </div>
+      <div>
+        <h2>Perché lo sconto non basta</h2>
+        <p>Sembra un aiuto. Ma è poco, e solo per pochi. Chi studia fuori sede o fa il pendolare ogni giorno resta coi problemi di prima.</p>
+        <a class="vai" href="#conti">Fai i tuoi conti ↓</a>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="calc" id="conti">
   <div class="wrap grid">
-    <div class="rv">
+    <div>
       <p class="label">Fai i conti</p>
       <h2>Quanto ti costa davvero?</h2>
       <div class="field">
@@ -538,47 +616,51 @@
         <small>La soglia sale a 15.748,78 €.</small>
       </div>
     </div>
-    <div class="rv">
+    <div>
       <div class="results" aria-live="polite">
         <div class="res"><div class="k">Senza bonus<small>8 mesi, da ottobre a maggio</small></div><div class="v" id="rFull">280 €</div></div>
         <div class="res"><div class="k">Con il bonus 50%<small id="rBonusNote">sei fuori soglia</small></div><div class="v" id="rBonus">280 €</div></div>
         <div class="res free"><div class="k">Con MUVT AGGRATIS<small>trasporto pubblico gratuito</small></div><div class="v">0 €</div></div>
       </div>
-      <p class="verdict" id="verdict"><span>Il bonus non ti tocca: paghi tutto.</span></p>
+      <p class="verdict rv" id="verdict"><span>Il bonus non ti tocca: paghi tutto.</span></p>
+      <!-- il momento in cui chi legge è più convinto: l'azione sta qui, non solo in fondo.
+           Frase fissa: non ripete il verdetto sopra e vale sia sotto sia sopra la soglia -->
+      <div class="dopo-conto">
+        <p>Questi soldi non dovremmo pagarli. Organizziamoci.</p>
+        <a class="cta" href="tesseramento.html" data-pos="dopo-conti">Tesserati a Cambiare Rotta</a>
+        <a class="giro" href="#condividi">Oppure fai girare la pagina →</a>
+      </div>
     </div>
   </div>
 </section>
 
-<section>
+<section class="perche">
   <div class="wrap">
-    <p class="label">Le discrepanze</p>
+    <h2 class="label">Le quattro ragioni</h2>
     <ol class="problems">
-      <li class="rv">
+      <li>
         <h3>Biglietti sempre più cari</h3>
-        <p>Negli ultimi anni le tariffe sono aumentate di continuo, senza nessun intervento strutturale.</p>
+        <p>Le tariffe salgono da anni, e di interventi veri neanche l'ombra.</p>
       </li>
-      <li class="rv">
+      <li>
         <h3>Carovita e affitti alle stelle</h3>
-        <p>A Bari gli affitti sono cresciuti in modo esponenziale. Per tanti trasferirsi in città è semplicemente impossibile.</p>
+        <p>A Bari gli affitti sono esplosi. Per tanti, trasferirsi in città è impossibile.</p>
       </li>
-      <li class="rv">
+      <li>
         <h3>L'ISEE come filtro</h3>
-        <p>Il bonus vale solo con ISEE/ISEEU fino a <mark>13.000 €</mark> (<mark>15.748,78 €</mark> con 3 o più figli). Resta fuori chi supera la soglia di poco ed è comunque schiacciato da trasporti e affitto.</p>
+        <p>Vale solo con ISEE/ISEEU fino a <mark>13.000 €</mark> (<mark>15.748,78 €</mark> con 3 o più figli). Chi sta appena sopra resta fuori, e trasporti e affitto lo schiacciano lo stesso.</p>
       </li>
-      <li class="rv">
+      <li>
         <h3>Un risparmio illusorio</h3>
-        <p>Anche dimezzato, il costo annuale per arrivare all'università dai paesi vicini resta troppo alto. Uno sconto parziale non compensa anni di rincari.</p>
+        <p>Anche a metà prezzo, venire dai paesi vicini costa troppo in un anno. E uno sconto non ripaga anni di rincari.</p>
       </li>
     </ol>
-  </div>
-</section>
-
-<section class="why" style="background:var(--surface)">
-  <div class="wrap cols">
-    <blockquote class="rv">Il trasporto pubblico, per essere davvero pubblico, <em>deve essere gratuito.</em></blockquote>
-    <div class="rv">
-      <p>Negli ultimi decenni i prezzi sono saliti mentre il servizio è diventato meno capillare e più scadente. Non è un caso: il trasporto è stato appaltato e piegato alle logiche della privatizzazione.</p>
-      <p>Al sud la situazione è disastrosa, e dentro la stessa città le periferie stanno peggio del centro. Lo Stato investe nei servizi solo quando rendono profitto a qualcuno: fondi speculativi o piccoli prenditori.</p>
+    <div class="chiusa-blocco">
+      <p class="chiusa">Il trasporto pubblico, per essere davvero pubblico, <em>deve essere gratuito.</em></p>
+      <div>
+        <p>Da decenni i prezzi salgono e il servizio peggiora. Non è un caso: i trasporti sono stati appaltati e privatizzati.</p>
+        <p>Al sud è un disastro, e in ogni città le periferie stanno peggio del centro. Lo Stato investe nei servizi solo quando rendono profitto a qualcuno: fondi speculativi o piccoli prenditori.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -587,6 +669,12 @@
   <div class="wrap">
     <p class="label">Dalle piazze</p>
     <h2>Le nostre mobilitazioni</h2>
+    <div class="foto-forti">
+      <button type="button" data-foto="12" aria-label="Apri la foto: corteo al tramonto con le bandiere"><img src="assets/foto/medie/foto13.webp" alt="" width="800" height="600" loading="lazy"></button>
+      <button type="button" data-foto="7" aria-label="Apri la foto: volantinaggio alla stazione di Bari"><img src="assets/foto/medie/foto08.webp" alt="" width="800" height="600" loading="lazy"></button>
+      <button type="button" data-foto="10" aria-label="Apri la foto: corteo con lo striscione"><img src="assets/foto/medie/foto11.webp" alt="" width="800" height="600" loading="lazy"></button>
+      <button type="button" data-foto="1" aria-label="Apri la foto: il banchetto sul costo della guerra per uno studente"><img src="assets/foto/medie/foto01.webp" alt="" width="800" height="600" loading="lazy"></button>
+    </div>
     <div class="slider" id="slider" role="region" aria-roledescription="carosello" aria-label="Foto delle iniziative">
       <div class="stage">
         <img src="assets/foto/mini/foto02.webp" data-full="assets/foto/foto02.webp" alt="Il gruppo davanti a UniBa con lo striscione sulle borse di studio" width="1600" height="1200">
@@ -625,11 +713,11 @@
     <h2>Quello che vogliamo</h2>
     <details open>
       <summary><span class="n">1</span><h3>Posti negli studentati pubblici</h3><span class="pm">+</span></summary>
-      <div class="body"><p>Basta con la carenza cronica di alloggi. Servono nuovi studentati pubblici e la riconversione di quelli privati.</p></div>
+      <div class="body"><p>Mancano alloggi da anni. Servono nuovi studentati pubblici, e quelli privati vanno riconvertiti.</p></div>
     </details>
     <details>
       <summary><span class="n">2</span><h3>Abrogare la legge 431/1998</h3><span class="pm">+</span></summary>
-      <div class="body"><p>Ha liberalizzato gli affitti, aprendo la strada a speculazione e rincari. Va abolita per tornare a tutelare il diritto alla casa.</p></div>
+      <div class="body"><p>Ha liberalizzato gli affitti, e da lì sono arrivati speculazione e rincari. Va abolita. La casa è un diritto.</p></div>
     </details>
     <details>
       <summary><span class="n">3</span><h3>Legge sul canone sostenibile</h3><span class="pm">+</span></summary>
@@ -637,11 +725,11 @@
     </details>
     <details>
       <summary><span class="n">4</span><h3>Trasporti e navette gratuiti, a tutte le ore</h3><span class="pm">+</span></summary>
-      <div class="body"><p>Mobilità reale significa servizi frequenti, capillari e gratuiti. Non sconti parziali su abbonamenti già costosi.</p></div>
+      <div class="body"><p>Bus e navette che passano spesso, arrivano ovunque e non costano niente. Altro che mezzo sconto su abbonamenti già cari.</p></div>
     </details>
     <details>
       <summary><span class="n">5</span><h3>Un tavolo permanente sulla casa</h3><span class="pm">+</span></summary>
-      <div class="body"><p>Per monitorare di continuo studentati, affitti e le esigenze di chi fa il pendolare.</p></div>
+      <div class="body"><p>Per seguire da vicino, e sempre, studentati, affitti e pendolari.</p></div>
     </details>
   </div>
 </section>
@@ -654,27 +742,29 @@
     <div class="line"><span>V</span>erso</div>
     <div class="line"><span>T</span>rasporti</div>
     <div class="line"><span>Aggratis</span></div>
-    <p class="closing rv">Perché studiare non deve essere un lusso.</p>
+    <p class="closing rv">Studiare non è un lusso.</p>
   </div>
 </section>
 
 <section class="join" id="unisciti">
   <div class="wrap">
     <p class="label">Unisciti alla campagna</p>
-    <h2 class="rv">Pretendi diritti,<br>non elemosine.</h2>
+    <h2>Pretendi diritti,<br>non elemosine.</h2>
     <div class="grid">
-      <div class="cell rv"><h3>Diffondi</h3><p>Porta #MUVTAGGRATIS sui social e nei gruppi studenteschi.</p><button class="copy" type="button" data-copy="#MUVTAGGRATIS">Copia l'hashtag</button></div>
-      <div class="cell rv"><h3>Partecipa</h3><p>Vieni alle assemblee di dipartimento in Uniba e Poliba.</p></div>
-      <div class="cell rv"><h3>Mobilitati</h3><p>Scendi in piazza con noi alle prossime iniziative.</p></div>
+      <div class="cell"><h3>Diffondi</h3><p>Metti #MUVTAGGRATIS nelle storie e nel gruppo del corso.</p><button class="copy" type="button" data-copy="#MUVTAGGRATIS">Copia l'hashtag</button></div>
+      <div class="cell"><h3>Partecipa</h3><p>Vieni alle assemblee di dipartimento in Uniba e Poliba.</p></div>
+      <div class="cell"><h3>Mobilitati</h3><p>Scendi in piazza con noi.</p></div>
     </div>
     <div class="forms">
-      <a class="cta" href="tesseramento.html">Tesserati a Cambiare Rotta</a>
+      <a class="cta" href="tesseramento.html" data-pos="unisciti">Tesserati a Cambiare Rotta</a>
       <a class="cta alt" href="https://cambiare-rotta.org/" target="_blank" rel="noopener">Chi siamo</a>
       <a class="handle" href="https://www.instagram.com/cambiarerotta_bari/" target="_blank" rel="noopener">@cambiarerotta_bari</a>
     </div>
     <div class="box" id="contatti">
       <h3>Scrivici</h3>
-      <p>Domande, proposte, una segnalazione sui trasporti: il messaggio arriva a Cambiare Rotta Bari.</p>
+      <p>Una domanda, una proposta, un problema coi trasporti? Scrivici.</p>
+      <div class="contatti-grid">
+      <div>
       <form class="modulo" id="mailform" novalidate>
         <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
         <label>Nome
@@ -687,14 +777,21 @@
           <textarea name="messaggio" required maxlength="3000"></textarea>
         </label>
         <p class="nota"><span class="req" aria-hidden="true">★</span> campo obbligatorio. Come trattiamo i dati: <a href="privacy.html">informativa privacy</a>.</p>
-        <button class="cta send" type="submit">Invia</button>
+        <button class="cta send" type="submit">Invia il messaggio</button>
         <p class="esito" id="esito" role="status" aria-live="polite"></p>
       </form>
       <div class="conferma" id="conferma" role="status" tabindex="-1" hidden>
         <div class="spunta" aria-hidden="true">✓</div>
         <h3>Messaggio inviato</h3>
-        <p>Grazie per averci scritto.</p>
+        <p>Ricevuto, grazie!</p>
         <button class="copy" type="button" data-altro>Scrivi un altro messaggio</button>
+      </div>
+      </div>
+      <aside class="altri-contatti" aria-label="Altri modi per contattarci">
+        <p>O scrivici direttamente</p>
+        <a href="https://www.instagram.com/cambiarerotta_bari/" target="_blank" rel="noopener">Instagram @cambiarerotta_bari</a>
+        <a class="mail" href="mailto:cambiarerotta.bari@gmail.com">cambiarerotta.bari@gmail.com</a>
+      </aside>
       </div>
     </div>
   </div>
@@ -704,7 +801,7 @@
 <section class="share" id="condividi">
   <div class="wrap">
     <p class="label">Fai girare la campagna</p>
-    <h2 class="rv">Passa<br>la pagina.</h2>
+    <h2>Passa<br>la pagina.</h2>
     <div class="grid">
       <button class="qr-card" type="button" data-qr aria-label="Mostra il codice QR a tutto schermo">
         <img src="assets/qr.svg" width="300" height="300" alt="Codice QR che apre il sito MUVT AGGRATIS">
@@ -757,9 +854,15 @@
   addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  // statistiche: eventi anonimi (solo "è successo X"), nessun valore inserito dalle persone
-  const { conta } = Muvt;
-  document.querySelectorAll('a[href="tesseramento.html"]').forEach(a => a.addEventListener("click", () => conta("clic-tesserati", "Clic su Tesserati")));
+  // statistiche: eventi anonimi (solo "è successo X"), nessun valore inserito dalle persone.
+  // Se assets/site.js non si carica, Muvt non c'è: le statistiche tacciono e il resto della pagina funziona lo stesso
+  const conta = (window.Muvt && Muvt.conta) || (() => {});
+  // ogni "Tesserati" manda il totale di sempre (clic-tesserati, confrontabile con i dati di prima)
+  // e uno per posizione (clic-tesserati-menu, -apertura, -barra, -dopo-conti, -unisciti), per sapere quale funziona
+  document.querySelectorAll('a[href="tesseramento.html"]').forEach(a => a.addEventListener("click", () => {
+    conta("clic-tesserati", "Clic su Tesserati");
+    if (a.dataset.pos) conta("clic-tesserati-" + a.dataset.pos, "Clic su Tesserati (" + a.dataset.pos + ")");
+  }));
   document.querySelectorAll('a[href*="instagram.com"]').forEach(a => a.addEventListener("click", () => conta("clic-instagram", "Clic su Instagram")));
   document.querySelectorAll('a[href*="cambiare-rotta.org"]').forEach(a => a.addEventListener("click", () => conta("clic-cambiare-rotta-org", "Clic su cambiare-rotta.org")));
   document.querySelectorAll("[data-copy]").forEach(b => b.addEventListener("click", () => conta("hashtag-copiato", "Hashtag copiato")));
@@ -817,14 +920,28 @@
     });
     stage.addEventListener("pointercancel", () => { x0 = null; });
     show(0);
+    document.querySelectorAll(".foto-forti [data-foto]").forEach(b => b.addEventListener("click", () => {
+      show(+b.dataset.foto);
+      root.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+      conta("foto-forte-aperta", "Foto in evidenza aperta");
+    }));
   })();
   // box "Scrivici": il messaggio parte da FormSubmit verso la casella di Cambiare Rotta Bari
   (() => {
     const MAIL = "cambiarerotta.bari@gmail.com"; // casella pubblica dell'organizzazione: va in copia e resta nel ripiego mailto
     // dal 10/11/2026 i messaggi arrivano alla casella di chi cura il sito, con l'organizzazione in copia (la sua casella non era seguita).
-    // Spezzato in due pezzi, così chi raccoglie mail dal sorgente non lo trova.
-    const DEST = ["webcambiarerotta", "gmail.com"].join("@");
+    // È l'alias che FormSubmit dà dopo l'attivazione: nel sorgente non compare nessun indirizzo (docs/da-fare-a-mano.md §10).
+    const DEST = "7fb4941bfc2f1e77ea90b9dfb12e03a6";
     const form = document.getElementById("mailform"), esito = document.getElementById("esito");
+    // senza site.js le protezioni del modulo non ci sono: niente invio (il modulo senza action finirebbe nell'indirizzo), solo la mail
+    if (!window.Muvt) {
+      form.addEventListener("submit", e => {
+        e.preventDefault();
+        esito.className = "esito ko";
+        esito.innerHTML = 'Il modulo non è disponibile in questo momento. Scrivici a <a href="mailto:' + MAIL + '">' + MAIL + "</a>.";
+      });
+      return;
+    }
     // protezioni, stato del bottone e conferma sono comuni ai moduli (assets/site.js); il filtro vero contro lo spam è quello di FormSubmit
     const m = Muvt.modulo(form, { esca: "_honey", chiave: "muvt-invii", conferma: document.getElementById("conferma") });
     const say = (txt, ok) => { esito.className = "esito " + (ok ? "ok" : "ko"); esito.textContent = txt; };
@@ -867,10 +984,9 @@
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
   }, { threshold: .15 });
-  document.querySelectorAll(".rv").forEach((el, i) => {
-    el.style.transitionDelay = `${(i % 3) * 90}ms`;
-    io.observe(el);
-  });
+  document.querySelectorAll(".rv").forEach(el => io.observe(el));
+  // solo ora, con l'osservatore acceso, le .rv si nascondono (vedi il CSS): se lo script si è fermato prima, restano visibili
+  document.documentElement.classList.add("rv-pronto");
 
   // 50%: conta da 0 e poi viene barrato
   const pct = document.getElementById("pct");

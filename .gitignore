@@ -12,3 +12,7 @@ foto_originali/
 .impeccable/
 # versione alternativa da provare in locale (non pubblicata)
 prova/
+
+# id dei progetti Apps Script (clasp): non servono nel repo pubblico
+.clasp.json
+apps-script/**/Accessi.gs
