@@ -34,3 +34,15 @@ Il modulo non è più un iframe di Google: è un modulo nostro in `public/tesser
 - **Statistiche:** GoatCounter, https://tesla-analysis.goatcounter.com/. Da localhost non conta. Lo script è bloccato da alcune estensioni anti-tracciamento (nel Chrome usato per i test risultava bloccato), quindi chi le usa non viene contato: è un limite normale di ogni strumento di statistiche. Link con `?ref=volantino`, `?ref=instagram` ecc. per sapere da dove arrivano. Eventi: clic-tesserati, clic-instagram, clic-cambiare-rotta-org, hashtag-copiato, calcolatore-usato, galleria-vista, galleria-sfogliata, fondo-pagina, messaggio-inviato, tesseramento-inviato.
 - **Anteprima social:** `og:image` punta a `https://cambiare-rotta.github.io/muvt-aggratis/assets/og.jpg`. Per ripulire la cache dell'anteprima: Sharing Debugger di Facebook.
 - **Privacy:** durata di conservazione del tesseramento ("finché resti iscritta o iscritto") è un'ipotesi, da confermare.
+
+## 9. Google Search Console (dal 10 novembre 2026)
+- **Perché non è fatto:** in Chrome era aperto l'account Google personale di Mario, non quello del collettivo. La proprietà va registrata con l'account di Cambiare Rotta (es. `cambiarerotta.bari@gmail.com`), così resta al collettivo.
+- **Già pronto nel sito:** canonical, sitemap (`https://cambiare-rotta.github.io/muvt-aggratis/sitemap.xml`), dati strutturati, titolo con "MUVT AGGRATIS".
+- **Come fare (10 minuti):**
+  1. Entrare in https://search.google.com/search-console con l'account Google di Cambiare Rotta.
+  2. "Aggiungi proprietà" → **Prefisso URL** (non "Dominio": github.io non è nostro) → `https://cambiare-rotta.github.io/muvt-aggratis/`.
+  3. Metodo **File HTML**: scaricare il file `googleXXXX.html`, metterlo in `public/`, commit e push, aspettare che il workflow Pages finisca (1–2 minuti), poi "Verifica". In alternativa il metodo **Tag HTML**: la riga `<meta name="google-site-verification" …>` va nella `<head>` di `public/index.html`. Il file o il tag vanno lasciati lì per sempre, altrimenti la verifica decade.
+  4. Menu **Sitemap** → inviare `sitemap.xml`.
+  5. **Controllo URL** → incollare l'indirizzo della home → "Richiedi indicizzazione".
+- **Tempi:** di solito da qualche giorno a un paio di settimane prima che "MUVT AGGRATIS" su Google mostri il sito. Per controllare: cercare `site:cambiare-rotta.github.io/muvt-aggratis`.
+- **Aiuta molto:** il link al sito nella bio di Instagram `@cambiarerotta_bari` e, se possibile, su cambiare-rotta.org: Google trova e pesa le pagine anche dai link che le puntano.

@@ -80,3 +80,20 @@ Su questo PC non ci sono Node né Python. Basta aprire `public/index.html` nel b
 - `public/assets/site.css` raccoglie ciò che è uguale in tutte le pagine: variabili, intestazione (logo, voci, "Tesserati"; nelle pagine interne c'è anche "← Campagna" su telefono), piè di pagina, bottoni (`.cta`, `.copy`), componenti dei moduli (`.box`, `.box.hot`, `.modulo`, `.scelta`, `.assenso`, `.esito`, `.conferma`) e struttura delle pagine interne (`.page`, `.prose`).
 - Dentro `index.html` resta solo il CSS della home (hero, striscione, calcolatore, rivendicazioni, galleria). `tesseramento.html` e `privacy.html` non hanno CSS proprio.
 - Per cambiare un colore, un bottone o un campo si modifica `site.css` in un posto solo.
+
+## Sezione "Condividi" e indicizzazione (10 novembre 2026)
+
+**Sezione "Condividi"** (`#condividi`, dopo "Unisciti", voce "Condividi" nel menu): serve a far girare la pagina di persona e nei gruppi.
+- QR grande, scuro su bianco con la sua zona di rispetto, in `public/assets/qr.svg`. Codifica `https://cambiare-rotta.github.io/muvt-aggratis/?ref=qr`, così GoatCounter conta chi arriva inquadrandolo. Generato una volta con il pacchetto npm `qrcode` 1.5.4 (correzione d'errore Q, margine 4) e controllato decodificandolo con `jsqr`: nel sito non c'è nessuna libreria. **Se cambia l'indirizzo del sito il QR va rigenerato.**
+- Toccando il QR, o "QR a tutto schermo", si apre un riquadro bianco a tutto schermo da far inquadrare a un'altra persona. Si chiude con la X, con Esc o con il tasto indietro del telefono (l'apertura aggiunge un passo alla cronologia); il focus va sulla X e alla chiusura torna al pulsante di partenza.
+- "Condividi" apre il menu di condivisione del telefono (`navigator.share`) con `?ref=condiviso`; dove non c'è, copia il link. "Copia il link" copia l'indirizzo con `?ref=link`.
+- Eventi GoatCounter nuovi: `link-condiviso`, `link-copiato`, `qr-tutto-schermo`.
+- Provata in riquadri da 360, 390 e 768 px e su desktop: nessuno sforamento orizzontale; menu completo su una riga da 1000 px.
+
+**Indicizzazione su Google** (per trovarlo cercando "MUVT AGGRATIS" o "Cambiare Rotta Bari"):
+- `<link rel="canonical">` e `og:url` assoluti su home, tesseramento e privacy: le visite con `?ref=…` contano come la stessa pagina.
+- Titolo della home con le parole che si cercano ("MUVT AGGRATIS — Trasporti gratuiti per chi studia a Bari | Cambiare Rotta Bari"), descrizione con Uniba e Poliba.
+- Dati strutturati JSON-LD nella home: `WebSite` "MUVT AGGRATIS" e `Organization` "Cambiare Rotta Bari" con Instagram e cambiare-rotta.org.
+- `public/sitemap.xml` con le tre pagine pubbliche; la 404 ha `noindex`.
+- **Niente robots.txt:** per un sito di progetto GitHub Pages il file andrebbe alla radice dell'host (`cambiare-rotta.github.io/robots.txt`, cioè un repo `cambiare-rotta.github.io` a parte). Oggi quell'indirizzo dà 404, e per Google vuol dire "tutto permesso".
+- Search Console: vedi [da-fare-a-mano.md](da-fare-a-mano.md).

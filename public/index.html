@@ -8,9 +8,37 @@
 <link rel="alternate icon" href="favicon.ico">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#0E0E0E">
-<title>MUVT AGGRATIS — Cambiare Rotta Bari</title>
-<meta name="description" content="Non vogliamo metà dello sconto. Trasporti gratuiti, studentati pubblici, affitti sostenibili.">
+<title>MUVT AGGRATIS — Trasporti gratuiti per chi studia a Bari | Cambiare Rotta Bari</title>
+<meta name="description" content="MUVT AGGRATIS, la campagna di Cambiare Rotta Bari: non vogliamo metà dello sconto. Trasporti gratuiti per studenti Uniba e Poliba, studentati pubblici, affitti sostenibili.">
+<!-- indirizzo unico per Google: le visite con ?ref=qr, ?ref=volantino… contano come la stessa pagina. Se cambia l'indirizzo del sito va aggiornato qui, in og:url, nel JSON-LD e in sitemap.xml -->
+<link rel="canonical" href="https://cambiare-rotta.github.io/muvt-aggratis/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://cambiare-rotta.github.io/muvt-aggratis/#sito",
+      "url": "https://cambiare-rotta.github.io/muvt-aggratis/",
+      "name": "MUVT AGGRATIS",
+      "alternateName": ["Muvt Aggratis", "MUVT AGGRATIS Bari"],
+      "inLanguage": "it-IT",
+      "publisher": { "@id": "https://cambiare-rotta.github.io/muvt-aggratis/#org" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://cambiare-rotta.github.io/muvt-aggratis/#org",
+      "name": "Cambiare Rotta Bari",
+      "description": "Organizzazione giovanile comunista, Bari",
+      "url": "https://cambiare-rotta.github.io/muvt-aggratis/",
+      "logo": "https://cambiare-rotta.github.io/muvt-aggratis/assets/logo.webp",
+      "sameAs": ["https://www.instagram.com/cambiarerotta_bari/", "https://cambiare-rotta.org/"]
+    }
+  ]
+}
+</script>
 <!-- anteprima quando il link viene condiviso (WhatsApp, Instagram, Telegram): l'indirizzo dell'immagine deve essere assoluto, se cambia l'indirizzo del sito va aggiornato qui -->
+<meta property="og:url" content="https://cambiare-rotta.github.io/muvt-aggratis/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="it_IT">
 <meta property="og:site_name" content="Cambiare Rotta Bari">
@@ -263,6 +291,39 @@
   }
   .toast.on { opacity: 1; transform: translate(-50%, 0); }
 
+  /* condividi: QR da far inquadrare e link da mandare */
+  .share { border-top: 3px solid var(--text); }
+  .share .grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; align-items: center; }
+  /* il QR resta scuro su bianco con la sua zona di rispetto (è già nel file): i lettori lo vogliono così */
+  .qr-card {
+    display: block; width: min(300px, 100%); margin: 0 auto; padding: 0; cursor: zoom-in;
+    background: #fff; border: 3px solid var(--yellow); box-shadow: 6px 6px 0 var(--red);
+  }
+  .qr-card img { display: block; width: 100%; height: auto; image-rendering: pixelated; }
+  .share .body p { color: var(--text-muted); margin: 0 0 14px; }
+  .share .url {
+    font-weight: 900; color: var(--text) !important; overflow-wrap: anywhere;
+    font-size: 17px; border-left: 4px solid var(--yellow); padding-left: 12px;
+  }
+  .share .azioni { display: flex; flex-direction: column; gap: 14px; align-items: stretch; margin: 22px 0 18px; }
+  .share .azioni .copy { width: 100%; }
+  .qr-full {
+    position: fixed; inset: 0; z-index: 80; background: #fff; color: var(--bg);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+    padding: 64px 16px calc(24px + env(safe-area-inset-bottom, 0px)); text-align: center;
+  }
+  .qr-full[hidden] { display: none; }
+  .qr-full img { width: min(88vw, 70vh); height: auto; image-rendering: pixelated; }
+  .qr-full p { margin: 0; font: 900 clamp(26px, 7vw, 44px)/1 var(--display); text-transform: uppercase; letter-spacing: .02em; }
+  .qr-full small { display: block; margin-top: 6px; font: 500 15px/1.3 var(--body); text-transform: none; overflow-wrap: anywhere; }
+  .qr-full .chiudi {
+    position: absolute; top: calc(10px + env(safe-area-inset-top, 0px)); right: 10px;
+    width: 52px; height: 52px; border: 3px solid var(--bg); background: #fff; color: var(--bg);
+    font: 900 30px/1 var(--body); cursor: pointer;
+  }
+  .qr-full .chiudi:focus-visible { outline-color: var(--red); }
+  body.qr-aperto { overflow: hidden; }
+
   /* ≥600px: telefoni grandi in orizzontale, tablet in verticale */
   @media (min-width: 600px) {
     .kicker { font-size: 13px; }
@@ -283,6 +344,10 @@
     .join .cell { border-bottom: 0; border-right: 1px solid var(--line); padding: 6px 18px 10px; }
     .forms { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 18px 24px; }
     .handle { text-align: left; }
+    .share .grid { grid-template-columns: 300px minmax(0, 1fr); gap: 40px; }
+    .share .azioni { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 18px 16px; }
+    .share .azioni .copy { width: auto; }
+    .share .url { font-size: 20px; }
   }
 
   /* ≥900px: desktop */
@@ -390,6 +455,7 @@
       <a href="#bonus">Il bonus</a>
       <a href="#conti">Fai i conti</a>
       <a href="#vogliamo">Cosa vogliamo</a>
+      <a href="#condividi">Condividi</a>
       <a href="https://cambiare-rotta.org/" target="_blank" rel="noopener">Chi siamo</a>
       <a class="navcta" href="tesseramento.html">Tesserati</a>
     </nav>
@@ -634,6 +700,35 @@
   </div>
 </section>
 
+<!-- condividi: il QR porta a ?ref=qr, così GoatCounter conta chi arriva inquadrandolo (assets/qr.svg, generato una volta: vedi docs/stato.md) -->
+<section class="share" id="condividi">
+  <div class="wrap">
+    <p class="label">Fai girare la campagna</p>
+    <h2 class="rv">Passa<br>la pagina.</h2>
+    <div class="grid">
+      <button class="qr-card" type="button" data-qr aria-label="Mostra il codice QR a tutto schermo">
+        <img src="assets/qr.svg" width="300" height="300" alt="Codice QR che apre il sito MUVT AGGRATIS">
+      </button>
+      <div class="body">
+        <p>Fai inquadrare il codice a chi hai accanto, oppure manda il link nei gruppi del corso. Su Google basta cercare <strong>MUVT AGGRATIS</strong>.</p>
+        <p class="url">cambiare-rotta.github.io/muvt-aggratis</p>
+        <div class="azioni">
+          <button class="cta" type="button" id="condividi-link">Condividi</button>
+          <button class="copy" type="button" id="copia-link">Copia il link</button>
+          <button class="copy" type="button" data-qr>QR a tutto schermo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QR a tutto schermo: fondo bianco pieno, così il telefono di chi inquadra lo legge anche da lontano -->
+<div class="qr-full" id="qr-full" role="dialog" aria-modal="true" aria-label="Codice QR a tutto schermo" hidden>
+  <button class="chiudi" type="button" aria-label="Chiudi">×</button>
+  <img src="assets/qr.svg" width="600" height="600" alt="Codice QR che apre il sito MUVT AGGRATIS">
+  <p>MUVT AGGRATIS<small>cambiare-rotta.github.io/muvt-aggratis</small></p>
+</div>
+
 <div class="wrap">
   <footer>
     <span>Cambiare Rotta · Organizzazione giovanile comunista · Bari</span>
@@ -827,6 +922,45 @@
     try { await navigator.clipboard.writeText(b.dataset.copy); say("Copiato: " + b.dataset.copy); }
     catch { say(b.dataset.copy); }
   }));
+
+  // condividi: il ?ref dice a GoatCounter da dove arriva la visita; per Google conta il canonical
+  const SITO = "https://cambiare-rotta.github.io/muvt-aggratis/";
+  const copiaLink = async url => {
+    try { await navigator.clipboard.writeText(url); say("Link copiato"); conta("link-copiato", "Link copiato"); }
+    catch { say(url.replace(/^https:\/\//, "")); }
+  };
+  $("copia-link").addEventListener("click", () => copiaLink(SITO + "?ref=link"));
+  $("condividi-link").addEventListener("click", async () => {
+    const url = SITO + "?ref=condiviso";
+    if (!navigator.share) return copiaLink(url);
+    try {
+      await navigator.share({ title: "MUVT AGGRATIS", text: "Non vogliamo metà dello sconto: vogliamo trasporti gratuiti. #MUVTAGGRATIS", url });
+      conta("link-condiviso", "Link condiviso");
+    } catch (e) { if (e && e.name !== "AbortError") copiaLink(url); }
+  });
+
+  // QR a tutto schermo: si chiude con la X, con Esc e con il tasto indietro del telefono
+  const qrFull = $("qr-full"), qrChiudi = qrFull.querySelector(".chiudi");
+  let qrDa = null;
+  const chiudiQr = () => {
+    if (qrFull.hidden) return;
+    qrFull.hidden = true; document.body.classList.remove("qr-aperto");
+    if (qrDa) qrDa.focus();
+  };
+  // se l'apertura ha aggiunto un passo alla cronologia, si chiude tornando indietro: così non resta un passo in più
+  const richiudi = () => (history.state && history.state.qr ? history.back() : chiudiQr());
+  document.querySelectorAll("[data-qr]").forEach(b => b.addEventListener("click", () => {
+    qrDa = b; qrFull.hidden = false; document.body.classList.add("qr-aperto");
+    try { history.pushState({ qr: true }, ""); } catch {}
+    qrChiudi.focus();
+    conta("qr-tutto-schermo", "QR a tutto schermo");
+  }));
+  qrChiudi.addEventListener("click", richiudi);
+  addEventListener("popstate", chiudiQr);
+  qrFull.addEventListener("keydown", e => {
+    if (e.key === "Escape") { e.preventDefault(); richiudi(); }
+    else if (e.key === "Tab") { e.preventDefault(); qrChiudi.focus(); } // l'unico comando nel riquadro: il focus resta lì
+  });
 </script>
 </body>
 </html>
