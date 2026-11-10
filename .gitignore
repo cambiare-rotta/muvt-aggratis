@@ -6,3 +6,9 @@ Thumbs.db
 
 # foto originali (pesanti, con volti): restano in locale, sul sito vanno le versioni ridotte
 foto_originali/
+
+# skill di Claude scaricate in locale (impeccable, taste-skill: ~40 MB) e copie delle critiche: non vanno nel repo pubblico
+.claude/
+.impeccable/
+# versione alternativa da provare in locale (non pubblicata)
+prova/

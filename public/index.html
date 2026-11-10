@@ -820,7 +820,10 @@
   })();
   // box "Scrivici": il messaggio parte da FormSubmit verso la casella di Cambiare Rotta Bari
   (() => {
-    const MAIL = "cambiarerotta.bari@gmail.com";
+    const MAIL = "cambiarerotta.bari@gmail.com"; // casella pubblica dell'organizzazione: va in copia e resta nel ripiego mailto
+    // dal 10/11/2026 i messaggi arrivano alla casella di chi cura il sito, con l'organizzazione in copia (la sua casella non era seguita).
+    // Spezzato in due pezzi, così chi raccoglie mail dal sorgente non lo trova.
+    const DEST = ["webcambiarerotta", "gmail.com"].join("@");
     const form = document.getElementById("mailform"), esito = document.getElementById("esito");
     // protezioni, stato del bottone e conferma sono comuni ai moduli (assets/site.js); il filtro vero contro lo spam è quello di FormSubmit
     const m = Muvt.modulo(form, { esca: "_honey", chiave: "muvt-invii", conferma: document.getElementById("conferma") });
@@ -836,12 +839,12 @@
       const contatto = String(d.get("contatto") || "").trim();
       m.occupato(true); say("", true);
       try {
-        const r = await fetch("https://formsubmit.co/ajax/" + MAIL, {
+        const r = await fetch("https://formsubmit.co/ajax/" + DEST, {
           method: "POST",
           headers: { "Content-Type": "application/json", "Accept": "application/json" },
           body: JSON.stringify({
             _subject: "[MUVT] Messaggio dal sito",
-            _template: "table", _captcha: "false",
+            _template: "table", _captcha: "false", _cc: MAIL,
             Nome: d.get("nome") || "(non indicato)",
             Contatto: contatto || "(non indicato)",
             Messaggio: msg
