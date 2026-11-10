@@ -35,14 +35,9 @@ Il modulo non è più un iframe di Google: è un modulo nostro in `public/tesser
 - **Anteprima social:** `og:image` punta a `https://cambiare-rotta.github.io/muvt-aggratis/assets/og.jpg`. Per ripulire la cache dell'anteprima: Sharing Debugger di Facebook.
 - **Privacy:** durata di conservazione del tesseramento ("finché resti iscritta o iscritto") è un'ipotesi, da confermare.
 
-## 9. Google Search Console (dal 10 novembre 2026)
-- **Perché non è fatto:** in Chrome era aperto l'account Google personale di Mario, non quello del collettivo. La proprietà va registrata con l'account di Cambiare Rotta (es. `cambiarerotta.bari@gmail.com`), così resta al collettivo.
-- **Già pronto nel sito:** canonical, sitemap (`https://cambiare-rotta.github.io/muvt-aggratis/sitemap.xml`), dati strutturati, titolo con "MUVT AGGRATIS".
-- **Come fare (10 minuti):**
-  1. Entrare in https://search.google.com/search-console con l'account Google di Cambiare Rotta.
-  2. "Aggiungi proprietà" → **Prefisso URL** (non "Dominio": github.io non è nostro) → `https://cambiare-rotta.github.io/muvt-aggratis/`.
-  3. Metodo **File HTML**: scaricare il file `googleXXXX.html`, metterlo in `public/`, commit e push, aspettare che il workflow Pages finisca (1–2 minuti), poi "Verifica". In alternativa il metodo **Tag HTML**: la riga `<meta name="google-site-verification" …>` va nella `<head>` di `public/index.html`. Il file o il tag vanno lasciati lì per sempre, altrimenti la verifica decade.
-  4. Menu **Sitemap** → inviare `sitemap.xml`.
-  5. **Controllo URL** → incollare l'indirizzo della home → "Richiedi indicizzazione".
+## 9. ~~Google Search Console~~ (fatto il 10 novembre 2026)
+- **Con l'account Google personale di Mario** (scelta sua): la proprietà non è del collettivo. Se un giorno deve passare a Cambiare Rotta: in Search Console → Impostazioni → Utenti e autorizzazioni, aggiungere l'account del collettivo come **proprietario**.
+- Proprietà **Prefisso URL** `https://cambiare-rotta.github.io/muvt-aggratis/` (non "Dominio": github.io non è nostro), verificata col **file HTML** `public/google3db400dfe77e701c.html`. **Non cancellarlo**, altrimenti la verifica decade.
+- `sitemap.xml` inviata; indicizzazione della home richiesta da "Controllo URL" (al momento: "URL sconosciuto a Google", messo nella coda prioritaria).
 - **Tempi:** di solito da qualche giorno a un paio di settimane prima che "MUVT AGGRATIS" su Google mostri il sito. Per controllare: cercare `site:cambiare-rotta.github.io/muvt-aggratis`.
 - **Aiuta molto:** il link al sito nella bio di Instagram `@cambiarerotta_bari` e, se possibile, su cambiare-rotta.org: Google trova e pesa le pagine anche dai link che le puntano.
